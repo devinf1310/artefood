@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snack Nour - Notre Menu</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+
+        /* Navbar */
+        .navbar { background: rgba(0, 0, 0, 0.95); padding: 15px 0; position: fixed; top: 0; width: 100%; z-index: 9999; backdrop-filter: blur(10px); }
+        .navbar-brand { font-family: 'Great Vibes', cursive !important; font-size: 2rem !important; color: white !important; }
+        .navbar-nav .nav-link { color: white !important; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; padding: 10px 15px; position: relative; letter-spacing: 1px; }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: #f39c12 !important; }
+        .navbar-nav .nav-link.active::after { content: ""; position: absolute; width: 100%; height: 2px; background: linear-gradient(90deg, #f39c12, #e74c3c); bottom: 0; left: 0; }
+        .navbar-icons a { color: white; font-size: 1.2rem; margin-left: 15px; transition: all 0.3s; }
+        .navbar-icons a:hover { color: #f39c12; transform: scale(1.1); }
+        .nav-cta { background: linear-gradient(135deg, #f39c12, #e74c3c); padding: 12px 30px !important; border-radius: 50px; margin-left: 15px; color: white !important; }
+        .nav-cta:hover { color: white !important; }
+
+        /* Order Popup */
+        .order-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 100002; display: none; align-items: center; justify-content: center; }
+        .order-popup-overlay.show { display: flex; }
+        .order-popup { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border-radius: 25px; padding: 40px; max-width: 400px; width: 90%; text-align: center; border: 2px solid rgba(243,156,18,0.3); position: relative; animation: popupIn 0.3s ease; }
+        @keyframes popupIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .order-popup-close { position: absolute; top: 15px; right: 20px; background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+        .order-popup-close:hover { color: white; }
+        .order-popup h3 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #f39c12; margin-bottom: 10px; }
+        .order-popup p { color: #aaa; margin-bottom: 30px; }
+        .order-popup-buttons { display: flex; flex-direction: column; gap: 15px; }
+        .order-popup-btn { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; }
+        .order-popup-btn.phone { background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; }
+        .order-popup-btn.phone:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(39,174,96,0.4); color: white; }
+        .order-popup-btn.uber { background: linear-gradient(135deg, #000, #333); color: #06C167; border: 2px solid #06C167; }
+        .order-popup-btn.uber:hover { background: #06C167; color: white; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(6,193,103,0.4); }
+
+        /* Hero Section */
+        .hero-menu { min-height: 100vh; padding-top: 80px; position: relative; display: flex; align-items: center; overflow: hidden; }
+        .slideshow-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.5s ease-in-out; background-size: cover; background-position: center; }
+        .slide.active { opacity: 1; }
+        .slide::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.85) 100%); }
+        .hero-content { position: relative; z-index: 10; width: 100%; padding: 60px 5%; }
+        .hero-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 60px; flex-wrap: wrap; gap: 40px; }
+        .hero-title { flex: 1; min-width: 300px; }
+        .hero-title h1 { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 10vw, 8rem); font-weight: 700; background: linear-gradient(135deg, #f39c12 0%, #e74c3c 50%, #f39c12 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 15px; }
+        .hero-title .subtitle { font-size: 1.2rem; color: #f39c12; text-transform: uppercase; letter-spacing: 5px; font-weight: 300; }
+        .hero-description { flex: 1.5; min-width: 300px; max-width: 600px; }
+        .hero-description p { font-size: 1.1rem; line-height: 1.9; color: #ccc; border-left: 3px solid #f39c12; padding-left: 25px; }
+
+        /* Categories Cards */
+        .categories-section { margin-top: 20px; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
+        .section-title .line { width: 80px; height: 3px; background: linear-gradient(90deg, #f39c12, #e74c3c); margin: 0 auto; }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        .category-card { position: relative; height: 320px; border-radius: 20px; overflow: hidden; cursor: pointer; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .category-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 60px rgba(243, 156, 18, 0.3); }
+        .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+        .category-card:hover img { transform: scale(1.15); }
+        .category-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.95) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; transition: all 0.4s ease; }
+        .category-card:hover .category-overlay { background: linear-gradient(180deg, transparent 0%, rgba(243, 156, 18, 0.1) 50%, rgba(0,0,0,0.95) 100%); }
+        .category-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #f39c12, #e74c3c); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; font-size: 1.5rem; color: white; transition: all 0.4s ease; }
+        .category-card:hover .category-icon { transform: scale(1.1) rotate(10deg); box-shadow: 0 5px 20px rgba(243, 156, 18, 0.5); }
+        .category-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: white; margin-bottom: 8px; }
+        .category-desc { font-size: 0.9rem; color: #aaa; margin-bottom: 15px; }
+        .category-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 25px; background: transparent; border: 2px solid #f39c12; color: #f39c12; border-radius: 30px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; text-decoration: none; }
+        .category-btn:hover { background: #f39c12; color: #000; }
+
+        /* Floating Food Items */
+        .floating-items { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; overflow: hidden; }
+        .floating-item { position: absolute; font-size: 2rem; opacity: 0.15; animation: float 20s infinite linear; }
+        @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.15; } 90% { opacity: 0.15; } 100% { transform: translateY(-100px) rotate(360deg); opacity: 0; } }
+
+        /* Offers Banner */
+        .offers-banner { background: linear-gradient(90deg, #f39c12, #e74c3c, #f39c12); background-size: 200% 100%; animation: gradientMove 3s ease infinite; padding: 15px; text-align: center; margin-top: 60px; }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .offers-banner p { color: #000; font-weight: 700; font-size: 1.1rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        .offers-banner i { margin: 0 15px; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+
+        /* Menu Sections */
+        .menu-section { padding: 80px 5%; position: relative; }
+        .menu-section-title { text-align: center; margin-bottom: 50px; }
+        .menu-section-title h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; display: inline-flex; align-items: center; gap: 15px; }
+        .menu-section-title h2 i { color: #f39c12; }
+        .menu-section-title h2 span { background: linear-gradient(135deg, #f39c12, #e74c3c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .menu-section-title .line { width: 80px; height: 3px; background: linear-gradient(90deg, #f39c12, #e74c3c); margin: 15px auto 0; }
+
+        /* Menu Cards Grid */
+        .menu-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; max-width: 1400px; margin: 0 auto; }
+        .menu-card { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border-radius: 20px; padding: 25px; position: relative; transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.05); }
+        .menu-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(243, 156, 18, 0.2); border-color: rgba(243, 156, 18, 0.3); }
+        .menu-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .menu-card-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #f39c12; flex: 1; padding-right: 10px; }
+        .price-badges { display: flex; gap: 8px; flex-shrink: 0; }
+        .price-badge { padding: 8px 12px; border-radius: 8px; text-align: center; min-width: 65px; }
+        .price-badge.seul { background: #333; border: 1px solid #555; }
+        .price-badge.menu { background: linear-gradient(135deg, #f39c12, #e74c3c); }
+        .price-badge.single { background: linear-gradient(135deg, #f39c12, #e74c3c); min-width: 80px; }
+        .price-badge-label { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; opacity: 0.9; }
+        .price-badge.seul .price-badge-label { color: #aaa; }
+        .price-badge.menu .price-badge-label, .price-badge.single .price-badge-label { color: rgba(255,255,255,0.9); }
+        .price-badge-price { display: block; font-size: 1.1rem; font-weight: 700; }
+        .price-badge.seul .price-badge-price { color: #fff; }
+        .price-badge.menu .price-badge-price, .price-badge.single .price-badge-price { color: #fff; }
+        .menu-card-description { font-size: 0.85rem; color: #888; line-height: 1.5; }
+        .menu-card-emojis { margin-top: 10px; font-size: 1.2rem; }
+
+        /* Footer */
+        footer { background: #000; color: white; text-align: center; padding: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer p { margin: 0; color: #666; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-top { flex-direction: column; text-align: center; }
+            .hero-description p { border-left: none; border-top: 3px solid #f39c12; padding-left: 0; padding-top: 25px; }
+            .categories-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        }
+        @media (max-width: 576px) {
+            .category-card { height: 280px; }
+            .hero-title h1 { font-size: 4rem; }
+            .menu-cards-grid { grid-template-columns: 1fr; }
+            .menu-card-header { flex-direction: column; gap: 15px; }
+            .price-badges { width: 100%; justify-content: flex-end; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Order Popup -->
+    <div class="order-popup-overlay" id="orderPopup">
+        <div class="order-popup">
+            <button class="order-popup-close" onclick="closeOrderPopup()">&times;</button>
+            <h3>🍔 Commander</h3>
+            <p>Choisissez votre mode de commande</p>
+            <div class="order-popup-buttons">
+                <a href="tel:0491528155" class="order-popup-btn phone">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>04 91 52 81 55</span>
+                </a>
+                <a href="https://www.ubereats.com/fr/store/snack-nour/CdhyWnIHWPeE6U6iT-FUeQ" target="_blank" class="order-popup-btn uber">
+                    <i class="fab fa-uber"></i>
+                    <span>Commander sur Uber Eats</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="accueil.html">Snack Nour</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="accueil.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="menu.html">Notre Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link nav-cta" href="#" onclick="openOrderPopup(); return false;"><i class="fas fa-phone"></i> Commander</a></li>
+                </ul>
+                <div class="navbar-icons">
+                    <a href="https://www.facebook.com/people/Snack-Nour/61585792134903/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-menu">
+        <div class="slideshow-container">
+            <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/devinf1310/artefood/main/snack-nour/media/burger.webp');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/devinf1310/artefood/main/snack-nour/media/tacos.webp');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/devinf1310/artefood/main/snack-nour/media/sandwich.webp');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/devinf1310/artefood/main/snack-nour/media/panini.webp');"></div>
+        </div>
+
+        <div class="floating-items">
+            <span class="floating-item" style="left: 5%; animation-delay: 0s;">🍔</span>
+            <span class="floating-item" style="left: 15%; animation-delay: 3s;">🌮</span>
+            <span class="floating-item" style="left: 25%; animation-delay: 6s;">🍟</span>
+            <span class="floating-item" style="left: 35%; animation-delay: 9s;">🥤</span>
+            <span class="floating-item" style="left: 45%; animation-delay: 12s;">🧀</span>
+            <span class="floating-item" style="left: 55%; animation-delay: 2s;">🍔</span>
+            <span class="floating-item" style="left: 65%; animation-delay: 5s;">🌯</span>
+            <span class="floating-item" style="left: 75%; animation-delay: 8s;">🍕</span>
+            <span class="floating-item" style="left: 85%; animation-delay: 11s;">🍗</span>
+            <span class="floating-item" style="left: 95%; animation-delay: 4s;">🥙</span>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-top">
+                <div class="hero-title">
+                    <p class="subtitle">Bienvenue chez</p>
+                    <h1>NOUR</h1>
+                </div>
+                <div class="hero-description">
+                    <p>Découvrez une cuisine généreuse et savoureuse, pensée pour combler toutes vos envies gourmandes. Du snack rapide aux assiettes bien garnies, chaque plat est préparé avec soin à partir d'ingrédients frais et de qualité.</p>
+                </div>
+            </div>
+
+            <div class="categories-section">
+                <div class="section-title">
+                    <h2>Explorez Notre Carte</h2>
+                    <div class="line"></div>
+                </div>
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/snack-nour/media/burger.webp" alt="Burgers">
+                        <div class="category-overlay">
+                            <div class="category-icon"><i class="fas fa-hamburger"></i></div>
+                            <h3 class="category-name">Burgers</h3>
+                            <p class="category-desc">10 recettes gourmandes</p>
+                            <a href="#burgers" class="category-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/snack-nour/media/tacos.webp" alt="Tacos">
+                        <div class="category-overlay">
+                            <div class="category-icon"><i class="fas fa-pepper-hot"></i></div>
+                            <h3 class="category-name">Tacos</h3>
+                            <p class="category-desc">1, 2 ou 3 viandes</p>
+                            <a href="#tacos" class="category-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/snack-nour/media/sandwich.webp" alt="Sandwichs">
+                        <div class="category-overlay">
+                            <div class="category-icon"><i class="fas fa-bread-slice"></i></div>
+                            <h3 class="category-name">Sandwichs</h3>
+                            <p class="category-desc">24 variétés</p>
+                            <a href="#sandwichs" class="category-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/snack-nour/media/panini.webp" alt="Paninis">
+                        <div class="category-overlay">
+                            <div class="category-icon"><i class="fas fa-hotdog"></i></div>
+                            <h3 class="category-name">Paninis</h3>
+                            <p class="category-desc">6 saveurs</p>
+                            <a href="#paninis" class="category-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/snack-nour/media/duo-burger.webp" alt="Duos">
+                        <div class="category-overlay">
+                            <div class="category-icon"><i class="fas fa-users"></i></div>
+                            <h3 class="category-name">Duos</h3>
+                            <p class="category-desc">9 combinaisons</p>
+                            <a href="#duos" class="category-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/snack-nour/media/dessert.png" alt="Extras">
+                        <div class="category-overlay">
+                            <div class="category-icon"><i class="fas fa-ice-cream"></i></div>
+                            <h3 class="category-name">Extras</h3>
+                            <p class="category-desc">Desserts & Boissons</p>
+                            <a href="#extras" class="category-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="offers-banner">
+        <p><i class="fas fa-star"></i> LIVRAISON GRATUITE À PARTIR DE 20€00 <i class="fas fa-star"></i> DISPONIBLE EGALEMENT SUR UBER EATS <i class="fas fa-star"></i></p>
+    </div>
+
+    <!-- ========== PANINIS (6) ========== -->
+    <section class="menu-section" id="paninis">
+        <div class="menu-section-title">
+            <h2><i class="fas fa-hotdog"></i> <span>Nos Paninis</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-cards-grid">
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Panini 3 Fromages</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">6,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Triple fromage fondant</p>
+                <div class="menu-card-emojis">🧀🧀🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Panini Mozza</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">6,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Mozzarella filante</p>
+                <div class="menu-card-emojis">🧀🇮🇹</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Panini Thon</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">6,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Thon et fromage fondu</p>
+                <div class="menu-card-emojis">🐟🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Panini Steak</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">6,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak haché et fromage</p>
+                <div class="menu-card-emojis">🥩🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Panini Poulet</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">6,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Poulet grillé et fromage</p>
+                <div class="menu-card-emojis">🍗🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Panini Provençal</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">6,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Saveurs du sud</p>
+                <div class="menu-card-emojis">🌿☀️</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TACOS (3) ========== -->
+    <section class="menu-section" id="tacos" style="background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);">
+        <div class="menu-section-title">
+            <h2><i class="fas fa-pepper-hot"></i> <span>Nos Tacos</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-cards-grid">
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Tacos Simple (1 Viande)</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">8,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Kebab, Escalope, Tenders, Viande hachée ou Cordon Bleu</p>
+                <div class="menu-card-emojis">🌮🔥</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Tacos Double (2 Viandes)</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">9,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">10,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">2 viandes au choix</p>
+                <div class="menu-card-emojis">🌮🌮🔥</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Tacos Triple (3 Viandes)</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">10,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">11,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">3 viandes au choix - Pour les gros appétits !</p>
+                <div class="menu-card-emojis">🌮🌮🌮💪</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BURGERS (10) ========== -->
+    <section class="menu-section" id="burgers">
+        <div class="menu-section-title">
+            <h2><i class="fas fa-hamburger"></i> <span>Nos Burgers</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-cards-grid">
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Burger Classic Cheese</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">4,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">6,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Simple, savoureux, authentique et fondant</p>
+                <div class="menu-card-emojis">🍔🔥😍</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Burger Double Cheese</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">6,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Double steak, fromage fondant, savoureux</p>
+                <div class="menu-card-emojis">🍔🔥😍</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Burger Triple Cheese</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">8,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Triple steak, fromage fondant, savoureux</p>
+                <div class="menu-card-emojis">😍🔥</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Burger Fish</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Poisson croustillant, fraîcheur, burger savoureux</p>
+                <div class="menu-card-emojis">🐟🍔</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Burger Géant Double Cheese</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">6,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">8,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Double steak, double fromage, ultra gourmand</p>
+                <div class="menu-card-emojis">🍔🧀🔥</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Burger Chicken</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Poulet croustillant, moelleux, délicieux burger</p>
+                <div class="menu-card-emojis">🍗🍔</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Burger Royal</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak, Bacon, Cheddar - Le classique royal !</p>
+                <div class="menu-card-emojis">👑🍔🥓</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Burger Le Croustille</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">6,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">8,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak, Chicken, Cheddar - Extra croustillant !</p>
+                <div class="menu-card-emojis">🍔🍗✨</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Burger Géant Cheese</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">6,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Le géant pour les gros appétits !</p>
+                <div class="menu-card-emojis">🍔💪</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Burger Gold</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">6,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">8,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak, Oeuf, Bacon, Cheddar - Notre pépite !</p>
+                <div class="menu-card-emojis">🥇🍔🥚</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DUOS (9) ========== -->
+    <section class="menu-section" id="duos" style="background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);">
+        <div class="menu-section-title">
+            <h2><i class="fas fa-users"></i> <span>Nos Duos</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-cards-grid">
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">DUO Nour 1 (Cheese + Big Mac)</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">9,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">2 burgers pour les gourmands</p>
+                <div class="menu-card-emojis">🍔🍔</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">DUO Nour 1 (Cheese + Chicken)</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">9,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Bœuf et poulet réunis</p>
+                <div class="menu-card-emojis">🍔🍗</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">DUO Nour 3 (Cheese + Gold)</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">10,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Le duo premium</p>
+                <div class="menu-card-emojis">🍔🥇</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">DUO Nour 4 (Cheese + Geant)</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">9,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Classic + Géant</p>
+                <div class="menu-card-emojis">🍔💪</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">DUO Nour 5 (Cheese + Triple Cheese)</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">10,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Pour les amateurs de fromage</p>
+                <div class="menu-card-emojis">🍔🧀🧀🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">DUO Nour 6 (Cheese + Royal)</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">10,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Classic + Royal</p>
+                <div class="menu-card-emojis">🍔👑</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">DUO Nour 7 (Cheese + Double Geant)</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">10,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Classic + Double Géant</p>
+                <div class="menu-card-emojis">🍔🍔💪</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">DUO Nour 8 (Cheese + Crousty)</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">10,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Classic + Croustillant</p>
+                <div class="menu-card-emojis">🍔✨</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">DUO Nour 9 (Cheese + Cheese)</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">8,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Double Classic !</p>
+                <div class="menu-card-emojis">🍔🍔🧀</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SANDWICHS SPÉCIAUX (6) ========== -->
+    <section class="menu-section" id="sandwichs">
+        <div class="menu-section-title">
+            <h2><i class="fas fa-star"></i> <span>Sandwichs Spéciaux</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-cards-grid">
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Boursin</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">8,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">9,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Escalope ou Tenders ou Kebab ou Steak</p>
+                <div class="menu-card-emojis">🧀✨</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">3 Fromages</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">9,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Escalope ou Tenders ou Kebab ou Steak</p>
+                <div class="menu-card-emojis">🧀🧀🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Délice</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">8,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Escalope, crème champignon, Cheddar</p>
+                <div class="menu-card-emojis">🍄🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Suprême</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">8,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak, Boursin, Oeuf, Cheddar</p>
+                <div class="menu-card-emojis">👑🥚🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Paprika</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">8,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Poulet paprika, Fromage</p>
+                <div class="menu-card-emojis">🌶️🍗</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Curry</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">8,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Poulet curry, Fromage</p>
+                <div class="menu-card-emojis">🍛🍗</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SANDWICHS MAXI (6) ========== -->
+    <section class="menu-section" id="maxi" style="background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);">
+        <div class="menu-section-title">
+            <h2><i class="fas fa-arrow-up"></i> <span>Sandwichs Maxi</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-cards-grid">
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Extrême</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">9,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">10,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak, Escalope, Bacon</p>
+                <div class="menu-card-emojis">🔥💪🥓</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Maxi Kebab</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">9,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak, Kebab, Fromage</p>
+                <div class="menu-card-emojis">🥙💪</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Maxi Paprika</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">9,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak, Poulet paprika, Fromage</p>
+                <div class="menu-card-emojis">🌶️💪</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Maxi Curry</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">9,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak, Poulet curry, Fromage</p>
+                <div class="menu-card-emojis">🍛💪</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Maxi Cordon Bleu</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">8,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak, Cordon bleu, Fromage</p>
+                <div class="menu-card-emojis">🍗🧀💪</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Maxi Tenders</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">9,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak, Tenders, Fromage</p>
+                <div class="menu-card-emojis">🍗💪</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SANDWICHS CLASSIQUES (12) ========== -->
+    <section class="menu-section" id="sandwichs-classiques">
+        <div class="menu-section-title">
+            <h2><i class="fas fa-bread-slice"></i> <span>Sandwichs Classiques</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-cards-grid">
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Kebab</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">6,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">L'incontournable kebab</p>
+                <div class="menu-card-emojis">🥙🔥</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Steak</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">6,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak juteux, crudités fraîches</p>
+                <div class="menu-card-emojis">🥩🥖</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Steak Œuf</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Steak et œuf, le combo parfait</p>
+                <div class="menu-card-emojis">🥩🥚</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Merguez</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">6,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Merguez grillées, saveurs épicées</p>
+                <div class="menu-card-emojis">🌶️🥖</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Cordon Bleu</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Cordon bleu croustillant</p>
+                <div class="menu-card-emojis">🍗🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Escalope Pané</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Escalope panée croustillante</p>
+                <div class="menu-card-emojis">🍗✨</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Escalope de Poulet</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Escalope de poulet grillée</p>
+                <div class="menu-card-emojis">🍗🥗</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Escalope + Steak</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">9,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Le duo gagnant !</p>
+                <div class="menu-card-emojis">🍗🥩💪</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Escalope + Cordon Bleu</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">9,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Double poulet, double plaisir</p>
+                <div class="menu-card-emojis">🍗🍗🔥</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Tenders + Steak</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">7,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">9,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Tenders et steak réunis</p>
+                <div class="menu-card-emojis">🍗🥩</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Falafel x4</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,00 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">6,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">4 falafels maison, option végé</p>
+                <div class="menu-card-emojis">🧆🥗</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Sandwich Tenders</div>
+                    <div class="price-badges">
+                        <div class="price-badge seul"><span class="price-badge-label">Seul</span><span class="price-badge-price">5,50 €</span></div>
+                        <div class="price-badge menu"><span class="price-badge-label">Menu</span><span class="price-badge-price">7,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Tenders croustillants à souhait</p>
+                <div class="menu-card-emojis">🍗🔥</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EXTRAS (5) + MENU ENFANT ========== -->
+    <section class="menu-section" id="extras" style="background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);">
+        <div class="menu-section-title">
+            <h2><i class="fas fa-drumstick-bite"></i> <span>Extras & Accompagnements</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-cards-grid">
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Menu Enfant Woody Woodpecker</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">5,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Cheese ou 5 Nuggets + Frites + Compote + Capri Sun</p>
+                <div class="menu-card-emojis">👶🍟🧃</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Tenders x3</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">4,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">3 tenders croustillants</p>
+                <div class="menu-card-emojis">🍗🍗🍗</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Tex Mex x3</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">2,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Jalapenos, Mozzastick, Onion rings, Nuggets ou Camembert</p>
+                <div class="menu-card-emojis">🌶️🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Tex Mex x6</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">4,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">6 pièces au choix</p>
+                <div class="menu-card-emojis">🌶️🧀✨</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Tex Mex x9</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">7,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">9 pièces au choix</p>
+                <div class="menu-card-emojis">🌶️🧀💪</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DESSERTS (2) ========== -->
+    <section class="menu-section" id="desserts">
+        <div class="menu-section-title">
+            <h2><i class="fas fa-ice-cream"></i> <span>Desserts</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-cards-grid">
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Tiramisu</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">2,80 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Dessert italien maison</p>
+                <div class="menu-card-emojis">🍰☕</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Tarte au Daim</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">2,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Douceur croquante</p>
+                <div class="menu-card-emojis">🍫🥧</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BOISSONS (5) ========== -->
+    <section class="menu-section" id="boissons" style="background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);">
+        <div class="menu-section-title">
+            <h2><i class="fas fa-glass-cheers"></i> <span>Boissons</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-cards-grid">
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Canette 33cl</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">1,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Coca, Fanta, Sprite, Oasis...</p>
+                <div class="menu-card-emojis">🥤</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Coca Cola 1L5</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">2,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Grande bouteille à partager</p>
+                <div class="menu-card-emojis">🥤🍾</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Oasis Tropicale 2L5</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">3,50 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Très grande bouteille</p>
+                <div class="menu-card-emojis">🍹🍾</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Eau 50cl</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">1,00 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Eau minérale</p>
+                <div class="menu-card-emojis">💧</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Capri Sun</div>
+                    <div class="price-badges">
+                        <div class="price-badge single"><span class="price-badge-label">Prix</span><span class="price-badge-price">0,80 €</span></div>
+                    </div>
+                </div>
+                <p class="menu-card-description">Pour les petits et grands</p>
+                <div class="menu-card-emojis">🧃</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Snack Nour - Artefood.fr | Menu = Plat + Frites + Boisson 33cl</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 5000);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                }
+            });
+        });
+
+        // Order Popup
+        function openOrderPopup() {
+            document.getElementById('orderPopup').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrderPopup() {
+            document.getElementById('orderPopup').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('orderPopup').addEventListener('click', function(e) {
+            if (e.target === this) closeOrderPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeOrderPopup();
+        });
+    </script>
+</body>
+</html>
