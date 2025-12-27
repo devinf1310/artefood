@@ -409,4 +409,13 @@
         }
         // Fermer le popup en cliquant en dehors
         document.getElementById('orderPopup').addEventListener('click', function(e) {
-            if (e.t
+            if (e.target === this) closeOrderPopup();
+        });
+        // Fermer avec Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeOrderPopup();
+        });
+    </script>
+</body>
+</html>
+
