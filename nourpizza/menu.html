@@ -5,79 +5,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nour Pizza - Notre Menu</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+
+        /* Navbar */
         .navbar { background: rgba(0, 0, 0, 0.95); padding: 15px 0; position: fixed; top: 0; width: 100%; z-index: 9999; backdrop-filter: blur(10px); }
         .navbar-brand { font-family: 'Great Vibes', cursive !important; font-size: 2rem !important; color: white !important; }
-        .navbar-nav .nav-link { color: white !important; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; padding: 10px 15px; letter-spacing: 1px; }
+        .navbar-nav .nav-link { color: white !important; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; padding: 10px 15px; position: relative; letter-spacing: 1px; }
         .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: #e67e22 !important; }
-        .nav-cta { background: linear-gradient(135deg, #e67e22, #c0392b); padding: 12px 30px !important; border-radius: 50px; margin-left: 15px; }
+        .navbar-nav .nav-link.active::after { content: ""; position: absolute; width: 100%; height: 2px; background: linear-gradient(90deg, #e67e22, #c0392b); bottom: 0; left: 0; }
+        .navbar-icons a { color: white; font-size: 1.2rem; margin-left: 15px; transition: all 0.3s; }
+        .navbar-icons a:hover { color: #e67e22; transform: scale(1.1); }
+        .nav-cta { background: linear-gradient(135deg, #e67e22, #c0392b); padding: 12px 30px !important; border-radius: 50px; margin-left: 15px; color: white !important; }
+        .nav-cta:hover { color: white !important; }
+
+        /* Order Popup */
         .order-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 100002; display: none; align-items: center; justify-content: center; }
         .order-popup-overlay.show { display: flex; }
-        .order-popup { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border-radius: 25px; padding: 40px; max-width: 400px; width: 90%; text-align: center; border: 2px solid rgba(230,126,34,0.3); position: relative; }
-        .order-popup-close { position: absolute; top: 15px; right: 20px; background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; }
+        .order-popup { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border-radius: 25px; padding: 40px; max-width: 400px; width: 90%; text-align: center; border: 2px solid rgba(230,126,34,0.3); position: relative; animation: popupIn 0.3s ease; }
+        @keyframes popupIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .order-popup-close { position: absolute; top: 15px; right: 20px; background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+        .order-popup-close:hover { color: white; }
         .order-popup h3 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #e67e22; margin-bottom: 10px; }
         .order-popup p { color: #aaa; margin-bottom: 30px; }
         .order-popup-buttons { display: flex; flex-direction: column; gap: 15px; }
-        .order-popup-btn { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+        .order-popup-btn { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; }
         .order-popup-btn.phone { background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; }
+        .order-popup-btn.phone:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(39,174,96,0.4); color: white; }
         .order-popup-btn.uber { background: linear-gradient(135deg, #000, #333); color: #06C167; border: 2px solid #06C167; }
-        .hero-menu { min-height: 60vh; padding-top: 100px; position: relative; display: flex; align-items: center; background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url('https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_1.jpg') center/cover; }
-        .hero-content { position: relative; z-index: 10; width: 100%; padding: 60px 5%; text-align: center; }
-        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); background: linear-gradient(135deg, #e67e22, #c0392b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
-        .hero-content p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto; }
-        .offers-banner { background: linear-gradient(90deg, #e67e22, #c0392b, #e67e22); background-size: 200% 100%; animation: gradientMove 3s ease infinite; padding: 15px; text-align: center; }
+        .order-popup-btn.uber:hover { background: #06C167; color: white; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(6,193,103,0.4); }
+
+        /* Hero Section */
+        .hero-menu { min-height: 100vh; padding-top: 80px; position: relative; display: flex; align-items: center; overflow: hidden; }
+        .slideshow-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.5s ease-in-out; background-size: cover; background-position: center; }
+        .slide.active { opacity: 1; }
+        .slide::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.85) 100%); }
+        .hero-content { position: relative; z-index: 10; width: 100%; padding: 60px 5%; }
+        .hero-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 60px; flex-wrap: wrap; gap: 40px; }
+        .hero-title { flex: 1; min-width: 300px; }
+        .hero-title h1 { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 10vw, 8rem); font-weight: 700; background: linear-gradient(135deg, #e67e22 0%, #c0392b 50%, #e67e22 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 15px; }
+        .hero-title .subtitle { font-size: 1.2rem; color: #e67e22; text-transform: uppercase; letter-spacing: 5px; font-weight: 300; }
+        .hero-description { flex: 1.5; min-width: 300px; max-width: 600px; }
+        .hero-description p { font-size: 1.1rem; line-height: 1.9; color: #ccc; border-left: 3px solid #e67e22; padding-left: 25px; }
+
+        /* Categories Cards */
+        .categories-section { margin-top: 20px; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
+        .section-title .line { width: 80px; height: 3px; background: linear-gradient(90deg, #e67e22, #c0392b); margin: 0 auto; }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        .category-card { position: relative; height: 320px; border-radius: 20px; overflow: hidden; cursor: pointer; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .category-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 60px rgba(230, 126, 34, 0.3); }
+        .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+        .category-card:hover img { transform: scale(1.15); }
+        .category-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.95) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; transition: all 0.4s ease; }
+        .category-card:hover .category-overlay { background: linear-gradient(180deg, transparent 0%, rgba(230, 126, 34, 0.1) 50%, rgba(0,0,0,0.95) 100%); }
+        .category-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #e67e22, #c0392b); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; font-size: 1.5rem; color: white; transition: all 0.4s ease; }
+        .category-card:hover .category-icon { transform: scale(1.1) rotate(10deg); box-shadow: 0 5px 20px rgba(230, 126, 34, 0.5); }
+        .category-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: white; margin-bottom: 8px; }
+        .category-desc { font-size: 0.9rem; color: #aaa; margin-bottom: 15px; }
+        .category-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 25px; background: transparent; border: 2px solid #e67e22; color: #e67e22; border-radius: 30px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; text-decoration: none; }
+        .category-btn:hover { background: #e67e22; color: #000; }
+
+        /* Floating Food Items */
+        .floating-items { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; overflow: hidden; }
+        .floating-item { position: absolute; font-size: 2rem; opacity: 0.15; animation: float 20s infinite linear; }
+        @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.15; } 90% { opacity: 0.15; } 100% { transform: translateY(-100px) rotate(360deg); opacity: 0; } }
+
+        /* Offers Banner */
+        .offers-banner { background: linear-gradient(90deg, #e67e22, #c0392b, #e67e22); background-size: 200% 100%; animation: gradientMove 3s ease infinite; padding: 15px; text-align: center; margin-top: 60px; }
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .offers-banner p { color: #fff; font-weight: 700; font-size: 1rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-        .menu-section { padding: 80px 5%; }
+        .offers-banner p { color: #fff; font-weight: 700; font-size: 1.1rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        .offers-banner i { margin: 0 15px; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+
+        /* Menu Sections */
+        .menu-section { padding: 80px 5%; position: relative; }
         .menu-section-title { text-align: center; margin-bottom: 50px; }
-        .menu-section-title h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; display: inline-flex; align-items: center; gap: 15px; }
+        .menu-section-title h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; display: inline-flex; align-items: center; gap: 15px; }
         .menu-section-title h2 i { color: #e67e22; }
-        .menu-section-title h2 span { background: linear-gradient(135deg, #e67e22, #c0392b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .menu-section-title h2 span { background: linear-gradient(135deg, #e67e22, #c0392b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .menu-section-title .line { width: 80px; height: 3px; background: linear-gradient(90deg, #e67e22, #c0392b); margin: 15px auto 0; }
-        .menu-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; max-width: 1400px; margin: 0 auto; }
-        .menu-card { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border-radius: 20px; padding: 25px; transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.05); }
-        .menu-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(230,126,34,0.2); border-color: rgba(230,126,34,0.3); }
+
+        /* Menu Cards Grid */
+        .menu-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; max-width: 1400px; margin: 0 auto; }
+        .menu-card { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border-radius: 20px; padding: 25px; position: relative; transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.05); }
+        .menu-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(230, 126, 34, 0.2); border-color: rgba(230, 126, 34, 0.3); }
         .menu-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-        .menu-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #e67e22; flex: 1; padding-right: 10px; }
-        .price-badge { padding: 8px 15px; border-radius: 10px; background: linear-gradient(135deg, #e67e22, #c0392b); }
+        .menu-card-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #e67e22; flex: 1; padding-right: 10px; }
+        .price-badge { padding: 8px 15px; border-radius: 10px; background: linear-gradient(135deg, #e67e22, #c0392b); text-align: center; min-width: 80px; }
         .price-badge-price { font-size: 1.1rem; font-weight: 700; color: #fff; }
         .menu-card-description { font-size: 0.85rem; color: #888; line-height: 1.5; }
         .menu-card-emojis { margin-top: 10px; font-size: 1.2rem; }
+
+        /* Special Cards */
         .special-card { background: #000; border-radius: 20px; padding: 25px; border: 2px solid rgba(255,215,0,0.5); box-shadow: 0 4px 15px rgba(255,215,0,0.15); transition: all 0.4s ease; }
         .special-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,215,0,0.3); }
         .special-card .menu-card-title { color: #ffd700; }
         .special-card .price-badge { background: linear-gradient(135deg, #ffd700, #e67e22); }
+
+        /* Promo Cards */
         .promo-card { background: linear-gradient(145deg, #b71c1c, #7f0000); border-radius: 20px; padding: 30px; text-align: center; transition: all 0.4s ease; }
         .promo-card:hover { transform: scale(1.02); }
         .promo-card h4 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 10px; }
         .promo-card .promo-price { font-size: 2rem; font-weight: 700; color: #ffccbc; margin-bottom: 10px; }
         .promo-card p { color: #ffebee; font-size: 0.95rem; }
-        footer { background: #000; text-align: center; padding: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        /* Footer */
+        footer { background: #000; color: white; text-align: center; padding: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
         footer p { margin: 0; color: #666; }
-        @media (max-width: 768px) { .menu-cards-grid { grid-template-columns: 1fr; } .menu-card-header { flex-direction: column; gap: 10px; } }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-top { flex-direction: column; text-align: center; }
+            .hero-description p { border-left: none; border-top: 3px solid #e67e22; padding-left: 0; padding-top: 25px; }
+            .categories-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        }
+        @media (max-width: 576px) {
+            .category-card { height: 280px; }
+            .hero-title h1 { font-size: 4rem; }
+            .menu-cards-grid { grid-template-columns: 1fr; }
+            .menu-card-header { flex-direction: column; gap: 15px; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Order Popup -->
     <div class="order-popup-overlay" id="orderPopup">
         <div class="order-popup">
             <button class="order-popup-close" onclick="closeOrderPopup()">&times;</button>
             <h3>🍕 Commander</h3>
             <p>Choisissez votre mode de commande</p>
             <div class="order-popup-buttons">
-                <a href="tel:0465853879" class="order-popup-btn phone"><i class="fas fa-phone-alt"></i><span>04 65 85 38 79</span></a>
-                <a href="https://www.ubereats.com/fr/store/nour-pizza/j3hNkSFXXT6mCtg6EybBdg?diningMode=DELIVERY" target="_blank" class="order-popup-btn uber"><i class="fab fa-uber"></i><span>Commander sur Uber Eats</span></a>
+                <a href="tel:0465853879" class="order-popup-btn phone">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>04 65 85 38 79</span>
+                </a>
+                <a href="https://www.ubereats.com/fr/store/nour-pizza/j3hNkSFXXT6mCtg6EybBdg?diningMode=DELIVERY" target="_blank" class="order-popup-btn uber">
+                    <i class="fab fa-uber"></i>
+                    <span>Commander sur Uber Eats</span>
+                </a>
             </div>
         </div>
     </div>
 
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">Nour Pizza</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
@@ -85,14 +169,90 @@
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     <li class="nav-item"><a class="nav-link nav-cta" href="#" onclick="openOrderPopup(); return false;"><i class="fas fa-phone"></i> Commander</a></li>
                 </ul>
+                <div class="navbar-icons">
+                    <a href="https://www.facebook.com/people/Nour-Pizza/61571614726498/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
             </div>
         </div>
     </nav>
 
+    <!-- Hero Section with Slideshow -->
     <section class="hero-menu">
+        <div class="slideshow-container">
+            <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_1.jpg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_2.jpg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_3.jpg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_cuisson_1.jpg');"></div>
+        </div>
+
+        <div class="floating-items">
+            <span class="floating-item" style="left: 5%; animation-delay: 0s;">🍕</span>
+            <span class="floating-item" style="left: 15%; animation-delay: 3s;">🧀</span>
+            <span class="floating-item" style="left: 25%; animation-delay: 6s;">🍅</span>
+            <span class="floating-item" style="left: 35%; animation-delay: 9s;">🌿</span>
+            <span class="floating-item" style="left: 45%; animation-delay: 12s;">🫒</span>
+            <span class="floating-item" style="left: 55%; animation-delay: 2s;">🍕</span>
+            <span class="floating-item" style="left: 65%; animation-delay: 5s;">🧄</span>
+            <span class="floating-item" style="left: 75%; animation-delay: 8s;">🌶️</span>
+            <span class="floating-item" style="left: 85%; animation-delay: 11s;">🍄</span>
+            <span class="floating-item" style="left: 95%; animation-delay: 4s;">🍕</span>
+        </div>
+
         <div class="hero-content">
-            <h1>Notre Menu</h1>
-            <p>Découvrez notre sélection de pizzas artisanales, préparées avec des ingrédients frais et de qualité.</p>
+            <div class="hero-top">
+                <div class="hero-title">
+                    <p class="subtitle">Bienvenue chez</p>
+                    <h1>NOUR PIZZA</h1>
+                </div>
+                <div class="hero-description">
+                    <p>Découvrez notre sélection de pizzas artisanales, préparées avec des ingrédients frais et de qualité. Chaque pizza est cuite au four et garnie avec passion pour vous offrir une expérience gourmande inoubliable.</p>
+                </div>
+            </div>
+
+            <div class="categories-section">
+                <div class="section-title">
+                    <h2>Explorez Notre Carte</h2>
+                    <div class="line"></div>
+                </div>
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_1.jpg" alt="Promotions">
+                        <div class="category-overlay">
+                            <div class="category-icon"><i class="fas fa-tags"></i></div>
+                            <h3 class="category-name">Promotions</h3>
+                            <p class="category-desc">Nos offres du moment</p>
+                            <a href="#promos" class="category-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_2.jpg" alt="Spéciales">
+                        <div class="category-overlay">
+                            <div class="category-icon"><i class="fas fa-crown"></i></div>
+                            <h3 class="category-name">Spéciales</h3>
+                            <p class="category-desc">6 créations uniques</p>
+                            <a href="#speciales" class="category-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_3.jpg" alt="Sauce Tomate">
+                        <div class="category-overlay">
+                            <div class="category-icon"><i class="fas fa-pizza-slice"></i></div>
+                            <h3 class="category-name">Sauce Tomate</h3>
+                            <p class="category-desc">19 pizzas classiques</p>
+                            <a href="#tomate" class="category-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_cuisson_2.jpg" alt="Crémières">
+                        <div class="category-overlay">
+                            <div class="category-icon"><i class="fas fa-cheese"></i></div>
+                            <h3 class="category-name">Crémières</h3>
+                            <p class="category-desc">16 pizzas crémeuses</p>
+                            <a href="#cremieres" class="category-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -110,7 +270,7 @@
             <div class="promo-card">
                 <h4>🍕 3 Pizzas Fromage ou Anchois</h4>
                 <div class="promo-price">15,00 €</div>
-                <p>Profitez d’un tarif avantageux sur nos pizzas classiques.</p>
+                <p>Profitez d'un tarif avantageux sur nos pizzas classiques.</p>
             </div>
             <div class="promo-card">
                 <h4>🍕 3 Pizzas au choix</h4>
@@ -127,12 +287,54 @@
             <div class="line"></div>
         </div>
         <div class="menu-cards-grid">
-            <div class="special-card"><div class="menu-card-header"><div class="menu-card-title">Nour</div><div class="price-badge"><span class="price-badge-price">13,00 €</span></div></div><p class="menu-card-description">Composez votre pizza avec 4 ingrédients au choix, crème et bordure fromage.</p><div class="menu-card-emojis">🍕👑✨</div></div>
-            <div class="special-card"><div class="menu-card-header"><div class="menu-card-title">Carbonara</div><div class="price-badge"><span class="price-badge-price">12,00 €</span></div></div><p class="menu-card-description">Crème fraîche, lardons fumés, œuf et pommes de terre pour une classique italienne.</p><div class="menu-card-emojis">🍕🥓🥚</div></div>
-            <div class="special-card"><div class="menu-card-header"><div class="menu-card-title">Tartiflette</div><div class="price-badge"><span class="price-badge-price">12,50 €</span></div></div><p class="menu-card-description">Crème fraîche, Reblochon, lardons fumés, oignons et pommes de terre.</p><div class="menu-card-emojis">🍕🥔🧀</div></div>
-            <div class="special-card"><div class="menu-card-header"><div class="menu-card-title">Ginco</div><div class="price-badge"><span class="price-badge-price">12,00 €</span></div></div><p class="menu-card-description">Sauce tomate, aubergines, champignons, tomates cerises et basilic.</p><div class="menu-card-emojis">🍕🍆🍅</div></div>
-            <div class="special-card"><div class="menu-card-header"><div class="menu-card-title">Croque</div><div class="price-badge"><span class="price-badge-price">12,00 €</span></div></div><p class="menu-card-description">Crème fraîche, poulet, kebab et raclette pour une pizza audacieuse.</p><div class="menu-card-emojis">🍕🍗🧀</div></div>
-            <div class="special-card"><div class="menu-card-header"><div class="menu-card-title">Italienne</div><div class="price-badge"><span class="price-badge-price">12,50 €</span></div></div><p class="menu-card-description">Sauce tomate, pesto, mozzarella italienne, huile d'olive et basilic.</p><div class="menu-card-emojis">🍕🇮🇹🌿</div></div>
+            <div class="special-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Nour</div>
+                    <div class="price-badge"><span class="price-badge-price">13,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Composez votre pizza avec 4 ingrédients au choix, crème et bordure fromage.</p>
+                <div class="menu-card-emojis">🍕👑✨</div>
+            </div>
+            <div class="special-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Carbonara</div>
+                    <div class="price-badge"><span class="price-badge-price">12,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Crème fraîche, lardons fumés, œuf et pommes de terre pour une classique italienne.</p>
+                <div class="menu-card-emojis">🍕🥓🥚</div>
+            </div>
+            <div class="special-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Tartiflette</div>
+                    <div class="price-badge"><span class="price-badge-price">12,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Crème fraîche, Reblochon, lardons fumés, oignons et pommes de terre.</p>
+                <div class="menu-card-emojis">🍕🥔🧀</div>
+            </div>
+            <div class="special-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Ginco</div>
+                    <div class="price-badge"><span class="price-badge-price">12,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Sauce tomate, aubergines, champignons, tomates cerises et basilic.</p>
+                <div class="menu-card-emojis">🍕🍆🍅</div>
+            </div>
+            <div class="special-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Croque</div>
+                    <div class="price-badge"><span class="price-badge-price">12,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Crème fraîche, poulet, kebab et raclette pour une pizza audacieuse.</p>
+                <div class="menu-card-emojis">🍕🍗🧀</div>
+            </div>
+            <div class="special-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Italienne</div>
+                    <div class="price-badge"><span class="price-badge-price">12,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Sauce tomate, pesto, mozzarella italienne, huile d'olive et basilic.</p>
+                <div class="menu-card-emojis">🍕🇮🇹🌿</div>
+            </div>
         </div>
     </section>
 
@@ -143,29 +345,190 @@
             <div class="line"></div>
         </div>
         <div class="menu-cards-grid">
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Pizza Fromage</div><div class="price-badge"><span class="price-badge-price">6,00 €</span></div></div><p class="menu-card-description">Une base de sauce tomate généreuse, agrémentée de mozzarella fondante.</p><div class="menu-card-emojis">🍕🧀</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Anchois</div><div class="price-badge"><span class="price-badge-price">6,00 €</span></div></div><p class="menu-card-description">La simplicité des anchois sur une base de sauce tomate.</p><div class="menu-card-emojis">🍕🐟</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Moitié Fromage / Anchois</div><div class="price-badge"><span class="price-badge-price">6,00 €</span></div></div><p class="menu-card-description">Le meilleur des deux mondes : moitié fromage, moitié anchois.</p><div class="menu-card-emojis">🍕🧀🐟</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Napolitaine</div><div class="price-badge"><span class="price-badge-price">7,00 €</span></div></div><p class="menu-card-description">Anchois savoureux, câpres et mozzarella pour une escapade méditerranéenne.</p><div class="menu-card-emojis">🍕🫒</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Mozzarella</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">Généreuse couche de mozzarella fondante sur sauce tomate parfumée.</p><div class="menu-card-emojis">🍕🇮🇹</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Chèvre + Emmental</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">Combinaison onctueuse de fromage de chèvre et d'emmental fondant.</p><div class="menu-card-emojis">🍕🐐🧀</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Roquefort + Emmental</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">Le caractère intense du roquefort allié à la douceur de l'emmental.</p><div class="menu-card-emojis">🍕🧀🧀</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Jambon de dinde + Emmental</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">Mélange classique de jambon de dinde et d'emmental.</p><div class="menu-card-emojis">🍕🦃🧀</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Oriental</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">Combinaison épicée de merguez et d'emmental.</p><div class="menu-card-emojis">🍕🌶️</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Thon Oignon + Emmental</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">Mariage savoureux entre thon et oignons, agrémenté d'emmental.</p><div class="menu-card-emojis">🍕🐟🧅</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Champignon + Emmental</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">La simplicité des champignons frais avec la douceur de l'emmental.</p><div class="menu-card-emojis">🍕🍄</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Poulet + Emmental</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">Équilibre parfait entre le poulet tendre et l'emmental fondant.</p><div class="menu-card-emojis">🍕🍗</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Végétarienne</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">Aubergine, courgette et poivron pour les amateurs de légumes.</p><div class="menu-card-emojis">🍕🥒🍆</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Jambon</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">Classique mais délicieux : le jambon sur base de sauce tomate et fromage.</p><div class="menu-card-emojis">🍕🥓</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Royal</div><div class="price-badge"><span class="price-badge-price">8,50 €</span></div></div><p class="menu-card-description">Jambon, champignons et emmental pour une expérience royale.</p><div class="menu-card-emojis">🍕👑🍄</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Reine</div><div class="price-badge"><span class="price-badge-price">8,50 €</span></div></div><p class="menu-card-description">Jambon, mozzarella et emmental fondant.</p><div class="menu-card-emojis">🍕👸</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Arménienne</div><div class="price-badge"><span class="price-badge-price">8,50 €</span></div></div><p class="menu-card-description">Viande hachée et poivrons pour une saveur orientale.</p><div class="menu-card-emojis">🍕🥩🫑</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Mexicaine</div><div class="price-badge"><span class="price-badge-price">9,00 €</span></div></div><p class="menu-card-description">Chorizo épicé, oignons et emmental pour une touche mexicaine.</p><div class="menu-card-emojis">🍕🌶️🧅</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Chorizo</div><div class="price-badge"><span class="price-badge-price">9,00 €</span></div></div><p class="menu-card-description">Un goût intense avec des rondelles de chorizo sur une base de fromage.</p><div class="menu-card-emojis">🍕🌶️🔥</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Provençale</div><div class="price-badge"><span class="price-badge-price">9,00 €</span></div></div><p class="menu-card-description">Poivrons croquants, champignons et emmental pour une touche méditerranéenne.</p><div class="menu-card-emojis">🍕🫑🍄</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Genova</div><div class="price-badge"><span class="price-badge-price">9,00 €</span></div></div><p class="menu-card-description">Mélange délicieux de champignons et de lardons fumés avec emmental.</p><div class="menu-card-emojis">🍕🍄🥓</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">4 Fromages</div><div class="price-badge"><span class="price-badge-price">9,50 €</span></div></div><p class="menu-card-description">Chèvre, roquefort, emmental et mozzarella pour les amoureux du fromage.</p><div class="menu-card-emojis">🍕🧀🧀🧀🧀</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Fruit de Mer</div><div class="price-badge"><span class="price-badge-price">9,50 €</span></div></div><p class="menu-card-description">Délice marin avec un mélange de fruits de mer frais.</p><div class="menu-card-emojis">🍕🦐🦑</div></div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Pizza Fromage</div>
+                    <div class="price-badge"><span class="price-badge-price">6,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Une base de sauce tomate généreuse, agrémentée de mozzarella fondante.</p>
+                <div class="menu-card-emojis">🍕🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Anchois</div>
+                    <div class="price-badge"><span class="price-badge-price">6,00 €</span></div>
+                </div>
+                <p class="menu-card-description">La simplicité des anchois sur une base de sauce tomate.</p>
+                <div class="menu-card-emojis">🍕🐟</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Moitié Fromage / Anchois</div>
+                    <div class="price-badge"><span class="price-badge-price">6,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Le meilleur des deux mondes : moitié fromage, moitié anchois.</p>
+                <div class="menu-card-emojis">🍕🧀🐟</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Napolitaine</div>
+                    <div class="price-badge"><span class="price-badge-price">7,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Anchois savoureux, câpres et mozzarella pour une escapade méditerranéenne.</p>
+                <div class="menu-card-emojis">🍕🫒</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Mozzarella</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Généreuse couche de mozzarella fondante sur sauce tomate parfumée.</p>
+                <div class="menu-card-emojis">🍕🇮🇹</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Chèvre + Emmental</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Combinaison onctueuse de fromage de chèvre et d'emmental fondant.</p>
+                <div class="menu-card-emojis">🍕🐐🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Roquefort + Emmental</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Le caractère intense du roquefort allié à la douceur de l'emmental.</p>
+                <div class="menu-card-emojis">🍕🧀🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Jambon de dinde + Emmental</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Mélange classique de jambon de dinde et d'emmental.</p>
+                <div class="menu-card-emojis">🍕🦃🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Oriental</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Combinaison épicée de merguez et d'emmental.</p>
+                <div class="menu-card-emojis">🍕🌶️</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Thon Oignon + Emmental</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Mariage savoureux entre thon et oignons, agrémenté d'emmental.</p>
+                <div class="menu-card-emojis">🍕🐟🧅</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Champignon + Emmental</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">La simplicité des champignons frais avec la douceur de l'emmental.</p>
+                <div class="menu-card-emojis">🍕🍄</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Poulet + Emmental</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Équilibre parfait entre le poulet tendre et l'emmental fondant.</p>
+                <div class="menu-card-emojis">🍕🍗</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Végétarienne</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Aubergine, courgette et poivron pour les amateurs de légumes.</p>
+                <div class="menu-card-emojis">🍕🥒🍆</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Jambon</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Classique mais délicieux : le jambon sur base de sauce tomate et fromage.</p>
+                <div class="menu-card-emojis">🍕🥓</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Royal</div>
+                    <div class="price-badge"><span class="price-badge-price">8,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Jambon, champignons et emmental pour une expérience royale.</p>
+                <div class="menu-card-emojis">🍕👑🍄</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Reine</div>
+                    <div class="price-badge"><span class="price-badge-price">8,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Jambon, mozzarella et emmental fondant.</p>
+                <div class="menu-card-emojis">🍕👸</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Arménienne</div>
+                    <div class="price-badge"><span class="price-badge-price">8,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Viande hachée et poivrons pour une saveur orientale.</p>
+                <div class="menu-card-emojis">🍕🥩🫑</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Mexicaine</div>
+                    <div class="price-badge"><span class="price-badge-price">9,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Chorizo épicé, oignons et emmental pour une touche mexicaine.</p>
+                <div class="menu-card-emojis">🍕🌶️🧅</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Chorizo</div>
+                    <div class="price-badge"><span class="price-badge-price">9,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Un goût intense avec des rondelles de chorizo sur une base de fromage.</p>
+                <div class="menu-card-emojis">🍕🌶️🔥</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Provençale</div>
+                    <div class="price-badge"><span class="price-badge-price">9,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Poivrons croquants, champignons et emmental pour une touche méditerranéenne.</p>
+                <div class="menu-card-emojis">🍕🫑🍄</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Genova</div>
+                    <div class="price-badge"><span class="price-badge-price">9,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Mélange délicieux de champignons et de lardons fumés avec emmental.</p>
+                <div class="menu-card-emojis">🍕🍄🥓</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">4 Fromages</div>
+                    <div class="price-badge"><span class="price-badge-price">9,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Chèvre, roquefort, emmental et mozzarella pour les amoureux du fromage.</p>
+                <div class="menu-card-emojis">🍕🧀🧀🧀🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Fruit de Mer</div>
+                    <div class="price-badge"><span class="price-badge-price">9,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Délice marin avec un mélange de fruits de mer frais.</p>
+                <div class="menu-card-emojis">🍕🦐🦑</div>
+            </div>
         </div>
     </section>
 
@@ -176,34 +539,180 @@
             <div class="line"></div>
         </div>
         <div class="menu-cards-grid">
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Poulet Crème</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">Poulet tendre sur une base crémeuse, agrémenté d'emmental.</p><div class="menu-card-emojis">🍕🍗🧀</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Chèvre + Miel + Emmental</div><div class="price-badge"><span class="price-badge-price">8,00 €</span></div></div><p class="menu-card-description">Mélange sucré-salé avec du chèvre, du miel et de l'emmental fondant.</p><div class="menu-card-emojis">🍕🐐🍯</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Poulet Curry Crème</div><div class="price-badge"><span class="price-badge-price">8,50 €</span></div></div><p class="menu-card-description">Poulet tendre, sauce curry parfumée et crème onctueuse.</p><div class="menu-card-emojis">🍕🍗🍛</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Jambon Crème</div><div class="price-badge"><span class="price-badge-price">8,50 €</span></div></div><p class="menu-card-description">Une base crémeuse garnie de jambon tendre et de fromage.</p><div class="menu-card-emojis">🍕🥓🧀</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Kebab + Oignon + Emmental</div><div class="price-badge"><span class="price-badge-price">8,50 €</span></div></div><p class="menu-card-description">Goût unique avec kebab, oignons frais et emmental.</p><div class="menu-card-emojis">🍕🥙🧅</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">3 Fromages</div><div class="price-badge"><span class="price-badge-price">9,00 €</span></div></div><p class="menu-card-description">Chèvre fondant, mozzarella onctueuse et emmental savoureux.</p><div class="menu-card-emojis">🍕🧀🧀🧀</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Royal Extra</div><div class="price-badge"><span class="price-badge-price">9,00 €</span></div></div><p class="menu-card-description">Jambon, champignons et mozzarella pour une pizza encore plus gourmande.</p><div class="menu-card-emojis">🍕👑🍄</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Royal Crème</div><div class="price-badge"><span class="price-badge-price">9,00 €</span></div></div><p class="menu-card-description">Le jambon, les champignons et l'emmental s'unissent en version crème.</p><div class="menu-card-emojis">🍕👑</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Fermière</div><div class="price-badge"><span class="price-badge-price">9,00 €</span></div></div><p class="menu-card-description">Escalope tendre, poivrons croquants et champignons savoureux.</p><div class="menu-card-emojis">🍕🍗🫑</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Fromagère</div><div class="price-badge"><span class="price-badge-price">9,00 €</span></div></div><p class="menu-card-description">Champignons, roquefort, mozzarella et emmental fondant.</p><div class="menu-card-emojis">🍕🧀🍄</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Savoyarde</div><div class="price-badge"><span class="price-badge-price">9,00 €</span></div></div><p class="menu-card-description">Reblochon fondant, lardons fumés et emmental pour une touche montagnarde.</p><div class="menu-card-emojis">🍕⛷️🧀</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Saumon + Emmental</div><div class="price-badge"><span class="price-badge-price">9,50 €</span></div></div><p class="menu-card-description">Saumon fumé et emmental pour une expérience raffinée.</p><div class="menu-card-emojis">🍕🐟🧀</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">4 Fromages</div><div class="price-badge"><span class="price-badge-price">9,50 €</span></div></div><p class="menu-card-description">Chèvre, mozzarella, emmental et roquefort pour un équilibre parfait.</p><div class="menu-card-emojis">🍕🧀🧀🧀🧀</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Thon Extra</div><div class="price-badge"><span class="price-badge-price">9,50 €</span></div></div><p class="menu-card-description">Thon généreux, poivrons, oignons et mozzarella.</p><div class="menu-card-emojis">🍕🐟🫑</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Arménienne Extra</div><div class="price-badge"><span class="price-badge-price">9,50 €</span></div></div><p class="menu-card-description">Viande hachée, oignons, pommes de terre et mozzarella.</p><div class="menu-card-emojis">🍕🥩🥔</div></div>
-            <div class="menu-card"><div class="menu-card-header"><div class="menu-card-title">Méditerranéenne</div><div class="price-badge"><span class="price-badge-price">9,50 €</span></div></div><p class="menu-card-description">Poulet, champignons, pommes de terre et mozzarella.</p><div class="menu-card-emojis">🍕🍗🥔</div></div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Poulet Crème</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Poulet tendre sur une base crémeuse, agrémenté d'emmental.</p>
+                <div class="menu-card-emojis">🍕🍗🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Chèvre + Miel + Emmental</div>
+                    <div class="price-badge"><span class="price-badge-price">8,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Mélange sucré-salé avec du chèvre, du miel et de l'emmental fondant.</p>
+                <div class="menu-card-emojis">🍕🐐🍯</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Poulet Curry Crème</div>
+                    <div class="price-badge"><span class="price-badge-price">8,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Poulet tendre, sauce curry parfumée et crème onctueuse.</p>
+                <div class="menu-card-emojis">🍕🍗🍛</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Jambon Crème</div>
+                    <div class="price-badge"><span class="price-badge-price">8,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Une base crémeuse garnie de jambon tendre et de fromage.</p>
+                <div class="menu-card-emojis">🍕🥓🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Kebab + Oignon + Emmental</div>
+                    <div class="price-badge"><span class="price-badge-price">8,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Goût unique avec kebab, oignons frais et emmental.</p>
+                <div class="menu-card-emojis">🍕🥙🧅</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">3 Fromages</div>
+                    <div class="price-badge"><span class="price-badge-price">9,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Chèvre fondant, mozzarella onctueuse et emmental savoureux.</p>
+                <div class="menu-card-emojis">🍕🧀🧀🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Royal Extra</div>
+                    <div class="price-badge"><span class="price-badge-price">9,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Jambon, champignons et mozzarella pour une pizza encore plus gourmande.</p>
+                <div class="menu-card-emojis">🍕👑🍄</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Royal Crème</div>
+                    <div class="price-badge"><span class="price-badge-price">9,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Le jambon, les champignons et l'emmental s'unissent en version crème.</p>
+                <div class="menu-card-emojis">🍕👑</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Fermière</div>
+                    <div class="price-badge"><span class="price-badge-price">9,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Escalope tendre, poivrons croquants et champignons savoureux.</p>
+                <div class="menu-card-emojis">🍕🍗🫑</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Fromagère</div>
+                    <div class="price-badge"><span class="price-badge-price">9,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Champignons, roquefort, mozzarella et emmental fondant.</p>
+                <div class="menu-card-emojis">🍕🧀🍄</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Savoyarde</div>
+                    <div class="price-badge"><span class="price-badge-price">9,00 €</span></div>
+                </div>
+                <p class="menu-card-description">Reblochon fondant, lardons fumés et emmental pour une touche montagnarde.</p>
+                <div class="menu-card-emojis">🍕⛷️🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Saumon + Emmental</div>
+                    <div class="price-badge"><span class="price-badge-price">9,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Saumon fumé et emmental pour une expérience raffinée.</p>
+                <div class="menu-card-emojis">🍕🐟🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">4 Fromages</div>
+                    <div class="price-badge"><span class="price-badge-price">9,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Chèvre, mozzarella, emmental et roquefort pour un équilibre parfait.</p>
+                <div class="menu-card-emojis">🍕🧀🧀🧀🧀</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Thon Extra</div>
+                    <div class="price-badge"><span class="price-badge-price">9,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Thon généreux, poivrons, oignons et mozzarella.</p>
+                <div class="menu-card-emojis">🍕🐟🫑</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Arménienne Extra</div>
+                    <div class="price-badge"><span class="price-badge-price">9,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Viande hachée, oignons, pommes de terre et mozzarella.</p>
+                <div class="menu-card-emojis">🍕🥩🥔</div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header">
+                    <div class="menu-card-title">Méditerranéenne</div>
+                    <div class="price-badge"><span class="price-badge-price">9,50 €</span></div>
+                </div>
+                <p class="menu-card-description">Poulet, champignons, pommes de terre et mozzarella.</p>
+                <div class="menu-card-emojis">🍕🍗🥔</div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer><p>©2024 Nour Pizza - Artefood.fr | Pizzas artisanales à Marseille</p></footer>
+    <footer>
+        <p>©2024 Nour Pizza - Artefood.fr | Pizzas artisanales à Marseille</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function openOrderPopup() { document.getElementById('orderPopup').classList.add('show'); document.body.style.overflow = 'hidden'; }
-        function closeOrderPopup() { document.getElementById('orderPopup').classList.remove('show'); document.body.style.overflow = ''; }
-        document.getElementById('orderPopup').addEventListener('click', function(e) { if (e.target === this) closeOrderPopup(); });
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeOrderPopup(); });
+        // Slideshow
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 5000);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                }
+            });
+        });
+
+        // Order Popup
+        function openOrderPopup() {
+            document.getElementById('orderPopup').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrderPopup() {
+            document.getElementById('orderPopup').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('orderPopup').addEventListener('click', function(e) {
+            if (e.target === this) closeOrderPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeOrderPopup();
+        });
     </script>
 </body>
 </html>
