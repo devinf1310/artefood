@@ -10,12 +10,9 @@
         body { font-family: 'Poppins', sans-serif; background: #0a0a0a; color: #fff; line-height: 1.8; }
 
         header { background: #0a0a0a; padding: 20px 5%; position: fixed; top: 0; width: 100%; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; }
         .logo { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; }
         .logo span { color: #f39c12; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { color: #fff; text-decoration: none; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: #f39c12; }
 
         .hero { background: linear-gradient(135deg, rgba(10,10,10,0.95), rgba(30,30,30,0.9)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920') center/cover; min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 150px 20px 80px; }
         .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; margin-bottom: 15px; }
@@ -54,7 +51,6 @@
         footer a { color: #f39c12; }
 
         @media (max-width: 768px) {
-            nav ul { display: none; }
             .hero { padding: 120px 20px 60px; }
             .content-section { padding: 50px 20px; }
             h2 { font-size: 1.3rem; }
@@ -66,12 +62,6 @@
     <header>
         <div class="header-container">
             <a href="https://artefood.fr" class="logo">Arte<span>Food</span>.fr</a>
-            <nav>
-                <ul>
-                    <li><a href="https://artefood.fr">Accueil</a></li>
-                    <li><a href="https://artefood.fr/contactez-nous">Contact</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
@@ -91,7 +81,7 @@
         <h2>2. Responsable du traitement</h2>
         <div class="highlight-box">
             <p><strong>ArteFood.fr</strong></p>
-            <p>Email : <a href="mailto:contact@artefood.fr">contact@artefood.fr</a></p>
+            <p>Email : contact@artefood.fr</p>
             <p>Site web : <a href="https://artefood.fr">https://artefood.fr</a></p>
         </div>
 
@@ -185,7 +175,7 @@
         </ul>
 
         <div class="highlight-box">
-            <p><strong>Pour exercer vos droits</strong>, envoyez-nous un email à <a href="mailto:contact@artefood.fr">contact@artefood.fr</a> en précisant votre demande et en joignant une copie de votre pièce d'identité.</p>
+            <p><strong>Pour exercer vos droits</strong>, envoyez-nous un email à contact@artefood.fr en précisant votre demande et en joignant une copie de votre pièce d'identité.</p>
             <p>Nous nous engageons à répondre à votre demande dans un délai d'un mois.</p>
         </div>
 
@@ -205,11 +195,11 @@
         <div class="contact-box">
             <h3>Une question ?</h3>
             <p>Pour toute question concernant cette politique de confidentialité ou le traitement de vos données personnelles :</p>
-            <p><strong>Email :</strong> <a href="mailto:contact@artefood.fr">contact@artefood.fr</a></p>
+            <p><strong>Email :</strong> contact@artefood.fr</p>
             <p><strong>Site web :</strong> <a href="https://artefood.fr">https://artefood.fr</a></p>
         </div>
 
-        <button onclick="history.back()" class="back-btn">← Retour</button>
+        <button onclick="window.history.back();" class="back-btn">← Retour</button>
     </section>
 
     <footer>
