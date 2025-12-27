@@ -255,8 +255,8 @@
     <section class="about-section" id="about">
         <div class="about-grid">
             <div class="about-images">
-                <div class="about-img about-img-1"><img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_1.jpg" alt="Pizza"></div>
-                <div class="about-img about-img-2"><img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_cuisson_1.jpg" alt="Four à pizza"></div>
+                <div class="about-img about-img-1"><img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza-preparation-sauce-tomate.jpg" alt="Pizza"></div>
+                <div class="about-img about-img-2"><img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza-sauce-blanche.jpg" alt="Pizza crème"></div>
                 <div class="about-img about-img-3"><img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/logo_NourPizza.png" alt="Logo"></div>
             </div>
             <div class="about-content">
@@ -286,19 +286,19 @@
         <div class="section-title"><span class="overline">Nos Spécialités</span><h2>Découvrez notre <span>Menu</span></h2></div>
         <div class="menu-categories">
             <div class="menu-category">
-                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_2.jpg" alt="Pizzas Classiques">
+                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/sauce-tomate.jpg" alt="Pizzas Classiques">
                 <div class="menu-category-overlay">
                     <div class="menu-category-icon"><i class="fas fa-pizza-slice"></i></div>
                     <h3>Classiques</h3><p>Sauce Tomate</p>
-                    <a href="menu.html#classiques" class="menu-category-btn">Voir la carte <i class="fas fa-arrow-right"></i></a>
+                    <a href="menu.html#tomate" class="menu-category-btn">Voir la carte <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             <div class="menu-category">
-                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_3.jpg" alt="Pizzas Crème">
+                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/creme-fraiche.jpg" alt="Pizzas Crème">
                 <div class="menu-category-overlay">
                     <div class="menu-category-icon"><i class="fas fa-cheese"></i></div>
                     <h3>Crèmes</h3><p>Base Crème Fraîche</p>
-                    <a href="menu.html#cremes" class="menu-category-btn">Voir la carte <i class="fas fa-arrow-right"></i></a>
+                    <a href="menu.html#cremieres" class="menu-category-btn">Voir la carte <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             <div class="menu-category">
@@ -310,11 +310,11 @@
                 </div>
             </div>
             <div class="menu-category">
-                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/ingredients_vegetarienne.jpg" alt="Formules">
+                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza-gourmande.jpg" alt="Formules">
                 <div class="menu-category-overlay">
                     <div class="menu-category-icon"><i class="fas fa-tags"></i></div>
                     <h3>Formules</h3><p>Offres Avantageuses</p>
-                    <a href="menu.html#formules" class="menu-category-btn">Voir la carte <i class="fas fa-arrow-right"></i></a>
+                    <a href="menu.html#promos" class="menu-category-btn">Voir la carte <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -405,12 +405,4 @@
             document.getElementById('orderPopup').classList.remove('show');
             document.body.style.overflow = '';
         }
-        document.getElementById('orderPopup').addEventListener('click', function(e) {
-            if (e.target === this) closeOrderPopup();
-        });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeOrderPopup();
-        });
-    </script>
-</body>
-</html>
+        document.getElementById('orderPopup').addEventListener('click', fun
