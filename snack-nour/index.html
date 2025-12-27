@@ -182,7 +182,7 @@
     <div class="cookie-banner" id="cookieBanner">
         <div class="cookie-text">
             <h4>🍪 Cookies & Confidentialité</h4>
-            <p>Nous utilisons des cookies pour améliorer votre expérience. <a href="#">Politique de confidentialité</a></p>
+            <p>Nous utilisons des cookies pour améliorer votre expérience. <a href="../../politique-de-confidentialite.html" target="_blank">Politique de confidentialité</a></p>
         </div>
         <div class="cookie-buttons">
             <button class="cookie-btn refuse" onclick="refuseCookies()">Refuser</button>
@@ -211,14 +211,14 @@
 
     <nav class="navbar navbar-expand-lg" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="accueil.html">
+            <a class="navbar-brand" href="index.html">
                 <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/snack-nour/media/Logo.png" alt="Snack Nour">
                 <span>Snack Nour</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link active" href="accueil.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
                     <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     <li class="nav-item"><a class="nav-link nav-cta" href="#" onclick="openOrderPopup(); return false;"><i class="fas fa-phone"></i> Commander</a></li>
@@ -355,14 +355,14 @@
                     <a href="https://www.facebook.com/people/Snack-Nour/61585792134903/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
-            <div class="footer-col"><h4>Navigation</h4><ul><li><a href="accueil.html">Accueil</a></li><li><a href="menu.html">Notre Menu</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+            <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="menu.html">Notre Menu</a></li><li><a href="contact.html">Contact</a></li></ul></div>
             <div class="footer-col"><h4>Commander</h4><ul><li><a href="tel:0491528155">Par Téléphone</a></li><li><a href="https://www.ubereats.com/fr/store/snack-nour/CdhyWnIHWPeE6U6iT-FUeQ" target="_blank">Uber Eats</a></li></ul></div>
-            <div class="footer-col footer-contact"><h4>Contact</h4><p><i class="fas fa-map-marker-alt"></i> 104 Bd de Saint-Loup, Marseille</p><p><i class="fas fa-phone"></i> 04 91 52 81 55</p><p><i class="fas fa-envelope"></i> snack-nour@artefood.fr</p></div>
+            <div class="footer-col footer-contact"><h4>Contact</h4><p><i class="fas fa-map-marker-alt"></i> 104 Bd de Saint-Loup, Marseille</p><p><i class="fas fa-phone"></i> 04 91 52 81 55</p><p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="deadb0bfbdb5f3b0b1abac9ebfacaabbb8b1b1baf0b8ac">[email&#160;protected]</a></p></div>
         </div>
         <div class="footer-bottom"><p>©2024 Snack Nour - Tous droits réservés</p><p>Créé par <a href="https://artefood.fr" style="color: var(--gold);">Artefood.fr</a></p></div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Cookies
         function showCookieBanner() {
@@ -409,12 +409,4 @@
         }
         // Fermer le popup en cliquant en dehors
         document.getElementById('orderPopup').addEventListener('click', function(e) {
-            if (e.target === this) closeOrderPopup();
-        });
-        // Fermer avec Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeOrderPopup();
-        });
-    </script>
-</body>
-</html>
+            if (e.t
