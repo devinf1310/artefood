@@ -405,4 +405,12 @@
             document.getElementById('orderPopup').classList.remove('show');
             document.body.style.overflow = '';
         }
-        document.getElementById('orderPopup').addEventListener('click', fun
+        document.getElementById('orderPopup').addEventListener('click', function(e) {
+            if (e.target === this) closeOrderPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeOrderPopup();
+        });
+    </script>
+</body>
+</html>
