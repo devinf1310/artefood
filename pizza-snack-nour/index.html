@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B55JL79EQ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B55JL79EQ6');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Snack Nour — Snack & Pizzeria à Marseille Castellane</title>
+    <meta name="description" content="Pizza Snack Nour à Marseille (6e), 2 Rue Sainte-Victoire - Burgers, sandwichs, tacos, paninis, pizzas et bowls préparés sur place. Commandez au 07 68 88 71 73.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --black-deep: #0a0a0a;
+            --black-soft: #141110;
+            --charcoal: #1a1614;
+            --charcoal-soft: #221d1a;
+            --noir-warm: #2a2320;
+            --gold: #d4af37;
+            --gold-light: #e8c87a;
+            --gold-pale: #f0d785;
+            --gold-deep: #b8941f;
+            --copper: #b87333;
+            --copper-light: #c98a4f;
+            --copper-deep: #8b5a2b;
+            --cream: #f4e8d0;
+            --cream-soft: #e8d9b8;
+            --ivory: #f9f0dc;
+            --grey-warm: #8a7e6f;
+            --grey-soft: #b5a99a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black-deep);
+            color: var(--cream);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(ellipse at top left, rgba(212,175,55,0.07) 0%, transparent 55%),
+                radial-gradient(ellipse at bottom right, rgba(184,115,51,0.06) 0%, transparent 55%),
+                radial-gradient(circle at 50% 50%, rgba(232,200,122,0.025) 0%, transparent 70%);
+            min-height: 100vh;
+        }
+
+        /* ====== TYPO HELPERS ====== */
+        .serif-display { font-family: 'Playfair Display', serif; }
+        .serif-italic { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .label-cinzel { font-family: 'Cinzel', serif; }
+
+        /* ====== NAVBAR ====== */
+        .navbar {
+            background: rgba(10, 10, 10, 0.4);
+            padding: 14px 0;
+            position: fixed; top: 0; width: 100%; z-index: 9999;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.0);
+        }
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.92);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif !important;
+            font-weight: 700 !important;
+            font-size: 1.6rem !important;
+            color: var(--cream) !important;
+            letter-spacing: 1px;
+            display: flex; align-items: center; gap: 12px;
+            padding: 0 !important;
+        }
+        .navbar-brand .brand-mark {
+            display: inline-flex;
+            align-items: center; justify-content: center;
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border-radius: 50%;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            box-shadow: 0 0 18px rgba(212,175,55,0.35);
+        }
+        .navbar-brand .brand-name { color: var(--gold-light); }
+        .navbar-brand .brand-italic {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--cream);
+            font-size: 0.95em;
+            margin-left: 4px;
+        }
+        .navbar-toggler {
+            border: 1px solid rgba(212,175,55,0.3) !important;
+            color: var(--gold-light) !important;
+        }
+        .navbar-toggler:focus { box-shadow: 0 0 0 2px rgba(212,175,55,0.3) !important; }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23e8c87a' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+        }
+        .navbar-nav .nav-link {
+            color: var(--cream) !important;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            padding: 10px 18px !important;
+            letter-spacing: 2.5px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active { color: var(--gold-light) !important; }
+        .navbar-nav .nav-link.active::after {
+            content: "";
+            position: absolute;
+            width: 50%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            bottom: 4px; left: 25%;
+        }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            padding: 10px 26px !important;
+            border-radius: 50px;
+            margin-left: 14px;
+            color: var(--black-deep) !important;
+            font-weight: 600 !important;
+            border: 1px solid var(--gold);
+            transition: all 0.3s;
+            box-shadow: 0 0 0 rgba(212,175,55,0.4);
+        }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212,175,55,0.4);
+            color: var(--black-deep) !important;
+        }
+
+        /* ====== ORDER POPUP ====== */
+        .order-popup-overlay {
+            position: fixed; inset: 0;
+            background: rgba(10,10,10,0.92);
+            backdrop-filter: blur(14px);
+            z-index: 100002; display: none;
+            align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .order-popup-overlay.show { display: flex; }
+        .order-popup {
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--black-soft) 100%);
+            border-radius: 6px;
+            padding: 50px 42px 42px;
+            max-width: 440px; width: 100%;
+            text-align: center; position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,175,55,0.25);
+            animation: popupIn 0.4s cubic-bezier(.2,.9,.3,1.2);
+        }
+        .order-popup::before {
+            content: "";
+            position: absolute; inset: -1px;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 30%, transparent 70%, var(--copper) 100%);
+            border-radius: 7px;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        @keyframes popupIn { from{opacity:0;transform:scale(.85) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+        .order-popup-close {
+            position: absolute; top: 14px; right: 18px;
+            background: transparent; border: none; color: var(--grey-warm);
+            font-size: 1.6rem; cursor: pointer; transition: color 0.2s;
+            line-height: 1;
+        }
+        .order-popup-close:hover { color: var(--gold-light); }
+        .order-popup .popup-eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .order-popup h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.9rem;
+            color: var(--cream);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .order-popup p { color: var(--grey-soft); margin-bottom: 30px; font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; }
+        .order-popup-buttons { display: flex; flex-direction: column; gap: 12px; }
+        .order-popup-btn {
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px; padding: 16px 28px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s;
+        }
+        .order-popup-btn.phone {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border: 1px solid var(--gold);
+        }
+        .order-popup-btn.phone:hover { transform: translateY(-2px); color: var(--black-deep); box-shadow: 0 10px 28px rgba(212,175,55,0.35); }
+        .order-popup-btn.uber {
+            background: transparent; color: var(--cream);
+            border: 1px solid rgba(212,175,55,0.4);
+        }
+        .order-popup-btn.uber:hover { border-color: var(--gold-light); color: var(--gold-light); transform: translateY(-2px); }
+
+        /* ====== UNIVERSAL SECTION TITLE ====== */
+        .section-title-block { text-align: center; margin-bottom: 50px; }
+        .section-title-block .eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem; color: var(--gold-light);
+            display: block; margin-bottom: 6px;
+            letter-spacing: 2px;
+        }
+        .section-title-block h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            color: var(--cream); letter-spacing: 3px;
+            margin-bottom: 18px;
+            line-height: 1.1;
+        }
+        .section-title-block h2 em {
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .section-title-block .ornament {
+            display: flex; align-items: center; justify-content: center;
+            gap: 18px;
+        }
+        .section-title-block .ornament-line {
+            width: 90px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .section-title-block .ornament-icon { color: var(--gold); font-size: 1.05rem; }
+
+        /* ====== FOOTER ====== */
+        footer {
+            background: linear-gradient(180deg, var(--black-soft) 0%, var(--black-deep) 100%);
+            color: var(--cream);
+            padding: 60px 5% 30px;
+            position: relative;
+            border-top: 1px solid rgba(212,175,55,0.15);
+        }
+        footer::before {
+            content: ""; position: absolute; top: -1px; left: 50%;
+            transform: translateX(-50%);
+            width: 60%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(212,175,55,0.1);
+        }
+        .footer-brand .brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+        .footer-brand .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--cream);
+            opacity: 0.85;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        .footer-brand p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--grey-soft);
+            line-height: 1.7;
+            margin-bottom: 22px;
+            font-size: 1rem;
+        }
+        .footer-social { display: flex; gap: 12px; }
+        .footer-social a {
+            width: 42px; height: 42px;
+            background: rgba(212,175,55,0.08);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold-light); text-decoration: none;
+            transition: all 0.3s;
+        }
+        .footer-social a:hover { background: var(--gold); color: var(--black-deep); transform: translateY(-3px); border-color: var(--gold); }
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--gold-light);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 11px; }
+        .footer-col ul li a {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--grey-soft);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.02rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        .footer-col ul li a:hover { color: var(--gold-light); padding-left: 4px; }
+        .footer-col ul li a i {
+            color: var(--gold);
+            margin-right: 9px;
+            width: 16px;
+            font-size: 0.9rem;
+        }
+        .footer-bottom {
+            max-width: 1300px; margin: 24px auto 0;
+            text-align: center;
+            color: var(--grey-warm);
+            font-size: 0.85rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .footer-bottom a { color: var(--gold-light); text-decoration: none; }
+        .footer-bottom a:hover { color: var(--gold-pale); }
+
+        /* ====== UNIVERSAL RESPONSIVE ====== */
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+        }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 35px; }
+            .navbar-collapse { background: rgba(10,10,10,0.97); padding: 20px; margin-top: 12px; border-radius: 4px; border: 1px solid rgba(212,175,55,0.15); }
+            .nav-cta { margin: 12px 0 0 !important; display: inline-flex !important; }
+        }
+
+        /* ====== HERO VIDEO ====== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--black-deep);
+        }
+        .hero-video-stack {
+            position: absolute; inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.4s ease;
+            z-index: 0;
+        }
+        .hero-video.is-active { opacity: 1; }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at center, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.85) 100%),
+                linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.7) 100%);
+            z-index: 1;
+        }
+        .hero-overlay::after {
+            content: "";
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(circle at 25% 30%, rgba(212,175,55,0.18) 0%, transparent 45%),
+                radial-gradient(circle at 75% 70%, rgba(184,115,51,0.15) 0%, transparent 45%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 120px 20px 60px;
+            max-width: 1100px;
+        }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 18px;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 22px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 500;
+            animation: fadeInDown 1s ease 0.2s both;
+        }
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: ""; display: block; width: 60px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(3.5rem, 11vw, 8.5rem);
+            color: var(--cream);
+            line-height: 0.95;
+            letter-spacing: 4px;
+            margin-bottom: 18px;
+            text-shadow: 0 4px 40px rgba(0,0,0,0.7);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        .hero-title .gold-line {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 500;
+            color: var(--gold-light);
+            font-size: 0.42em;
+            letter-spacing: 14px;
+            margin-top: 14px;
+            text-transform: uppercase;
+        }
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+            color: rgba(244,232,208,0.9);
+            max-width: 720px;
+            margin: 0 auto 45px;
+            line-height: 1.7;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        .hero-buttons {
+            display: flex; gap: 22px; justify-content: center; flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+        .btn-hero {
+            padding: 17px 42px; font-size: 0.78rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 4px;
+            border-radius: 50px; text-decoration: none;
+            transition: all 0.4s ease; display: inline-flex; align-items: center; gap: 12px;
+        }
+        .btn-hero-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border: 1px solid var(--gold);
+        }
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(212,175,55,0.4);
+            color: var(--black-deep);
+        }
+        .btn-hero-outline {
+            background: transparent; color: var(--cream);
+            border: 1px solid rgba(244,232,208,0.4);
+        }
+        .btn-hero-outline:hover { background: var(--cream); color: var(--black-deep); border-color: var(--cream); }
+
+        .scroll-indicator {
+            position: absolute; bottom: 38px; left: 50%;
+            transform: translateX(-50%); z-index: 10;
+            color: var(--gold-light); text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic; font-size: 0.95rem;
+            letter-spacing: 3px; text-transform: uppercase;
+            animation: fadeInUp 1s ease 1.2s both, bounce 2.5s ease-in-out 2s infinite;
+            opacity: 0.85;
+        }
+        @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-12px)} }
+        .scroll-indicator i { display: block; margin-top: 8px; font-size: 1.1rem; color: var(--gold); }
+
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeInDown { from{opacity:0;transform:translateY(-40px)} to{opacity:1;transform:translateY(0)} }
+
+        /* ====== ABOUT ====== */
+        .about-section {
+            padding: 120px 5% 110px;
+            position: relative;
+            background: linear-gradient(180deg, var(--black-deep) 0%, var(--charcoal) 100%);
+        }
+        .about-section::before {
+            content: "";
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 60%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 80px;
+            max-width: 1300px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .about-visual {
+            position: relative;
+            height: 580px;
+        }
+        .about-img-main {
+            position: absolute;
+            inset: 0 30% 80px 0;
+            border-radius: 4px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+            border: 1px solid rgba(212,175,55,0.3);
+            overflow: hidden;
+            background: var(--charcoal);
+        }
+        .about-img-main::before {
+            content: ""; position: absolute; inset: -1px;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 30%, transparent 70%, var(--copper) 100%);
+            opacity: 0.5;
+            border-radius: 5px;
+            z-index: -1;
+        }
+        .about-img-main img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.92) contrast(1.08) saturate(1.05);
+        }
+        .about-img-secondary {
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 55%; height: 280px;
+            border-radius: 4px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+            border: 2px solid var(--gold);
+            overflow: hidden;
+            background: var(--charcoal);
+        }
+        .about-img-secondary img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.95) contrast(1.05);
+        }
+        .about-content .eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--gold-light);
+            display: block;
+            margin-bottom: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .about-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            color: var(--cream);
+            line-height: 1.15;
+            margin-bottom: 22px;
+            letter-spacing: 1px;
+        }
+        .about-content h3 em {
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .about-content p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.18rem;
+            line-height: 1.85;
+            color: var(--grey-soft);
+            margin-bottom: 18px;
+        }
+        .about-content p strong { color: var(--gold-light); font-weight: 600; }
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 38px;
+        }
+        .about-feature {
+            display: flex; align-items: center; gap: 14px;
+            padding: 16px 18px;
+            background: rgba(212,175,55,0.05);
+            border: 1px solid rgba(212,175,55,0.18);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .about-feature:hover {
+            border-color: rgba(212,175,55,0.4);
+            background: rgba(212,175,55,0.08);
+            transform: translateY(-2px);
+        }
+        .about-feature i {
+            color: var(--gold);
+            font-size: 1.3rem;
+            width: 32px;
+            text-align: center;
+        }
+        .about-feature span {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: var(--cream);
+            font-size: 0.92rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* ====== SPECIALTIES ====== */
+        .specialties-section {
+            padding: 120px 5%;
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--black-deep) 100%);
+            position: relative;
+        }
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .specialty-card {
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-soft) 100%);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(212,175,55,0.2);
+            transition: all 0.4s cubic-bezier(.2,.9,.3,1);
+            position: relative;
+        }
+        .specialty-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212,175,55,0.5);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.3);
+        }
+        .specialty-image {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid rgba(212,175,55,0.15);
+            background: var(--black-soft);
+        }
+        .specialty-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+            filter: brightness(0.88) contrast(1.08) saturate(1.05);
+            display: block;
+        }
+        .specialty-image::after {
+            content: "";
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.5) 100%);
+            pointer-events: none;
+        }
+        .specialty-card:hover .specialty-image img { transform: scale(1.08); }
+        .specialty-body { padding: 28px 26px 26px; text-align: center; }
+        .specialty-body h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--cream);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .specialty-body p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--grey-soft);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .specialty-body .link {
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-size: 0.72rem;
+            color: var(--gold-light);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 3px;
+            transition: all 0.3s;
+        }
+        .specialty-body .link:hover { color: var(--gold-pale); border-bottom-color: var(--gold-pale); }
+
+        /* ====== PROMO ====== */
+        .promo-banner {
+            padding: 100px 5%;
+            background:
+                linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(20,17,16,0.92) 100%),
+                url('https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza_cuisson_1.jpg') center/cover fixed;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+            border-top: 1px solid rgba(212,175,55,0.2);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+        }
+        .promo-banner::before {
+            content: "";
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at center, rgba(212,175,55,0.18) 0%, transparent 60%);
+            z-index: 1;
+        }
+        .promo-content { position: relative; z-index: 5; max-width: 850px; margin: 0 auto; }
+        .promo-content .eyebrow-italic {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 14px;
+            letter-spacing: 2px;
+        }
+        .promo-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--cream);
+            letter-spacing: 3px;
+            margin-bottom: 22px;
+            line-height: 1.15;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.7);
+        }
+        .promo-content h2 em {
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .promo-content p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.18rem;
+            color: rgba(244,232,208,0.9);
+            margin-bottom: 38px;
+            line-height: 1.6;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+        }
+        .promo-phone {
+            display: inline-flex; align-items: center; gap: 16px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            padding: 19px 44px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            letter-spacing: 3px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 36px rgba(212,175,55,0.4);
+            border: 1px solid var(--gold);
+        }
+        .promo-phone:hover {
+            transform: scale(1.04) translateY(-2px);
+            color: var(--black-deep);
+            box-shadow: 0 18px 50px rgba(212,175,55,0.5);
+        }
+
+        /* ====== HOURS ====== */
+        .hours-section { padding: 120px 5%; background: var(--charcoal); position: relative; }
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 70px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .hours-visual {
+            height: 480px;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .hours-visual img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.85) contrast(1.1) saturate(1.05);
+        }
+        .hours-visual::after {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, transparent 50%, rgba(184,115,51,0.1) 100%);
+            pointer-events: none;
+        }
+        .hours-content .eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--gold-light);
+            display: block;
+            margin-bottom: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .hours-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--cream);
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+        }
+        .hours-content h3 em {
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .hours-list { display: flex; flex-direction: column; gap: 8px; }
+        .hours-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 22px;
+            background: rgba(212,175,55,0.04);
+            border-bottom: 1px solid rgba(212,175,55,0.12);
+            transition: all 0.3s;
+        }
+        .hours-item:hover {
+            background: rgba(212,175,55,0.08);
+            padding-left: 28px;
+            border-bottom-color: var(--gold);
+        }
+        .hours-item .day {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--cream);
+            letter-spacing: 1px;
+        }
+        .hours-item .time {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--gold-light);
+            font-size: 1rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .about-grid, .hours-grid { grid-template-columns: 1fr; gap: 60px; }
+            .about-visual, .hours-visual { height: 380px; max-width: 500px; margin: 0 auto; }
+            .specialties-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .specialties-grid { grid-template-columns: 1fr; }
+            .about-features { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; align-items: center; gap: 14px; }
+            .btn-hero { width: 85%; justify-content: center; }
+            .hero-eyebrow { gap: 10px; font-size: 1.05rem; letter-spacing: 2.5px; }
+            .hero-eyebrow::before, .hero-eyebrow::after { width: 30px; }
+            .promo-phone { font-size: 1.3rem; padding: 16px 32px; letter-spacing: 2px; }
+            .about-img-main { inset: 0 20% 60px 0; }
+        }
+        @media (max-width: 480px) {
+            .hero-content { padding: 100px 16px 80px; }
+            .hero-title .gold-line { letter-spacing: 8px; font-size: 0.5em; }
+        }
+
+        /* ====== HALAL BADGE ====== */
+        .halal-badge {
+            position: fixed;
+            top: 92px;
+            right: 18px;
+            z-index: 998;
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1;
+            box-shadow: 0 8px 24px rgba(212,175,55,0.45), 0 0 0 4px rgba(10,10,10,0.6);
+            border: 2px solid var(--gold-light);
+            transform: rotate(-8deg);
+            transition: transform 0.3s ease;
+            font-size: 0.7rem;
+        }
+        .halal-badge:hover { transform: rotate(0deg) scale(1.05); }
+        .halal-badge .h-pct {
+            font-size: 1.2rem;
+            font-weight: 800;
+            display: block;
+            line-height: 0.9;
+        }
+        .halal-badge .h-text {
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        @media (max-width: 768px) {
+            .halal-badge { width: 60px; height: 60px; top: 84px; right: 12px; }
+            .halal-badge .h-pct { font-size: 1rem; }
+            .halal-badge .h-text { font-size: 0.55rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Halal Badge -->
+    <div class="halal-badge" title="100% Halal">
+        <span class="h-pct">100%</span>
+        <span class="h-text">Halal</span>
+    </div>
+
+    <!-- Order Popup -->
+    <div class="order-popup-overlay" id="orderPopup">
+        <div class="order-popup">
+            <button class="order-popup-close" onclick="closeOrderPopup()" aria-label="Fermer">&times;</button>
+            <div class="popup-eyebrow">Per ordinare</div>
+            <h3>COMMANDER</h3>
+            <p>Choisissez votre mode de commande</p>
+            <div class="order-popup-buttons">
+                <a href="tel:0768887173" class="order-popup-btn phone">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>07 68 88 71 73</span>
+                </a>
+                <a href="#" target="_blank" class="order-popup-btn uber">
+                    <i class="fab fa-uber"></i>
+                    <span>Uber Eats</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-mark">N</span>
+                <span><span class="brand-name">PIZZA SNACK</span><span class="brand-italic">Nour</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">La Carte</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link nav-cta" href="#" onclick="openOrderPopup(); return false;"><i class="fas fa-phone"></i> Commander</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+        <div class="hero-video-stack">
+            <!-- 2 vidéos qui s'enchaînent : pizza puis burger en boucle, formant une seule intro -->
+            <video class="hero-video is-active" id="heroPizza" muted playsinline preload="auto">
+                <source src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza-intro.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza-intro.mov" type="video/quicktime">
+            </video>
+            <video class="hero-video" id="heroBurger" muted playsinline preload="auto">
+                <source src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/burger-intro.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/burger-intro.mov" type="video/quicktime">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-eyebrow">Marseille &nbsp;·&nbsp; Castellane &nbsp;·&nbsp; 7J/7</div>
+            <h1 class="hero-title">
+                Pizza Snack Nour
+                <span class="gold-line">Saveurs authentiques</span>
+            </h1>
+            <p class="hero-subtitle">
+                Saveurs authentiques &amp; générosité marseillaise. Burgers, pizzas, tacos et bowls préparés sur place, 7j/7 — 100&nbsp;% halal.
+            </p>
+            <div class="hero-buttons">
+                <a href="menu.html" class="btn-hero btn-hero-primary">
+                    <i class="fas fa-utensils"></i> Découvrir la Carte
+                </a>
+                <a href="#" onclick="openOrderPopup(); return false;" class="btn-hero btn-hero-outline">
+                    <i class="fas fa-phone"></i> Commander
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scopri</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ====== ABOUT ====== -->
+    <section class="about-section">
+        <div class="about-grid">
+            <div class="about-visual">
+                <div class="about-img-main">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza-preparation-sauce-tomate.jpg" alt="Préparation d'une pizza">
+                </div>
+                <div class="about-img-secondary">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza-sauce-blanche.jpg" alt="Pizza sauce blanche">
+                </div>
+            </div>
+            <div class="about-content">
+                <span class="eyebrow">La nostra storia</span>
+                <h3>Une cuisine généreuse, <em>au cœur de Marseille</em></h3>
+                <p>Bienvenue chez <strong>Pizza Snack Nour</strong>, votre adresse incontournable au quartier Castellane, dans le 6<sup>e</sup> arrondissement. Du burger gourmand au tacos savoureux, en passant par nos pizzas artisanales et nos bowls, nous proposons une carte variée pour tous les goûts et toutes les envies.</p>
+                <p>Chaque plat est préparé à la commande avec des ingrédients frais soigneusement sélectionnés — viandes de qualité, fromages fondants, légumes croquants et sauces maison. <strong>Pizza Snack Nour</strong>, c'est l'esprit du snack généreux et la passion d'une vraie cuisine artisanale.</p>
+                <div class="about-features">
+                    <div class="about-feature"><i class="fas fa-leaf"></i><span>Produits frais</span></div>
+                    <div class="about-feature"><i class="fas fa-fire"></i><span>Préparé minute</span></div>
+                    <div class="about-feature"><i class="fas fa-hand-holding-heart"></i><span>Fait maison</span></div>
+                    <div class="about-feature"><i class="fas fa-certificate"></i><span>100&nbsp;% Halal</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SPECIALTIES ====== -->
+    <section class="specialties-section">
+        <div class="section-title-block">
+            <span class="eyebrow">Le nostre specialità</span>
+            <h2>NOS SPÉCIALITÉS</h2>
+            <div class="ornament">
+                <span class="ornament-line"></span>
+                <i class="ornament-icon fas fa-star"></i>
+                <span class="ornament-line"></span>
+            </div>
+        </div>
+        <div class="specialties-grid">
+            <div class="specialty-card">
+                <div class="specialty-image">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza-gourmande.jpg" alt="Pizza Tartiflette">
+                </div>
+                <div class="specialty-body">
+                    <h4>Pizza Tartiflette</h4>
+                    <p>Crème fraîche, Reblochon, lardons fumés, oignons et pommes de terre. Une signature gourmande.</p>
+                    <a href="menu.html#pizzas-speciales" class="link">Voir la carte →</a>
+                </div>
+            </div>
+            <div class="specialty-card">
+                <div class="specialty-image">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza_presentation_2.jpg" alt="Pizza Carbonara">
+                </div>
+                <div class="specialty-body">
+                    <h4>Pizza Carbonara</h4>
+                    <p>Crème fraîche, lardons fumés, œuf et pommes de terre. Une recette généreuse et fondante.</p>
+                    <a href="menu.html#pizzas-speciales" class="link">Voir la carte →</a>
+                </div>
+            </div>
+            <div class="specialty-card">
+                <div class="specialty-image">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza_presentation_ingredients.jpg" alt="Crousty Squad">
+                </div>
+                <div class="specialty-body">
+                    <h4>Crousty Squad</h4>
+                    <p>Notre best-seller : poulet croustillant, sauces au choix, frites et accompagnements généreux.</p>
+                    <a href="menu.html#crousty-bowl" class="link">Voir la carte →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PROMO ====== -->
+    <section class="promo-banner">
+        <div class="promo-content">
+            <p class="eyebrow-italic">Chiama subito</p>
+            <h2>Livraison gratuite <em>dès 20 €</em></h2>
+            <p>Commandez directement par téléphone — livraison offerte à partir de 20 € d'achat ou retrait sur place.</p>
+            <a href="tel:0768887173" class="promo-phone">
+                <i class="fas fa-phone-alt"></i>
+                <span>07 68 88 71 73</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ====== HOURS ====== -->
+    <section class="hours-section">
+        <div class="hours-grid">
+            <div class="hours-visual">
+                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza_cuisson_2.jpg" alt="Cuisson au four">
+            </div>
+            <div class="hours-content">
+                <span class="eyebrow">Orari di apertura</span>
+                <h3>Heures <em>d'ouverture</em></h3>
+                <div class="hours-list">
+                    <div class="hours-item"><span class="day">Lundi</span><span class="time">11h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Mardi</span><span class="time">11h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Mercredi</span><span class="time">11h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Jeudi</span><span class="time">11h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Vendredi</span><span class="time">14h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Samedi</span><span class="time">11h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Dimanche</span><span class="time">12h — 00h</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="brand">PIZZA SNACK NOUR</div>
+                <div class="tagline">Saveurs authentiques &amp; générosité marseillaise</div>
+                <p>Burgers généreux, pizzas artisanales, tacos, paninis et bowls — préparés avec passion au cœur du 6e arrondissement.</p>
+                <div class="footer-social">
+                    <a href="#" target="_blank" title="Facebook" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" title="Instagram" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://share.google/ncpvXfuoEzj5MiRgc" target="_blank" title="Avis Google" rel="noopener"><i class="fab fa-google"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="menu.html">La Carte</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Commander</h4>
+                <ul>
+                    <li><a href="tel:0768887173"><i class="fas fa-phone"></i>07 68 88 71 73</a></li>
+                    <li><a href="#" target="_blank" rel="noopener"><i class="fab fa-uber"></i>Uber Eats</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12c9c18877d47e09:0x1a63eb7e3cb96f67" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt"></i>2 Rue Sainte-Victoire, 13006</a></li>
+                    <li><a href="tel:0768887173"><i class="fas fa-phone"></i>07 68 88 71 73</a></li>
+                    <li><a href="mailto:contact@artefood.fr"><i class="fas fa-envelope"></i>contact@artefood.fr</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©2026 Pizza Snack Nour — Tous droits réservés &nbsp;·&nbsp; Créé par <a href="https://artefood.fr">Artefood.fr</a></p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll
+        const nav = document.getElementById('navbar');
+        if (nav) {
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 80);
+            });
+        }
+        // Order Popup
+        function openOrderPopup() {
+            document.getElementById('orderPopup').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrderPopup() {
+            document.getElementById('orderPopup').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('orderPopup').addEventListener('click', function(e) {
+            if (e.target === this) closeOrderPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeOrderPopup();
+        });
+
+        // Hero video — enchaîne pizza puis burger en boucle, formant une seule intro continue.
+        // Crossfade de 1.4s entre les 2 (géré par CSS .is-active + transition).
+        // Si burger-intro ne charge pas (souvent le cas pour .mov sur Chrome/Firefox/Android),
+        // on reste sur la pizza en boucle pour ne pas avoir d'écran noir.
+        const vPizza = document.getElementById('heroPizza');
+        const vBurger = document.getElementById('heroBurger');
+        let burgerOk = false;
+        let switching = false;
+
+        // Détection chargement burger
+        if (vBurger) {
+            vBurger.addEventListener('loadeddata', () => { burgerOk = true; });
+            vBurger.addEventListener('error', () => { burgerOk = false; }, true);
+            // Si dans 4 secondes la vidéo n'a pas atteint readyState >= 2, on considère qu'elle ne marche pas
+            setTimeout(() => {
+                if (!vBurger || vBurger.readyState < 2) burgerOk = false;
+            }, 4000);
+        }
+
+        function showPizza() {
+            if (!vPizza || !vBurger) return;
+            switching = true;
+            vBurger.classList.remove('is-active');
+            vPizza.classList.add('is-active');
+            vPizza.currentTime = 0;
+            vPizza.play().catch(() => {});
+            // Quand la pizza finit, on passe au burger (si dispo)
+            setTimeout(() => { switching = false; }, 1500);
+        }
+
+        function showBurger() {
+            if (!vPizza || !vBurger || !burgerOk) {
+                // Burger pas dispo : on relance la pizza en boucle
+                if (vPizza) {
+                    vPizza.currentTime = 0;
+                    vPizza.play().catch(() => {});
+                }
+                return;
+            }
+            switching = true;
+            vPizza.classList.remove('is-active');
+            vBurger.classList.add('is-active');
+            vBurger.currentTime = 0;
+            vBurger.play().catch(() => {});
+            setTimeout(() => { switching = false; }, 1500);
+        }
+
+        if (vPizza && vBurger) {
+            // Lance la pizza au démarrage
+            vPizza.play().catch(() => {});
+
+            // Quand la pizza se termine → burger
+            vPizza.addEventListener('ended', () => {
+                if (!switching) showBurger();
+            });
+            // Quand le burger se termine → retour pizza
+            vBurger.addEventListener('ended', () => {
+                if (!switching) showPizza();
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
