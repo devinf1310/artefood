@@ -8,230 +8,961 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-B55JL79EQ6');
 </script>
 
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nour Pizza - Pizzas Artisanales à Marseille</title>
+    <title>Pizza Snack Nour — Snack & Pizzeria à Marseille Castellane</title>
+    <meta name="description" content="Pizza Snack Nour à Marseille (6e), 2 Rue Sainte-Victoire - Burgers, sandwichs, tacos, paninis, pizzas et bowls préparés sur place. Commandez au 07 68 88 71 73.">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --gold: #e67e22; --red: #c0392b; --green: #27ae60; --black: #0a0a0a; --dark: #111; --cream: #f5e6d3; }
+        :root {
+            --black-deep: #0a0a0a;
+            --black-soft: #141110;
+            --charcoal: #1a1614;
+            --charcoal-soft: #221d1a;
+            --noir-warm: #2a2320;
+            --gold: #d4af37;
+            --gold-light: #e8c87a;
+            --gold-pale: #f0d785;
+            --gold-deep: #b8941f;
+            --copper: #b87333;
+            --copper-light: #c98a4f;
+            --copper-deep: #8b5a2b;
+            --cream: #f4e8d0;
+            --cream-soft: #e8d9b8;
+            --ivory: #f9f0dc;
+            --grey-warm: #8a7e6f;
+            --grey-soft: #b5a99a;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background: var(--black); color: #fff; overflow-x: hidden; }
 
-        /* Cookie Banner */
-        .cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); padding: 20px 5%; z-index: 100001; border-top: 1px solid rgba(230,126,34,0.3); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; transform: translateY(100%); transition: transform 0.5s ease; }
-        .cookie-banner.show { transform: translateY(0); }
-        .cookie-banner.hidden { display: none; }
-        .cookie-text { flex: 1; min-width: 300px; }
-        .cookie-text h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--gold); margin-bottom: 5px; letter-spacing: 2px; }
-        .cookie-text p { font-size: 0.85rem; color: #aaa; margin: 0; }
-        .cookie-text a { color: var(--gold); }
-        .cookie-buttons { display: flex; gap: 15px; }
-        .cookie-btn { padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; cursor: pointer; transition: all 0.3s; border: none; }
-        .cookie-btn.accept { background: linear-gradient(135deg, var(--gold), var(--red)); color: white; }
-        .cookie-btn.refuse { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black-deep);
+            color: var(--cream);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(ellipse at top left, rgba(212,175,55,0.07) 0%, transparent 55%),
+                radial-gradient(ellipse at bottom right, rgba(184,115,51,0.06) 0%, transparent 55%),
+                radial-gradient(circle at 50% 50%, rgba(232,200,122,0.025) 0%, transparent 70%);
+            min-height: 100vh;
+        }
 
-        /* Order Popup */
-        .order-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 100002; display: none; align-items: center; justify-content: center; }
+        /* ====== TYPO HELPERS ====== */
+        .serif-display { font-family: 'Playfair Display', serif; }
+        .serif-italic { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .label-cinzel { font-family: 'Cinzel', serif; }
+
+        /* ====== NAVBAR ====== */
+        .navbar {
+            background: rgba(10, 10, 10, 0.4);
+            padding: 14px 0;
+            position: fixed; top: 0; width: 100%; z-index: 9999;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.0);
+        }
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.92);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif !important;
+            font-weight: 700 !important;
+            font-size: 1.6rem !important;
+            color: var(--cream) !important;
+            letter-spacing: 1px;
+            display: flex; align-items: center; gap: 12px;
+            padding: 0 !important;
+        }
+        .navbar-brand .brand-mark {
+            display: inline-flex;
+            align-items: center; justify-content: center;
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border-radius: 50%;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            box-shadow: 0 0 18px rgba(212,175,55,0.35);
+        }
+        .navbar-brand .brand-name { color: var(--gold-light); }
+        .navbar-brand .brand-italic {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--cream);
+            font-size: 0.95em;
+            margin-left: 4px;
+        }
+        .navbar-toggler {
+            border: 1px solid rgba(212,175,55,0.3) !important;
+            color: var(--gold-light) !important;
+        }
+        .navbar-toggler:focus { box-shadow: 0 0 0 2px rgba(212,175,55,0.3) !important; }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23e8c87a' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+        }
+        .navbar-nav .nav-link {
+            color: var(--cream) !important;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            padding: 10px 18px !important;
+            letter-spacing: 2.5px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active { color: var(--gold-light) !important; }
+        .navbar-nav .nav-link.active::after {
+            content: "";
+            position: absolute;
+            width: 50%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            bottom: 4px; left: 25%;
+        }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            padding: 10px 26px !important;
+            border-radius: 50px;
+            margin-left: 14px;
+            color: var(--black-deep) !important;
+            font-weight: 600 !important;
+            border: 1px solid var(--gold);
+            transition: all 0.3s;
+            box-shadow: 0 0 0 rgba(212,175,55,0.4);
+        }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212,175,55,0.4);
+            color: var(--black-deep) !important;
+        }
+
+        /* ====== ORDER POPUP ====== */
+        .order-popup-overlay {
+            position: fixed; inset: 0;
+            background: rgba(10,10,10,0.92);
+            backdrop-filter: blur(14px);
+            z-index: 100002; display: none;
+            align-items: center; justify-content: center;
+            padding: 20px;
+        }
         .order-popup-overlay.show { display: flex; }
-        .order-popup { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border-radius: 25px; padding: 40px; max-width: 400px; width: 90%; text-align: center; border: 2px solid rgba(230,126,34,0.3); position: relative; animation: popupIn 0.3s ease; }
-        @keyframes popupIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        .order-popup-close { position: absolute; top: 15px; right: 20px; background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
-        .order-popup-close:hover { color: white; }
-        .order-popup h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--gold); margin-bottom: 10px; letter-spacing: 2px; }
-        .order-popup p { color: #aaa; margin-bottom: 30px; }
-        .order-popup-buttons { display: flex; flex-direction: column; gap: 15px; }
-        .order-popup-btn { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; }
-        .order-popup-btn.phone { background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; }
-        .order-popup-btn.phone:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(39,174,96,0.4); color: white; }
-        .order-popup-btn.uber { background: linear-gradient(135deg, #000, #333); color: #06C167; border: 2px solid #06C167; }
-        .order-popup-btn.uber:hover { background: #06C167; color: white; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(6,193,103,0.4); }
+        .order-popup {
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--black-soft) 100%);
+            border-radius: 6px;
+            padding: 50px 42px 42px;
+            max-width: 440px; width: 100%;
+            text-align: center; position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,175,55,0.25);
+            animation: popupIn 0.4s cubic-bezier(.2,.9,.3,1.2);
+        }
+        .order-popup::before {
+            content: "";
+            position: absolute; inset: -1px;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 30%, transparent 70%, var(--copper) 100%);
+            border-radius: 7px;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        @keyframes popupIn { from{opacity:0;transform:scale(.85) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+        .order-popup-close {
+            position: absolute; top: 14px; right: 18px;
+            background: transparent; border: none; color: var(--grey-warm);
+            font-size: 1.6rem; cursor: pointer; transition: color 0.2s;
+            line-height: 1;
+        }
+        .order-popup-close:hover { color: var(--gold-light); }
+        .order-popup .popup-eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .order-popup h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.9rem;
+            color: var(--cream);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .order-popup p { color: var(--grey-soft); margin-bottom: 30px; font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; }
+        .order-popup-buttons { display: flex; flex-direction: column; gap: 12px; }
+        .order-popup-btn {
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px; padding: 16px 28px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s;
+        }
+        .order-popup-btn.phone {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border: 1px solid var(--gold);
+        }
+        .order-popup-btn.phone:hover { transform: translateY(-2px); color: var(--black-deep); box-shadow: 0 10px 28px rgba(212,175,55,0.35); }
+        .order-popup-btn.uber {
+            background: transparent; color: var(--cream);
+            border: 1px solid rgba(212,175,55,0.4);
+        }
+        .order-popup-btn.uber:hover { border-color: var(--gold-light); color: var(--gold-light); transform: translateY(-2px); }
 
-        /* Navbar */
-        .navbar { background: transparent; padding: 20px 0; position: fixed; top: 0; width: 100%; z-index: 9999; transition: all 0.5s; }
-        .navbar.scrolled { background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); padding: 15px 0; }
-        .navbar-brand { display: flex; align-items: center; gap: 15px; }
-        .navbar-brand img { height: 60px; transition: all 0.3s; }
-        .navbar.scrolled .navbar-brand img { height: 50px; }
-        .navbar-brand span { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: white; }
-        .navbar-nav .nav-link { color: white !important; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; padding: 10px 20px !important; letter-spacing: 2px; position: relative; }
-        .navbar-nav .nav-link::before { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background: linear-gradient(90deg, var(--gold), var(--red)); transition: all 0.4s; transform: translateX(-50%); }
-        .navbar-nav .nav-link:hover::before, .navbar-nav .nav-link.active::before { width: 80%; }
-        .navbar-nav .nav-link:hover { color: var(--gold) !important; }
-        .nav-cta { background: linear-gradient(135deg, var(--gold), var(--red)); padding: 12px 30px !important; border-radius: 50px; margin-left: 20px; }
-        .nav-cta::before { display: none; }
+        /* ====== UNIVERSAL SECTION TITLE ====== */
+        .section-title-block { text-align: center; margin-bottom: 50px; }
+        .section-title-block .eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem; color: var(--gold-light);
+            display: block; margin-bottom: 6px;
+            letter-spacing: 2px;
+        }
+        .section-title-block h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            color: var(--cream); letter-spacing: 3px;
+            margin-bottom: 18px;
+            line-height: 1.1;
+        }
+        .section-title-block h2 em {
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .section-title-block .ornament {
+            display: flex; align-items: center; justify-content: center;
+            gap: 18px;
+        }
+        .section-title-block .ornament-line {
+            width: 90px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .section-title-block .ornament-icon { color: var(--gold); font-size: 1.05rem; }
 
-        /* Hero */
-        .hero { position: relative; width: 100%; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); object-fit: cover; z-index: 0; }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.7) 100%); z-index: 1; }
-        .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 20px; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(230,126,34,0.2); border: 1px solid var(--gold); padding: 10px 25px; border-radius: 50px; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 30px; animation: fadeInDown 1s ease 0.3s both; }
-        .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 15vw, 12rem); line-height: 0.9; margin-bottom: 20px; animation: fadeInUp 1s ease 0.5s both; }
-        .hero-title .line1 { display: block; color: white; }
-        .hero-title .line2 { display: block; background: linear-gradient(135deg, var(--gold), var(--red), var(--gold)); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientShift 3s ease infinite; }
-        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        .hero-subtitle { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 3vw, 1.5rem); font-style: italic; color: rgba(255,255,255,0.8); margin-bottom: 40px; animation: fadeInUp 1s ease 0.7s both; }
-        .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 1s ease 0.9s both; }
-        .btn-hero { padding: 18px 45px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; border-radius: 50px; text-decoration: none; transition: all 0.4s; }
-        .btn-hero-primary { background: linear-gradient(135deg, var(--gold), var(--red)); color: white; border: none; }
-        .btn-hero-primary:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(230,126,34,0.4); color: white; }
-        .btn-hero-outline { background: transparent; color: white; border: 2px solid white; }
-        .btn-hero-outline:hover { background: white; color: var(--black); }
-
-        .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 10; animation: fadeInUp 1s ease 1.1s both; }
-        .scroll-indicator a { display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; color: white; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; }
-        .scroll-indicator .mouse { width: 26px; height: 40px; border: 2px solid white; border-radius: 20px; position: relative; }
-        .scroll-indicator .wheel { width: 4px; height: 8px; background: white; border-radius: 2px; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); animation: scroll 2s ease infinite; }
-        @keyframes scroll { 0% { opacity: 1; transform: translateX(-50%) translateY(0); } 100% { opacity: 0; transform: translateX(-50%) translateY(15px); } }
-
-        .floating-elements { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; overflow: hidden; }
-        .floating-item { position: absolute; font-size: 3rem; opacity: 0.15; animation: floatRandom 20s linear infinite; }
-        @keyframes floatRandom { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.15; } 90% { opacity: 0.15; } 100% { transform: translateY(-100px) rotate(360deg); opacity: 0; } }
-
-        /* Sections */
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title .overline { font-size: 0.85rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 15px; display: block; }
-        .section-title h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 5rem); line-height: 1; }
-        .section-title h2 span { background: linear-gradient(135deg, var(--gold), var(--red)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        /* About */
-        .about-section { padding: 120px 5%; background: var(--black); position: relative; overflow: hidden; }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1400px; margin: 0 auto; align-items: center; }
-        .about-images { position: relative; height: 600px; }
-        .about-img { position: absolute; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5); transition: all 0.5s; }
-        .about-img:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 10; }
-        .about-img img { width: 100%; height: 100%; object-fit: cover; }
-        .about-img-1 { width: 300px; height: 400px; top: 0; left: 0; transform: rotate(-5deg); }
-        .about-img-2 { width: 280px; height: 350px; bottom: 0; right: 0; transform: rotate(5deg); }
-        .about-img-3 { width: 200px; height: 200px; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 5px solid var(--gold); border-radius: 50%; }
-        .about-content h3 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 30px; line-height: 1.2; }
-        .about-content h3 span { color: var(--gold); font-style: italic; }
-        .about-content p { font-size: 1.1rem; line-height: 1.9; color: #aaa; margin-bottom: 20px; }
-        .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
-        .about-feature { display: flex; align-items: center; gap: 15px; }
-        .about-feature i { width: 50px; height: 50px; background: linear-gradient(135deg, var(--gold), var(--red)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-
-        /* Review */
-        .review-section { padding: 80px 5%; background: var(--dark); }
-        .review-card { max-width: 550px; margin: 0 auto; text-align: center; padding: 40px; border: 2px solid rgba(255,255,255,0.1); border-radius: 25px; background: rgba(255,255,255,0.02); }
-        .review-stars { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
-        .review-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px; }
-        .review-card p { color: #888; margin-bottom: 25px; }
-        .review-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 35px; background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s; }
-        .review-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(39,174,96,0.3); color: white; }
-
-        /* Menu Preview */
-        .menu-preview { padding: 120px 5%; background: linear-gradient(180deg, var(--dark), var(--black)); position: relative; }
-        .menu-categories { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1400px; margin: 0 auto; }
-        .menu-category { position: relative; height: 450px; border-radius: 30px; overflow: hidden; cursor: pointer; transition: all 0.5s; }
-        .menu-category:hover { transform: translateY(-20px); }
-        .menu-category img { width: 100%; height: 100%; object-fit: cover; transition: all 0.7s; }
-        .menu-category:hover img { transform: scale(1.15); }
-        .menu-category-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.95) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px 30px; }
-        .menu-category-icon { width: 70px; height: 70px; background: linear-gradient(135deg, var(--gold), var(--red)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px; transition: all 0.4s; }
-        .menu-category:hover .menu-category-icon { transform: scale(1.1) rotate(10deg); }
-        .menu-category h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 10px; letter-spacing: 2px; }
-        .menu-category p { color: #aaa; font-size: 0.9rem; margin-bottom: 20px; }
-        .menu-category-btn { display: inline-flex; align-items: center; gap: 10px; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; text-decoration: none; opacity: 0; transform: translateY(20px); transition: all 0.4s; }
-        .menu-category:hover .menu-category-btn { opacity: 1; transform: translateY(0); }
-
-        /* Promo */
-        .promo-banner { padding: 100px 5%; background: linear-gradient(135deg, var(--gold), var(--red)); position: relative; overflow: hidden; }
-        .promo-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
-        .promo-content h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 5rem); color: white; margin-bottom: 20px; }
-        .promo-content p { font-size: 1.3rem; color: rgba(255,255,255,0.9); margin-bottom: 30px; }
-        .promo-phone { display: inline-flex; align-items: center; gap: 15px; background: white; color: var(--black); padding: 20px 40px; border-radius: 60px; font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 3px; text-decoration: none; transition: all 0.3s; }
-        .promo-phone:hover { transform: scale(1.05); color: var(--black); }
-
-        /* Hours */
-        .hours-section { padding: 120px 5%; background: var(--black); }
-        .hours-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; max-width: 1200px; margin: 0 auto; align-items: center; }
-        .hours-image { position: relative; }
-        .hours-image img { width: 100%; border-radius: 30px; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
-        .hours-image::before { content: ''; position: absolute; top: -20px; left: -20px; width: 100%; height: 100%; border: 3px solid var(--gold); border-radius: 30px; z-index: -1; }
-        .hours-content h3 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; margin-bottom: 40px; letter-spacing: 3px; }
-        .hours-content h3 span { color: var(--gold); }
-        .hours-list { display: flex; flex-direction: column; gap: 15px; }
-        .hours-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; background: rgba(255,255,255,0.03); border-radius: 15px; border-left: 4px solid var(--gold); transition: all 0.3s; }
-        .hours-item:hover { background: rgba(230,126,34,0.1); transform: translateX(10px); }
-        .hours-item .day { font-weight: 600; font-size: 1.1rem; }
-        .hours-item .time { color: var(--gold); font-weight: 500; }
-
-        /* Footer */
-        footer { background: var(--dark); padding: 80px 5% 30px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; max-width: 1400px; margin: 0 auto; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .footer-brand img { height: 80px; margin-bottom: 20px; }
-        .footer-brand p { color: #888; line-height: 1.8; margin-bottom: 25px; }
-        .footer-social { display: flex; gap: 15px; }
-        .footer-social a { width: 45px; height: 45px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s; }
-        .footer-social a:hover { background: var(--gold); transform: translateY(-5px); }
-        .footer-col h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 25px; color: var(--gold); }
+        /* ====== FOOTER ====== */
+        footer {
+            background: linear-gradient(180deg, var(--black-soft) 0%, var(--black-deep) 100%);
+            color: var(--cream);
+            padding: 60px 5% 30px;
+            position: relative;
+            border-top: 1px solid rgba(212,175,55,0.15);
+        }
+        footer::before {
+            content: ""; position: absolute; top: -1px; left: 50%;
+            transform: translateX(-50%);
+            width: 60%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(212,175,55,0.1);
+        }
+        .footer-brand .brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+        .footer-brand .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--cream);
+            opacity: 0.85;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        .footer-brand p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--grey-soft);
+            line-height: 1.7;
+            margin-bottom: 22px;
+            font-size: 1rem;
+        }
+        .footer-social { display: flex; gap: 12px; }
+        .footer-social a {
+            width: 42px; height: 42px;
+            background: rgba(212,175,55,0.08);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold-light); text-decoration: none;
+            transition: all 0.3s;
+        }
+        .footer-social a:hover { background: var(--gold); color: var(--black-deep); transform: translateY(-3px); border-color: var(--gold); }
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--gold-light);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
         .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 12px; }
-        .footer-col ul li a { color: #888; text-decoration: none; transition: all 0.3s; }
-        .footer-col ul li a:hover { color: var(--gold); padding-left: 10px; }
-        .footer-contact p { color: #888; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .footer-contact p i { color: var(--gold); width: 20px; }
-        .footer-bottom { max-width: 1400px; margin: 30px auto 0; display: flex; justify-content: space-between; align-items: center; color: #666; font-size: 0.9rem; }
+        .footer-col ul li { margin-bottom: 11px; }
+        .footer-col ul li a {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--grey-soft);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.02rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        .footer-col ul li a:hover { color: var(--gold-light); padding-left: 4px; }
+        .footer-col ul li a i {
+            color: var(--gold);
+            margin-right: 9px;
+            width: 16px;
+            font-size: 0.9rem;
+        }
+        .footer-bottom {
+            max-width: 1300px; margin: 24px auto 0;
+            text-align: center;
+            color: var(--grey-warm);
+            font-size: 0.85rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .footer-bottom a { color: var(--gold-light); text-decoration: none; }
+        .footer-bottom a:hover { color: var(--gold-pale); }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+        /* ====== UNIVERSAL RESPONSIVE ====== */
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+        }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 35px; }
+            .navbar-collapse { background: rgba(10,10,10,0.97); padding: 20px; margin-top: 12px; border-radius: 4px; border: 1px solid rgba(212,175,55,0.15); }
+            .nav-cta { margin: 12px 0 0 !important; display: inline-flex !important; }
+        }
 
-        @media (max-width: 1200px) { .menu-categories { grid-template-columns: repeat(2, 1fr); } .about-grid { grid-template-columns: 1fr; } .about-images { height: 400px; margin-bottom: 40px; } }
-        @media (max-width: 992px) { .hours-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 768px) { .menu-categories { grid-template-columns: 1fr; } .menu-category { height: 350px; } .hero-buttons { flex-direction: column; align-items: center; } .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 15px; text-align: center; } .cookie-banner { flex-direction: column; text-align: center; } .cookie-buttons { justify-content: center; } }
+        /* ====== HERO VIDEO ====== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--black-deep);
+        }
+        .hero-video-stack {
+            position: absolute; inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.4s ease;
+            z-index: 0;
+        }
+        .hero-video.is-active { opacity: 1; }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at center, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.85) 100%),
+                linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.7) 100%);
+            z-index: 1;
+        }
+        .hero-overlay::after {
+            content: "";
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(circle at 25% 30%, rgba(212,175,55,0.18) 0%, transparent 45%),
+                radial-gradient(circle at 75% 70%, rgba(184,115,51,0.15) 0%, transparent 45%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 120px 20px 60px;
+            max-width: 1100px;
+        }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 18px;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 22px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 500;
+            animation: fadeInDown 1s ease 0.2s both;
+        }
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: ""; display: block; width: 60px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(3.5rem, 11vw, 8.5rem);
+            color: var(--cream);
+            line-height: 0.95;
+            letter-spacing: 4px;
+            margin-bottom: 18px;
+            text-shadow: 0 4px 40px rgba(0,0,0,0.7);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        .hero-title .gold-line {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 500;
+            color: var(--gold-light);
+            font-size: 0.42em;
+            letter-spacing: 14px;
+            margin-top: 14px;
+            text-transform: uppercase;
+        }
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+            color: rgba(244,232,208,0.9);
+            max-width: 720px;
+            margin: 0 auto 45px;
+            line-height: 1.7;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        .hero-buttons {
+            display: flex; gap: 22px; justify-content: center; flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+        .btn-hero {
+            padding: 17px 42px; font-size: 0.78rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 4px;
+            border-radius: 50px; text-decoration: none;
+            transition: all 0.4s ease; display: inline-flex; align-items: center; gap: 12px;
+        }
+        .btn-hero-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border: 1px solid var(--gold);
+        }
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(212,175,55,0.4);
+            color: var(--black-deep);
+        }
+        .btn-hero-outline {
+            background: transparent; color: var(--cream);
+            border: 1px solid rgba(244,232,208,0.4);
+        }
+        .btn-hero-outline:hover { background: var(--cream); color: var(--black-deep); border-color: var(--cream); }
+
+        .scroll-indicator {
+            position: absolute; bottom: 38px; left: 50%;
+            transform: translateX(-50%); z-index: 10;
+            color: var(--gold-light); text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic; font-size: 0.95rem;
+            letter-spacing: 3px; text-transform: uppercase;
+            animation: fadeInUp 1s ease 1.2s both, bounce 2.5s ease-in-out 2s infinite;
+            opacity: 0.85;
+        }
+        @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-12px)} }
+        .scroll-indicator i { display: block; margin-top: 8px; font-size: 1.1rem; color: var(--gold); }
+
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeInDown { from{opacity:0;transform:translateY(-40px)} to{opacity:1;transform:translateY(0)} }
+
+        /* ====== ABOUT ====== */
+        .about-section {
+            padding: 120px 5% 110px;
+            position: relative;
+            background: linear-gradient(180deg, var(--black-deep) 0%, var(--charcoal) 100%);
+        }
+        .about-section::before {
+            content: "";
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 60%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 80px;
+            max-width: 1300px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .about-visual {
+            position: relative;
+            height: 580px;
+        }
+        .about-img-main {
+            position: absolute;
+            inset: 0 30% 80px 0;
+            border-radius: 4px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+            border: 1px solid rgba(212,175,55,0.3);
+            overflow: hidden;
+            background: var(--charcoal);
+        }
+        .about-img-main::before {
+            content: ""; position: absolute; inset: -1px;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 30%, transparent 70%, var(--copper) 100%);
+            opacity: 0.5;
+            border-radius: 5px;
+            z-index: -1;
+        }
+        .about-img-main img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.92) contrast(1.08) saturate(1.05);
+        }
+        .about-img-secondary {
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 55%; height: 280px;
+            border-radius: 4px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+            border: 2px solid var(--gold);
+            overflow: hidden;
+            background: var(--charcoal);
+        }
+        .about-img-secondary img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.95) contrast(1.05);
+        }
+        .about-content .eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--gold-light);
+            display: block;
+            margin-bottom: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .about-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            color: var(--cream);
+            line-height: 1.15;
+            margin-bottom: 22px;
+            letter-spacing: 1px;
+        }
+        .about-content h3 em {
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .about-content p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.18rem;
+            line-height: 1.85;
+            color: var(--grey-soft);
+            margin-bottom: 18px;
+        }
+        .about-content p strong { color: var(--gold-light); font-weight: 600; }
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 38px;
+        }
+        .about-feature {
+            display: flex; align-items: center; gap: 14px;
+            padding: 16px 18px;
+            background: rgba(212,175,55,0.05);
+            border: 1px solid rgba(212,175,55,0.18);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .about-feature:hover {
+            border-color: rgba(212,175,55,0.4);
+            background: rgba(212,175,55,0.08);
+            transform: translateY(-2px);
+        }
+        .about-feature i {
+            color: var(--gold);
+            font-size: 1.3rem;
+            width: 32px;
+            text-align: center;
+        }
+        .about-feature span {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: var(--cream);
+            font-size: 0.92rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* ====== SPECIALTIES ====== */
+        .specialties-section {
+            padding: 120px 5%;
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--black-deep) 100%);
+            position: relative;
+        }
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .specialty-card {
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-soft) 100%);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(212,175,55,0.2);
+            transition: all 0.4s cubic-bezier(.2,.9,.3,1);
+            position: relative;
+        }
+        .specialty-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212,175,55,0.5);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.3);
+        }
+        .specialty-image {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid rgba(212,175,55,0.15);
+            background: var(--black-soft);
+        }
+        .specialty-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+            filter: brightness(0.88) contrast(1.08) saturate(1.05);
+            display: block;
+        }
+        .specialty-image::after {
+            content: "";
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.5) 100%);
+            pointer-events: none;
+        }
+        .specialty-card:hover .specialty-image img { transform: scale(1.08); }
+        .specialty-body { padding: 28px 26px 26px; text-align: center; }
+        .specialty-body h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--cream);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .specialty-body p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--grey-soft);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .specialty-body .link {
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-size: 0.72rem;
+            color: var(--gold-light);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 3px;
+            transition: all 0.3s;
+        }
+        .specialty-body .link:hover { color: var(--gold-pale); border-bottom-color: var(--gold-pale); }
+
+        /* ====== PROMO ====== */
+        .promo-banner {
+            padding: 100px 5%;
+            background:
+                linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(20,17,16,0.92) 100%),
+                url('https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza_cuisson_1.jpg') center/cover fixed;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+            border-top: 1px solid rgba(212,175,55,0.2);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+        }
+        .promo-banner::before {
+            content: "";
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at center, rgba(212,175,55,0.18) 0%, transparent 60%);
+            z-index: 1;
+        }
+        .promo-content { position: relative; z-index: 5; max-width: 850px; margin: 0 auto; }
+        .promo-content .eyebrow-italic {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 14px;
+            letter-spacing: 2px;
+        }
+        .promo-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--cream);
+            letter-spacing: 3px;
+            margin-bottom: 22px;
+            line-height: 1.15;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.7);
+        }
+        .promo-content h2 em {
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .promo-content p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.18rem;
+            color: rgba(244,232,208,0.9);
+            margin-bottom: 38px;
+            line-height: 1.6;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+        }
+        .promo-phone {
+            display: inline-flex; align-items: center; gap: 16px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            padding: 19px 44px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            letter-spacing: 3px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 36px rgba(212,175,55,0.4);
+            border: 1px solid var(--gold);
+        }
+        .promo-phone:hover {
+            transform: scale(1.04) translateY(-2px);
+            color: var(--black-deep);
+            box-shadow: 0 18px 50px rgba(212,175,55,0.5);
+        }
+
+        /* ====== HOURS ====== */
+        .hours-section { padding: 120px 5%; background: var(--charcoal); position: relative; }
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 70px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .hours-visual {
+            height: 480px;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .hours-visual img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.85) contrast(1.1) saturate(1.05);
+        }
+        .hours-visual::after {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, transparent 50%, rgba(184,115,51,0.1) 100%);
+            pointer-events: none;
+        }
+        .hours-content .eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--gold-light);
+            display: block;
+            margin-bottom: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .hours-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--cream);
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+        }
+        .hours-content h3 em {
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .hours-list { display: flex; flex-direction: column; gap: 8px; }
+        .hours-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 22px;
+            background: rgba(212,175,55,0.04);
+            border-bottom: 1px solid rgba(212,175,55,0.12);
+            transition: all 0.3s;
+        }
+        .hours-item:hover {
+            background: rgba(212,175,55,0.08);
+            padding-left: 28px;
+            border-bottom-color: var(--gold);
+        }
+        .hours-item .day {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--cream);
+            letter-spacing: 1px;
+        }
+        .hours-item .time {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--gold-light);
+            font-size: 1rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .about-grid, .hours-grid { grid-template-columns: 1fr; gap: 60px; }
+            .about-visual, .hours-visual { height: 380px; max-width: 500px; margin: 0 auto; }
+            .specialties-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .specialties-grid { grid-template-columns: 1fr; }
+            .about-features { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; align-items: center; gap: 14px; }
+            .btn-hero { width: 85%; justify-content: center; }
+            .hero-eyebrow { gap: 10px; font-size: 1.05rem; letter-spacing: 2.5px; }
+            .hero-eyebrow::before, .hero-eyebrow::after { width: 30px; }
+            .promo-phone { font-size: 1.3rem; padding: 16px 32px; letter-spacing: 2px; }
+            .about-img-main { inset: 0 20% 60px 0; }
+        }
+        @media (max-width: 480px) {
+            .hero-content { padding: 100px 16px 80px; }
+            .hero-title .gold-line { letter-spacing: 8px; font-size: 0.5em; }
+        }
+
+        /* ====== HALAL BADGE ====== */
+        .halal-badge {
+            position: fixed;
+            top: 92px;
+            right: 18px;
+            z-index: 998;
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1;
+            box-shadow: 0 8px 24px rgba(212,175,55,0.45), 0 0 0 4px rgba(10,10,10,0.6);
+            border: 2px solid var(--gold-light);
+            transform: rotate(-8deg);
+            transition: transform 0.3s ease;
+            font-size: 0.7rem;
+        }
+        .halal-badge:hover { transform: rotate(0deg) scale(1.05); }
+        .halal-badge .h-pct {
+            font-size: 1.2rem;
+            font-weight: 800;
+            display: block;
+            line-height: 0.9;
+        }
+        .halal-badge .h-text {
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        @media (max-width: 768px) {
+            .halal-badge { width: 60px; height: 60px; top: 84px; right: 12px; }
+            .halal-badge .h-pct { font-size: 1rem; }
+            .halal-badge .h-text { font-size: 0.55rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-text">
-            <h4>🍪 Cookies & Confidentialité</h4>
-            <p>Nous utilisons des cookies pour améliorer votre expérience. <a href="/politique-de-confidentialite.html" target="_blank">Politique de confidentialité</a></p>
-        </div>
-        <div class="cookie-buttons">
-            <button class="cookie-btn refuse" onclick="refuseCookies()">Refuser</button>
-            <button class="cookie-btn accept" onclick="acceptCookies()">Accepter</button>
-        </div>
+
+    <!-- Halal Badge -->
+    <div class="halal-badge" title="100% Halal">
+        <span class="h-pct">100%</span>
+        <span class="h-text">Halal</span>
     </div>
 
     <!-- Order Popup -->
     <div class="order-popup-overlay" id="orderPopup">
         <div class="order-popup">
-            <button class="order-popup-close" onclick="closeOrderPopup()">&times;</button>
-            <h3>🍕 Commander</h3>
+            <button class="order-popup-close" onclick="closeOrderPopup()" aria-label="Fermer">&times;</button>
+            <div class="popup-eyebrow">Per ordinare</div>
+            <h3>COMMANDER</h3>
             <p>Choisissez votre mode de commande</p>
             <div class="order-popup-buttons">
-                <a href="tel:0465853879" class="order-popup-btn phone">
+                <a href="tel:0768887173" class="order-popup-btn phone">
                     <i class="fas fa-phone-alt"></i>
-                    <span>04 65 85 38 79</span>
+                    <span>07 68 88 71 73</span>
                 </a>
-                <a href="https://www.ubereats.com/fr/store/pizzeria-nour/j3hNkSFXXT6mCtg6EybBdg" target="_blank" class="order-popup-btn uber">
+                <a href="#" target="_blank" class="order-popup-btn uber">
                     <i class="fab fa-uber"></i>
-                    <span>Commander sur Uber Eats</span>
+                    <span>Uber Eats</span>
                 </a>
             </div>
         </div>
     </div>
 
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/logo_NourPizza.png" alt="Nour Pizza">
-                <span>Nour Pizza</span>
+                <span class="brand-mark">N</span>
+                <span><span class="brand-name">PIZZA SNACK</span><span class="brand-italic">Nour</span></span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">La Carte</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     <li class="nav-item"><a class="nav-link nav-cta" href="#" onclick="openOrderPopup(); return false;"><i class="fas fa-phone"></i> Commander</a></li>
                 </ul>
@@ -239,175 +970,200 @@
         </div>
     </nav>
 
+    <!-- ====== HERO ====== -->
     <section class="hero">
-        <video class="hero-video" id="heroVideo" autoplay loop muted playsinline>
-            <source src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza-intro.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="floating-elements">
-            <span class="floating-item" style="left: 10%; animation-delay: 0s;">🍕</span>
-            <span class="floating-item" style="left: 25%; animation-delay: 3s;">🧀</span>
-            <span class="floating-item" style="left: 40%; animation-delay: 6s;">🍅</span>
-            <span class="floating-item" style="left: 55%; animation-delay: 9s;">🌿</span>
-            <span class="floating-item" style="left: 70%; animation-delay: 12s;">🫒</span>
-            <span class="floating-item" style="left: 85%; animation-delay: 15s;">🍕</span>
+        <div class="hero-video-stack">
+            <!-- 2 vidéos qui s'enchaînent : pizza puis burger en boucle, formant une seule intro -->
+            <video class="hero-video is-active" id="heroPizza" muted playsinline preload="auto">
+                <source src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza-intro.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza-intro.mov" type="video/quicktime">
+            </video>
+            <video class="hero-video" id="heroBurger" muted playsinline preload="auto">
+                <source src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/burger-intro.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/burger-intro.mov" type="video/quicktime">
+            </video>
+            <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
-            <div class="hero-badge"><i class="fas fa-star"></i><span>Pizzas Artisanales à Marseille</span></div>
-            <h1 class="hero-title"><span class="line1">NOUR</span><span class="line2">PIZZA</span></h1>
-            <p class="hero-subtitle">L'art de la pizza authentique & savoureuse</p>
+            <div class="hero-eyebrow">Marseille &nbsp;·&nbsp; Castellane &nbsp;·&nbsp; 7J/7</div>
+            <h1 class="hero-title">
+                Pizza Snack Nour
+                <span class="gold-line">Saveurs authentiques</span>
+            </h1>
+            <p class="hero-subtitle">
+                Saveurs authentiques &amp; générosité marseillaise. Burgers, pizzas, tacos et bowls préparés sur place, 7j/7 — 100&nbsp;% halal.
+            </p>
             <div class="hero-buttons">
-                <a href="menu.html" class="btn-hero btn-hero-primary"><i class="fas fa-pizza-slice"></i> Découvrir le Menu</a>
-                <a href="tel:0465853879" class="btn-hero btn-hero-outline"><i class="fas fa-phone"></i> 04 65 85 38 79</a>
+                <a href="menu.html" class="btn-hero btn-hero-primary">
+                    <i class="fas fa-utensils"></i> Découvrir la Carte
+                </a>
+                <a href="#" onclick="openOrderPopup(); return false;" class="btn-hero btn-hero-outline">
+                    <i class="fas fa-phone"></i> Commander
+                </a>
             </div>
         </div>
-        <div class="scroll-indicator"><a href="#about"><div class="mouse"><div class="wheel"></div></div><span>Découvrir</span></a></div>
+        <div class="scroll-indicator">
+            <span>Scopri</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </section>
 
-    <section class="about-section" id="about">
+    <!-- ====== ABOUT ====== -->
+    <section class="about-section">
         <div class="about-grid">
-            <div class="about-images">
-                <div class="about-img about-img-1"><img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza-preparation-sauce-tomate.jpg" alt="Pizza"></div>
-                <div class="about-img about-img-2"><img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza-sauce-blanche.jpg" alt="Pizza crème"></div>
-                <div class="about-img about-img-3"><img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/logo_NourPizza.png" alt="Logo"></div>
+            <div class="about-visual">
+                <div class="about-img-main">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza-preparation-sauce-tomate.jpg" alt="Préparation d'une pizza">
+                </div>
+                <div class="about-img-secondary">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza-sauce-blanche.jpg" alt="Pizza sauce blanche">
+                </div>
             </div>
             <div class="about-content">
-                <h3>Une passion pour les <span>pizzas</span> authentiques</h3>
-                <p>Bienvenue chez Nour Pizza, votre pizzeria artisanale au cœur de Marseille. Chaque pizza est une création unique, conçue avec soin et passion pour vous offrir une expérience gustative inoubliable.</p>
-                <p>Nous utilisons uniquement des ingrédients frais et de haute qualité pour garantir des pizzas délicieuses et mémorables. Notre secret ? La passion et le savoir-faire artisanal !</p>
+                <span class="eyebrow">La nostra storia</span>
+                <h3>Une cuisine généreuse, <em>au cœur de Marseille</em></h3>
+                <p>Bienvenue chez <strong>Pizza Snack Nour</strong>, votre adresse incontournable au quartier Castellane, dans le 6<sup>e</sup> arrondissement. Du burger gourmand au tacos savoureux, en passant par nos pizzas artisanales et nos bowls, nous proposons une carte variée pour tous les goûts et toutes les envies.</p>
+                <p>Chaque plat est préparé à la commande avec des ingrédients frais soigneusement sélectionnés — viandes de qualité, fromages fondants, légumes croquants et sauces maison. <strong>Pizza Snack Nour</strong>, c'est l'esprit du snack généreux et la passion d'une vraie cuisine artisanale.</p>
                 <div class="about-features">
-                    <div class="about-feature"><i class="fas fa-leaf"></i><span>Ingrédients Frais</span></div>
-                    <div class="about-feature"><i class="fas fa-fire"></i><span>Cuisson Parfaite</span></div>
-                    <div class="about-feature"><i class="fas fa-truck"></i><span>Livraison Rapide</span></div>
-                    <div class="about-feature"><i class="fas fa-award"></i><span>Qualité Premium</span></div>
+                    <div class="about-feature"><i class="fas fa-leaf"></i><span>Produits frais</span></div>
+                    <div class="about-feature"><i class="fas fa-fire"></i><span>Préparé minute</span></div>
+                    <div class="about-feature"><i class="fas fa-hand-holding-heart"></i><span>Fait maison</span></div>
+                    <div class="about-feature"><i class="fas fa-certificate"></i><span>100&nbsp;% Halal</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="review-section">
-        <div class="review-card">
-            <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            <h3>Donnez votre avis sur notre Pizzeria !</h3>
-            <p>Votre avis est précieux. Cliquez ci-dessous pour nous noter sur Google.</p>
-            <a href="https://www.google.com/search?sa=X&sca_esv=4c9b8c3012ee021f&rlz=1C1VDKB_frFR1071FR1071&biw=1920&bih=927&sxsrf=AE3TifM7ukdY0QQGLT6YOiyVPeifF2ijJA:1766802065164&q=avis%20sur%20pizzeria%20nour&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxK2NDCxNDQzMjM1MzE1NTE0MLcw3sDI-IpRLLEss1ihuLRIoSCzqiq1KDNRIS-_tGgRKw4JAF2weAJMAAAA&rldimm=9049162656455410783&tbm=lcl&hl=fr-FR&ved=0CA8Q5foLahcKEwio2qDM2tyRAxUAAAAAHQAAAAAQBQ#lkt=LocalPoiReviews&arid=Ci9DQUlRQUNvZENodHljRjlvT2taS1YwWk9ZM1pMV25ZMlJ6TnBja1l6VVhkTlFrRRAB" target="_blank" class="review-btn"><i class="fab fa-google"></i> Laisser un avis</a>
+    <!-- ====== SPECIALTIES ====== -->
+    <section class="specialties-section">
+        <div class="section-title-block">
+            <span class="eyebrow">Le nostre specialità</span>
+            <h2>NOS SPÉCIALITÉS</h2>
+            <div class="ornament">
+                <span class="ornament-line"></span>
+                <i class="ornament-icon fas fa-star"></i>
+                <span class="ornament-line"></span>
+            </div>
+        </div>
+        <div class="specialties-grid">
+            <div class="specialty-card">
+                <div class="specialty-image">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza-gourmande.jpg" alt="Pizza Tartiflette">
+                </div>
+                <div class="specialty-body">
+                    <h4>Pizza Tartiflette</h4>
+                    <p>Crème fraîche, Reblochon, lardons fumés, oignons et pommes de terre. Une signature gourmande.</p>
+                    <a href="menu.html#pizzas-speciales" class="link">Voir la carte →</a>
+                </div>
+            </div>
+            <div class="specialty-card">
+                <div class="specialty-image">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza_presentation_2.jpg" alt="Pizza Carbonara">
+                </div>
+                <div class="specialty-body">
+                    <h4>Pizza Carbonara</h4>
+                    <p>Crème fraîche, lardons fumés, œuf et pommes de terre. Une recette généreuse et fondante.</p>
+                    <a href="menu.html#pizzas-speciales" class="link">Voir la carte →</a>
+                </div>
+            </div>
+            <div class="specialty-card">
+                <div class="specialty-image">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza_presentation_ingredients.jpg" alt="Crousty Squad">
+                </div>
+                <div class="specialty-body">
+                    <h4>Crousty Squad</h4>
+                    <p>Notre best-seller : poulet croustillant, sauces au choix, frites et accompagnements généreux.</p>
+                    <a href="menu.html#crousty-bowl" class="link">Voir la carte →</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="menu-preview">
-        <div class="section-title"><span class="overline">Nos Spécialités</span><h2>Découvrez notre <span>Menu</span></h2></div>
-        <div class="menu-categories">
-            <div class="menu-category">
-                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/sauce-tomate.jpg" alt="Pizzas Classiques">
-                <div class="menu-category-overlay">
-                    <div class="menu-category-icon"><i class="fas fa-pizza-slice"></i></div>
-                    <h3>Classiques</h3><p>Sauce Tomate</p>
-                    <a href="menu.html#tomate" class="menu-category-btn">Voir la carte <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="menu-category">
-                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/creme-fraiche.jpg" alt="Pizzas Crème">
-                <div class="menu-category-overlay">
-                    <div class="menu-category-icon"><i class="fas fa-cheese"></i></div>
-                    <h3>Crèmes</h3><p>Base Crème Fraîche</p>
-                    <a href="menu.html#cremieres" class="menu-category-btn">Voir la carte <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="menu-category">
-                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_ingredients.jpg" alt="Pizzas Spéciales">
-                <div class="menu-category-overlay">
-                    <div class="menu-category-icon"><i class="fas fa-star"></i></div>
-                    <h3>Spéciales</h3><p>Créations Uniques</p>
-                    <a href="menu.html#speciales" class="menu-category-btn">Voir la carte <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="menu-category">
-                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza-gourmande.jpg" alt="Formules">
-                <div class="menu-category-overlay">
-                    <div class="menu-category-icon"><i class="fas fa-tags"></i></div>
-                    <h3>Formules</h3><p>Offres Avantageuses</p>
-                    <a href="menu.html#promos" class="menu-category-btn">Voir la carte <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- ====== PROMO ====== -->
     <section class="promo-banner">
         <div class="promo-content">
-            <h2>🍕 Économisez les frais de livraison !</h2>
-            <p>Commandez directement par téléphone et venez récupérer votre commande</p>
-            <a href="tel:0465853879" class="promo-phone"><i class="fas fa-phone-alt"></i> 04 65 85 38 79</a>
+            <p class="eyebrow-italic">Chiama subito</p>
+            <h2>Livraison gratuite <em>dès 20 €</em></h2>
+            <p>Commandez directement par téléphone — livraison offerte à partir de 20 € d'achat ou retrait sur place.</p>
+            <a href="tel:0768887173" class="promo-phone">
+                <i class="fas fa-phone-alt"></i>
+                <span>07 68 88 71 73</span>
+            </a>
         </div>
     </section>
 
-    <section class="hours-section" id="horaires">
+    <!-- ====== HOURS ====== -->
+    <section class="hours-section">
         <div class="hours-grid">
-            <div class="hours-image"><img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_cuisson_2.jpg" alt="Four à pizza"></div>
+            <div class="hours-visual">
+                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-snack-nour/media/pizza_cuisson_2.jpg" alt="Cuisson au four">
+            </div>
             <div class="hours-content">
-                <h3>Heures d'<span>Ouverture</span></h3>
+                <span class="eyebrow">Orari di apertura</span>
+                <h3>Heures <em>d'ouverture</em></h3>
                 <div class="hours-list">
-                    <div class="hours-item"><span class="day">Lundi</span><span class="time">11:00 – 14:00</span></div>
-                    <div class="hours-item"><span class="day">Mardi - Jeudi</span><span class="time">11:00 – 14:00 | 18:00 – 22:00</span></div>
-                    <div class="hours-item"><span class="day">Vendredi</span><span class="time">11:00 – 13:00 | 18:00 – 22:00</span></div>
-                    <div class="hours-item"><span class="day">Samedi</span><span class="time">18:00 – 22:00</span></div>
-                    <div class="hours-item"><span class="day">Dimanche</span><span class="time">18:00 – 22:00</span></div>
+                    <div class="hours-item"><span class="day">Lundi</span><span class="time">11h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Mardi</span><span class="time">11h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Mercredi</span><span class="time">11h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Jeudi</span><span class="time">11h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Vendredi</span><span class="time">14h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Samedi</span><span class="time">11h — 00h</span></div>
+                    <div class="hours-item"><span class="day">Dimanche</span><span class="time">12h — 00h</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
+    <!-- Footer -->
+    <footer>
         <div class="footer-grid">
             <div class="footer-brand">
-                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/logo_NourPizza.png" alt="Nour Pizza">
-                <p>Nour Pizza, votre pizzeria artisanale à Marseille. Des pizzas authentiques préparées avec passion et des ingrédients frais de qualité.</p>
+                <div class="brand">PIZZA SNACK NOUR</div>
+                <div class="tagline">Saveurs authentiques &amp; générosité marseillaise</div>
+                <p>Burgers généreux, pizzas artisanales, tacos, paninis et bowls — préparés avec passion au cœur du 6e arrondissement.</p>
                 <div class="footer-social">
-                    <a href="https://www.facebook.com/profile.php?id=61572301360316" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" title="Facebook" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" title="Instagram" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://share.google/ncpvXfuoEzj5MiRgc" target="_blank" title="Avis Google" rel="noopener"><i class="fab fa-google"></i></a>
                 </div>
             </div>
-            <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="menu.html">Notre Menu</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-            <div class="footer-col"><h4>Commander</h4><ul><li><a href="tel:0465853879">Par Téléphone</a></li><li><a href="https://www.ubereats.com/fr/store/pizzeria-nour/j3hNkSFXXT6mCtg6EybBdg" target="_blank">Uber Eats</a></li></ul></div>
-            <div class="footer-col footer-contact"><h4>Contact</h4><p><i class="fas fa-map-marker-alt"></i> 104 Bd de Saint-Loup, Marseille</p><p><i class="fas fa-phone"></i> 04 65 85 38 79</p><p><i class="fas fa-envelope"></i> nour-pizza@artefood.fr</p></div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="menu.html">La Carte</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Commander</h4>
+                <ul>
+                    <li><a href="tel:0768887173"><i class="fas fa-phone"></i>07 68 88 71 73</a></li>
+                    <li><a href="#" target="_blank" rel="noopener"><i class="fab fa-uber"></i>Uber Eats</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12c9c18877d47e09:0x1a63eb7e3cb96f67" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt"></i>2 Rue Sainte-Victoire, 13006</a></li>
+                    <li><a href="tel:0768887173"><i class="fas fa-phone"></i>07 68 88 71 73</a></li>
+                    <li><a href="mailto:contact@artefood.fr"><i class="fas fa-envelope"></i>contact@artefood.fr</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-bottom"><p>©2024 Nour Pizza - Tous droits réservés</p><p>Créé par <a href="https://artefood.fr" style="color: var(--gold);">Artefood.fr</a></p></div>
+        <div class="footer-bottom">
+            <p>©2026 Pizza Snack Nour — Tous droits réservés &nbsp;·&nbsp; Créé par <a href="https://artefood.fr">Artefood.fr</a></p>
+        </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Cookies
-        function showCookieBanner() {
-            if (!localStorage.getItem('cookieConsent')) {
-                setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1500);
-            }
-        }
-        function acceptCookies() { localStorage.setItem('cookieConsent', 'accepted'); hideCookieBanner(); }
-        function refuseCookies() { localStorage.setItem('cookieConsent', 'refused'); hideCookieBanner(); }
-        function hideCookieBanner() {
-            const b = document.getElementById('cookieBanner');
-            b.classList.remove('show');
-            setTimeout(() => b.classList.add('hidden'), 500);
-        }
-        window.addEventListener('load', showCookieBanner);
-
-        // Video
-        const video = document.getElementById('heroVideo');
-        if (video) { video.play().catch(e => {}); }
-
         // Navbar scroll
-        window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 100);
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', function(e) {
-                if (this.getAttribute('href') !== '#') {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
-                }
+        const nav = document.getElementById('navbar');
+        if (nav) {
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 80);
             });
-        });
-
+        }
         // Order Popup
         function openOrderPopup() {
             document.getElementById('orderPopup').classList.add('show');
@@ -422,6 +1178,80 @@
         });
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeOrderPopup();
+        });
+
+        // Hero video — enchaîne pizza puis burger en boucle, formant une seule intro continue.
+        // Crossfade de 1.4s entre les 2 (géré par CSS .is-active + transition).
+        // Si burger-intro ne charge pas (souvent le cas pour .mov sur Chrome/Firefox/Android),
+        // on reste sur la pizza en boucle pour ne pas avoir d'écran noir.
+        const vPizza = document.getElementById('heroPizza');
+        const vBurger = document.getElementById('heroBurger');
+        let burgerOk = false;
+        let switching = false;
+
+        // Détection chargement burger
+        if (vBurger) {
+            vBurger.addEventListener('loadeddata', () => { burgerOk = true; });
+            vBurger.addEventListener('error', () => { burgerOk = false; }, true);
+            // Si dans 4 secondes la vidéo n'a pas atteint readyState >= 2, on considère qu'elle ne marche pas
+            setTimeout(() => {
+                if (!vBurger || vBurger.readyState < 2) burgerOk = false;
+            }, 4000);
+        }
+
+        function showPizza() {
+            if (!vPizza || !vBurger) return;
+            switching = true;
+            vBurger.classList.remove('is-active');
+            vPizza.classList.add('is-active');
+            vPizza.currentTime = 0;
+            vPizza.play().catch(() => {});
+            // Quand la pizza finit, on passe au burger (si dispo)
+            setTimeout(() => { switching = false; }, 1500);
+        }
+
+        function showBurger() {
+            if (!vPizza || !vBurger || !burgerOk) {
+                // Burger pas dispo : on relance la pizza en boucle
+                if (vPizza) {
+                    vPizza.currentTime = 0;
+                    vPizza.play().catch(() => {});
+                }
+                return;
+            }
+            switching = true;
+            vPizza.classList.remove('is-active');
+            vBurger.classList.add('is-active');
+            vBurger.currentTime = 0;
+            vBurger.play().catch(() => {});
+            setTimeout(() => { switching = false; }, 1500);
+        }
+
+        if (vPizza && vBurger) {
+            // Lance la pizza au démarrage
+            vPizza.play().catch(() => {});
+
+            // Quand la pizza se termine → burger
+            vPizza.addEventListener('ended', () => {
+                if (!switching) showBurger();
+            });
+            // Quand le burger se termine → retour pizza
+            vBurger.addEventListener('ended', () => {
+                if (!switching) showPizza();
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
     </script>
 </body>

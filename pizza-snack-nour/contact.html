@@ -8,126 +8,874 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-B55JL79EQ6');
 </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nour Pizza - Contact</title>
+    <title>Pizza Snack Nour — Contact</title>
+    <meta name="description" content="Contactez Pizza Snack Nour à Marseille (6e), 2 Rue Sainte-Victoire — Tél : 07 68 88 71 73.">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --gold: #e67e22; --red: #c0392b; --green: #27ae60; --black: #0a0a0a; --dark: #111; }
+        :root {
+            --black-deep: #0a0a0a;
+            --black-soft: #141110;
+            --charcoal: #1a1614;
+            --charcoal-soft: #221d1a;
+            --noir-warm: #2a2320;
+            --gold: #d4af37;
+            --gold-light: #e8c87a;
+            --gold-pale: #f0d785;
+            --gold-deep: #b8941f;
+            --copper: #b87333;
+            --copper-light: #c98a4f;
+            --copper-deep: #8b5a2b;
+            --cream: #f4e8d0;
+            --cream-soft: #e8d9b8;
+            --ivory: #f9f0dc;
+            --grey-warm: #8a7e6f;
+            --grey-soft: #b5a99a;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: var(--black); color: #fff; }
-        .navbar { background: rgba(0,0,0,0.95); padding: 15px 0; position: fixed; top: 0; width: 100%; z-index: 9999; backdrop-filter: blur(20px); }
-        .navbar-brand { display: flex; align-items: center; gap: 15px; }
-        .navbar-brand img { height: 50px; }
-        .navbar-brand span { font-family: 'Dancing Script', cursive; font-size: 2rem; color: white; }
-        .navbar-nav .nav-link { color: white !important; font-weight: 500; text-transform: uppercase; padding: 10px 20px !important; letter-spacing: 2px; }
-        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: var(--gold) !important; }
-        .nav-cta { background: linear-gradient(135deg, var(--gold), var(--red)); padding: 12px 30px !important; border-radius: 50px; margin-left: 20px; }
-        .hero-contact { min-height: 50vh; padding-top: 100px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.7)), url('https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_cuisson_1.jpg') center/cover fixed; }
-        .hero-contact h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 10vw, 6rem); letter-spacing: 8px; text-align: center; }
-        .hero-contact h1 span { background: linear-gradient(135deg, var(--gold), var(--red)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .review-widget { padding: 50px 5%; background: var(--dark); }
-        .review-card { max-width: 550px; margin: 0 auto; text-align: center; padding: 40px; border: 2px solid rgba(255,255,255,0.1); border-radius: 25px; background: rgba(255,255,255,0.02); }
-        .review-stars { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
-        .review-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px; }
-        .review-card p { color: #888; margin-bottom: 25px; }
-        .review-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 35px; background: linear-gradient(135deg, var(--green), #2ecc71); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; }
-        .review-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(39,174,96,0.3); color: white; }
-        .contact-section { padding: 80px 5%; background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.85)), url('https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/pizza_presentation_2.jpg') center/cover fixed; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1300px; margin: 0 auto; align-items: start; }
-        .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
-        .contact-info > p { color: #aaa; font-size: 1rem; line-height: 1.8; margin-bottom: 30px; }
-        .contact-info > p strong { color: white; }
-        .social-icons { display: flex; gap: 15px; margin-bottom: 40px; }
-        .social-icons a { width: 50px; height: 50px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; text-decoration: none; transition: all 0.3s ease; }
-        .social-icons a:hover { background: var(--gold); border-color: var(--gold); transform: translateY(-5px); }
-        .contact-logo { max-width: 280px; animation: float 5s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        .contact-form-container { background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 25px; padding: 40px; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 8px; color: #ccc; }
-        .form-group label span { color: var(--red); }
-        .form-control { width: 100%; padding: 15px 20px; background: transparent; border: 2px solid rgba(255,255,255,0.2); border-radius: 12px; color: white; font-size: 1rem; }
-        .form-control:focus { outline: none; border-color: var(--gold); }
-        .form-control::placeholder { color: #555; }
-        textarea.form-control { min-height: 150px; resize: vertical; }
-        .form-note { font-size: 0.8rem; color: #555; margin-bottom: 20px; }
-        .btn-submit { width: 100%; padding: 18px; background: linear-gradient(135deg, var(--red), #c0392b); border: none; border-radius: 12px; color: white; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all 0.3s ease; }
-        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(231,76,60,0.4); }
-        .order-section { padding: 80px 5%; background: var(--dark); }
-        .section-title { text-align: center; margin-bottom: 50px; }
-        .section-title .overline { font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; display: block; }
-        .section-title h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 3.5rem); }
-        .section-title h2 span { background: linear-gradient(135deg, var(--gold), var(--red)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .order-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; max-width: 800px; margin: 0 auto; }
-        .order-card { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border-radius: 25px; padding: 40px 30px; text-align: center; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s ease; }
-        .order-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
-        .order-card-icon { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 25px; }
-        .order-card.phone .order-card-icon { background: rgba(39,174,96,0.15); color: #2ecc71; }
-        .order-card.uber .order-card-icon { background: rgba(95,183,9,0.15); color: #5fb709; }
-        .order-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 12px; }
-        .order-card p { color: #888; margin-bottom: 25px; line-height: 1.6; font-size: 0.9rem; }
-        .order-card .highlight { color: #2ecc71; font-weight: 600; }
-        .order-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
-        .order-btn.phone-btn { background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; }
-        .order-btn.uber-btn { background: linear-gradient(135deg, #5fb709, #4a9a07); color: white; }
-        .order-btn:hover { transform: scale(1.05); color: white; }
-        .hours-section { padding: 80px 5%; background: linear-gradient(135deg, var(--gold), var(--red)); position: relative; }
-        .hours-content { position: relative; z-index: 10; max-width: 700px; margin: 0 auto; text-align: center; }
-        .hours-content h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: white; margin-bottom: 40px; letter-spacing: 4px; }
-        .hours-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .hours-item { display: flex; justify-content: space-between; padding: 15px 25px; background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border-radius: 12px; }
-        .hours-item .day { font-weight: 600; }
-        .map-section { padding: 80px 5%; background: var(--black); }
-        .map-container { max-width: 1100px; margin: 0 auto; border-radius: 25px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5); border: 3px solid rgba(230,126,34,0.3); }
-        .map-container iframe { width: 100%; height: 450px; border: none; }
-        footer { background: var(--black); padding: 40px 5% 25px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
-        footer img { height: 50px; margin-bottom: 15px; }
-        footer p { color: #555; }
-        footer a { color: var(--gold); text-decoration: none; }
-        .order-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 100002; display: none; align-items: center; justify-content: center; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black-deep);
+            color: var(--cream);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(ellipse at top left, rgba(212,175,55,0.07) 0%, transparent 55%),
+                radial-gradient(ellipse at bottom right, rgba(184,115,51,0.06) 0%, transparent 55%),
+                radial-gradient(circle at 50% 50%, rgba(232,200,122,0.025) 0%, transparent 70%);
+            min-height: 100vh;
+        }
+
+        /* ====== TYPO HELPERS ====== */
+        .serif-display { font-family: 'Playfair Display', serif; }
+        .serif-italic { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .label-cinzel { font-family: 'Cinzel', serif; }
+
+        /* ====== NAVBAR ====== */
+        .navbar {
+            background: rgba(10, 10, 10, 0.4);
+            padding: 14px 0;
+            position: fixed; top: 0; width: 100%; z-index: 9999;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.0);
+        }
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.92);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif !important;
+            font-weight: 700 !important;
+            font-size: 1.6rem !important;
+            color: var(--cream) !important;
+            letter-spacing: 1px;
+            display: flex; align-items: center; gap: 12px;
+            padding: 0 !important;
+        }
+        .navbar-brand .brand-mark {
+            display: inline-flex;
+            align-items: center; justify-content: center;
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border-radius: 50%;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            box-shadow: 0 0 18px rgba(212,175,55,0.35);
+        }
+        .navbar-brand .brand-name { color: var(--gold-light); }
+        .navbar-brand .brand-italic {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--cream);
+            font-size: 0.95em;
+            margin-left: 4px;
+        }
+        .navbar-toggler {
+            border: 1px solid rgba(212,175,55,0.3) !important;
+            color: var(--gold-light) !important;
+        }
+        .navbar-toggler:focus { box-shadow: 0 0 0 2px rgba(212,175,55,0.3) !important; }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23e8c87a' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+        }
+        .navbar-nav .nav-link {
+            color: var(--cream) !important;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            padding: 10px 18px !important;
+            letter-spacing: 2.5px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active { color: var(--gold-light) !important; }
+        .navbar-nav .nav-link.active::after {
+            content: "";
+            position: absolute;
+            width: 50%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            bottom: 4px; left: 25%;
+        }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            padding: 10px 26px !important;
+            border-radius: 50px;
+            margin-left: 14px;
+            color: var(--black-deep) !important;
+            font-weight: 600 !important;
+            border: 1px solid var(--gold);
+            transition: all 0.3s;
+            box-shadow: 0 0 0 rgba(212,175,55,0.4);
+        }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212,175,55,0.4);
+            color: var(--black-deep) !important;
+        }
+
+        /* ====== ORDER POPUP ====== */
+        .order-popup-overlay {
+            position: fixed; inset: 0;
+            background: rgba(10,10,10,0.92);
+            backdrop-filter: blur(14px);
+            z-index: 100002; display: none;
+            align-items: center; justify-content: center;
+            padding: 20px;
+        }
         .order-popup-overlay.show { display: flex; }
-        .order-popup { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border-radius: 25px; padding: 40px; max-width: 400px; width: 90%; text-align: center; border: 2px solid rgba(230,126,34,0.3); position: relative; }
-        .order-popup-close { position: absolute; top: 15px; right: 20px; background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; }
-        .order-popup h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--gold); margin-bottom: 10px; }
-        .order-popup p { color: #aaa; margin-bottom: 30px; }
-        .order-popup-buttons { display: flex; flex-direction: column; gap: 15px; }
-        .order-popup-btn { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
-        .order-popup-btn.phone { background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; }
-        .order-popup-btn.uber { background: linear-gradient(135deg, #000, #333); color: #06C167; border: 2px solid #06C167; }
-        @media (max-width: 992px) { .contact-grid, .order-grid { grid-template-columns: 1fr; } .contact-logo { display: none; } .hours-grid { grid-template-columns: 1fr; } }
+        .order-popup {
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--black-soft) 100%);
+            border-radius: 6px;
+            padding: 50px 42px 42px;
+            max-width: 440px; width: 100%;
+            text-align: center; position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,175,55,0.25);
+            animation: popupIn 0.4s cubic-bezier(.2,.9,.3,1.2);
+        }
+        .order-popup::before {
+            content: "";
+            position: absolute; inset: -1px;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 30%, transparent 70%, var(--copper) 100%);
+            border-radius: 7px;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        @keyframes popupIn { from{opacity:0;transform:scale(.85) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+        .order-popup-close {
+            position: absolute; top: 14px; right: 18px;
+            background: transparent; border: none; color: var(--grey-warm);
+            font-size: 1.6rem; cursor: pointer; transition: color 0.2s;
+            line-height: 1;
+        }
+        .order-popup-close:hover { color: var(--gold-light); }
+        .order-popup .popup-eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .order-popup h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.9rem;
+            color: var(--cream);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .order-popup p { color: var(--grey-soft); margin-bottom: 30px; font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; }
+        .order-popup-buttons { display: flex; flex-direction: column; gap: 12px; }
+        .order-popup-btn {
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px; padding: 16px 28px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s;
+        }
+        .order-popup-btn.phone {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border: 1px solid var(--gold);
+        }
+        .order-popup-btn.phone:hover { transform: translateY(-2px); color: var(--black-deep); box-shadow: 0 10px 28px rgba(212,175,55,0.35); }
+        .order-popup-btn.uber {
+            background: transparent; color: var(--cream);
+            border: 1px solid rgba(212,175,55,0.4);
+        }
+        .order-popup-btn.uber:hover { border-color: var(--gold-light); color: var(--gold-light); transform: translateY(-2px); }
+
+        /* ====== UNIVERSAL SECTION TITLE ====== */
+        .section-title-block { text-align: center; margin-bottom: 50px; }
+        .section-title-block .eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem; color: var(--gold-light);
+            display: block; margin-bottom: 6px;
+            letter-spacing: 2px;
+        }
+        .section-title-block h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            color: var(--cream); letter-spacing: 3px;
+            margin-bottom: 18px;
+            line-height: 1.1;
+        }
+        .section-title-block h2 em {
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .section-title-block .ornament {
+            display: flex; align-items: center; justify-content: center;
+            gap: 18px;
+        }
+        .section-title-block .ornament-line {
+            width: 90px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .section-title-block .ornament-icon { color: var(--gold); font-size: 1.05rem; }
+
+        /* ====== FOOTER ====== */
+        footer {
+            background: linear-gradient(180deg, var(--black-soft) 0%, var(--black-deep) 100%);
+            color: var(--cream);
+            padding: 60px 5% 30px;
+            position: relative;
+            border-top: 1px solid rgba(212,175,55,0.15);
+        }
+        footer::before {
+            content: ""; position: absolute; top: -1px; left: 50%;
+            transform: translateX(-50%);
+            width: 60%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(212,175,55,0.1);
+        }
+        .footer-brand .brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+        .footer-brand .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--cream);
+            opacity: 0.85;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        .footer-brand p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--grey-soft);
+            line-height: 1.7;
+            margin-bottom: 22px;
+            font-size: 1rem;
+        }
+        .footer-social { display: flex; gap: 12px; }
+        .footer-social a {
+            width: 42px; height: 42px;
+            background: rgba(212,175,55,0.08);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold-light); text-decoration: none;
+            transition: all 0.3s;
+        }
+        .footer-social a:hover { background: var(--gold); color: var(--black-deep); transform: translateY(-3px); border-color: var(--gold); }
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--gold-light);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 11px; }
+        .footer-col ul li a {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--grey-soft);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.02rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        .footer-col ul li a:hover { color: var(--gold-light); padding-left: 4px; }
+        .footer-col ul li a i {
+            color: var(--gold);
+            margin-right: 9px;
+            width: 16px;
+            font-size: 0.9rem;
+        }
+        .footer-bottom {
+            max-width: 1300px; margin: 24px auto 0;
+            text-align: center;
+            color: var(--grey-warm);
+            font-size: 0.85rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .footer-bottom a { color: var(--gold-light); text-decoration: none; }
+        .footer-bottom a:hover { color: var(--gold-pale); }
+
+        /* ====== UNIVERSAL RESPONSIVE ====== */
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+        }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 35px; }
+            .navbar-collapse { background: rgba(10,10,10,0.97); padding: 20px; margin-top: 12px; border-radius: 4px; border: 1px solid rgba(212,175,55,0.15); }
+            .nav-cta { margin: 12px 0 0 !important; display: inline-flex !important; }
+        }
+
+        /* ====== HERO CONTACT ====== */
+        .hero-contact {
+            min-height: 50vh;
+            padding: 160px 5% 70px;
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at center, rgba(212,175,55,0.12) 0%, transparent 60%),
+                linear-gradient(180deg, var(--black-deep) 0%, var(--charcoal) 100%);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+        }
+        .hero-contact::before {
+            content: ""; position: absolute;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 90%; max-width: 1100px; height: 90%;
+            background: radial-gradient(ellipse at center, rgba(184,115,51,0.08) 0%, transparent 70%);
+            z-index: 1;
+        }
+        .hero-contact-content {
+            position: relative; z-index: 10;
+            text-align: center;
+            max-width: 900px;
+        }
+        .hero-contact .eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+            display: block;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .hero-contact h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(2.8rem, 7.5vw, 5.5rem);
+            color: var(--cream);
+            letter-spacing: 4px;
+            line-height: 1;
+        }
+        .hero-contact h1 .accent {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 500;
+            color: var(--gold-light);
+            font-size: 0.45em;
+            letter-spacing: 12px;
+            margin-top: 12px;
+            text-transform: uppercase;
+        }
+
+        /* ====== REVIEW WIDGET ====== */
+        .review-section { padding: 90px 5%; background: var(--charcoal); }
+        .review-card {
+            max-width: 600px; margin: 0 auto;
+            text-align: center;
+            padding: 50px 42px;
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-soft) 100%);
+            border: 1px solid rgba(212,175,55,0.25);
+            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            position: relative;
+        }
+        .review-card::before {
+            content: ""; position: absolute; inset: -1px;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 50%, var(--copper) 100%);
+            opacity: 0.4;
+            border-radius: 5px;
+            z-index: -1;
+        }
+        .review-stars {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 18px;
+            letter-spacing: 5px;
+        }
+        .review-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            color: var(--cream);
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+        .review-card p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--grey-soft);
+            margin-bottom: 28px;
+            font-size: 1.08rem;
+            line-height: 1.6;
+        }
+        .review-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-size: 0.78rem;
+            border-radius: 50px;
+            border: 1px solid var(--gold);
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(212,175,55,0.25);
+        }
+        .review-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(212,175,55,0.4);
+            color: var(--black-deep);
+        }
+
+        /* ====== CONTACT SECTION ====== */
+        .contact-section {
+            padding: 100px 5%;
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--black-deep) 100%);
+            position: relative;
+        }
+        .contact-section::before {
+            content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 60%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 70px;
+            max-width: 1300px;
+            margin: 0 auto;
+            align-items: start;
+        }
+        .contact-info .eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            display: block;
+            margin-bottom: 14px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.1rem;
+            color: var(--cream);
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+        .contact-info h3 em {
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .contact-info > p {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--grey-soft);
+            font-size: 1.12rem;
+            line-height: 1.85;
+            margin-bottom: 32px;
+            font-style: italic;
+        }
+        .contact-details { display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px; }
+        .contact-detail {
+            display: flex; align-items: center; gap: 16px;
+            padding: 18px 22px;
+            background: rgba(212,175,55,0.04);
+            border: 1px solid rgba(212,175,55,0.18);
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .contact-detail:hover {
+            border-color: rgba(212,175,55,0.45);
+            background: rgba(212,175,55,0.08);
+            transform: translateX(6px);
+        }
+        .contact-detail i {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .contact-detail-text { display: flex; flex-direction: column; }
+        .contact-detail-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--gold-light);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .contact-detail-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.08rem;
+            color: var(--cream);
+            font-weight: 600;
+        }
+        .social-icons { display: flex; gap: 12px; }
+        .social-icons a {
+            width: 46px; height: 46px;
+            background: rgba(212,175,55,0.06);
+            border: 1px solid rgba(212,175,55,0.25);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold-light);
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .social-icons a:hover {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep); border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        /* ====== FORM ====== */
+        .contact-form-container {
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-soft) 100%);
+            border: 1px solid rgba(212,175,55,0.25);
+            border-radius: 4px;
+            padding: 45px 38px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            position: relative;
+        }
+        .contact-form-container::before {
+            content: ""; position: absolute; inset: -1px;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 50%, var(--copper) 100%);
+            opacity: 0.35;
+            border-radius: 5px;
+            z-index: -1;
+        }
+        .contact-form-container h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            color: var(--cream);
+            letter-spacing: 2.5px;
+            margin-bottom: 6px;
+        }
+        .contact-form-container .form-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--gold-light);
+            font-size: 1.15rem;
+            margin-bottom: 28px;
+            letter-spacing: 1px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .form-group label span { color: var(--copper); }
+        .form-control {
+            width: 100%;
+            padding: 13px 16px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(212,175,55,0.22);
+            border-radius: 3px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            color: var(--cream);
+            transition: all 0.3s;
+        }
+        .form-control::placeholder { color: var(--grey-warm); font-style: italic; }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.15);
+            background: rgba(0,0,0,0.55);
+        }
+        textarea.form-control { min-height: 130px; resize: vertical; }
+        .form-note {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.88rem;
+            color: var(--grey-warm);
+            margin-bottom: 22px;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border: 1px solid var(--gold);
+            padding: 15px 40px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-size: 0.78rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 0 rgba(212,175,55,0);
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(212,175,55,0.4);
+        }
+
+        /* ====== ORDER SECTION ====== */
+        .order-section { padding: 100px 5%; background: var(--black-deep); }
+        .order-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .order-card {
+            padding: 50px 38px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-soft) 100%);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 4px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            transition: all 0.4s;
+            position: relative;
+        }
+        .order-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(212,175,55,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .order-card.phone-card {
+            background:
+                radial-gradient(ellipse at top right, rgba(212,175,55,0.18) 0%, transparent 70%),
+                linear-gradient(180deg, var(--charcoal) 0%, var(--noir-warm) 100%);
+            border-color: rgba(212,175,55,0.4);
+        }
+        .order-card-icon {
+            width: 72px; height: 72px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 22px;
+            box-shadow: 0 0 20px rgba(212,175,55,0.3);
+        }
+        .order-card.phone-card .order-card-icon { box-shadow: 0 0 30px rgba(212,175,55,0.5); }
+        .order-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--cream);
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+        }
+        .order-card p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--grey-soft);
+            line-height: 1.7;
+            margin-bottom: 28px;
+            font-size: 1.08rem;
+        }
+        .order-card .highlight {
+            color: var(--gold-light);
+            font-weight: 600;
+            font-style: normal;
+        }
+        .order-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 34px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-size: 0.78rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        .order-btn.phone-btn {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--black-deep);
+            border: 1px solid var(--gold);
+        }
+        .order-btn.phone-btn:hover { transform: scale(1.04); color: var(--black-deep); box-shadow: 0 12px 28px rgba(212,175,55,0.35); }
+        .order-btn.uber-btn {
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid rgba(212,175,55,0.4);
+        }
+        .order-btn.uber-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+
+        /* ====== HOURS ====== */
+        .hours-section { padding: 100px 5%; background: var(--charcoal); position: relative; }
+        .hours-section::before {
+            content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 60%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .hours-wrapper { max-width: 800px; margin: 0 auto; }
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .hours-grid .hours-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 22px;
+            background: rgba(212,175,55,0.04);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        .hours-grid .hours-item:hover {
+            border-color: var(--gold); transform: translateY(-2px);
+            background: rgba(212,175,55,0.08);
+        }
+        .hours-grid .day {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--cream);
+            letter-spacing: 1px;
+        }
+        .hours-grid .time {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--gold-light);
+            font-size: 0.98rem;
+        }
+
+        /* ====== MAP ====== */
+        .map-section { padding: 100px 5%; background: var(--black-deep); }
+        .map-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 1px solid rgba(212,175,55,0.3);
+            position: relative;
+        }
+        .map-container::before {
+            content: ""; position: absolute; inset: -1px;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 50%, var(--copper) 100%);
+            opacity: 0.35;
+            border-radius: 5px;
+            z-index: -1;
+        }
+        .map-container iframe {
+            display: block;
+            width: 100%;
+            height: 460px;
+            border: 0;
+            filter: invert(0.9) hue-rotate(180deg) saturate(0.6) brightness(0.95);
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 992px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+        }
+        @media (max-width: 768px) {
+            .order-grid { grid-template-columns: 1fr; }
+            .hours-grid { grid-template-columns: 1fr; }
+            .contact-form-container { padding: 35px 28px; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Order Popup -->
     <div class="order-popup-overlay" id="orderPopup">
         <div class="order-popup">
-            <button class="order-popup-close" onclick="closeOrderPopup()">&times;</button>
-            <h3>🍕 Commander</h3>
+            <button class="order-popup-close" onclick="closeOrderPopup()" aria-label="Fermer">&times;</button>
+            <div class="popup-eyebrow">Per ordinare</div>
+            <h3>COMMANDER</h3>
             <p>Choisissez votre mode de commande</p>
             <div class="order-popup-buttons">
-                <a href="tel:0465853879" class="order-popup-btn phone"><i class="fas fa-phone-alt"></i><span>04 65 85 38 79</span></a>
-                <a href="https://www.ubereats.com/fr/store/nour-pizza/j3hNkSFXXT6mCtg6EybBdg?diningMode=DELIVERY" target="_blank" class="order-popup-btn uber"><i class="fab fa-uber"></i><span>Commander sur Uber Eats</span></a>
+                <a href="tel:0768887173" class="order-popup-btn phone">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>07 68 88 71 73</span>
+                </a>
+                <a href="#" target="_blank" class="order-popup-btn uber">
+                    <i class="fab fa-uber"></i>
+                    <span>Uber Eats</span>
+                </a>
             </div>
         </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/logo_NourPizza.png" alt="Nour Pizza">
-                <span>Nour Pizza</span>
+                <span class="brand-mark">N</span>
+                <span><span class="brand-name">PIZZA SNACK</span><span class="brand-italic">Nour</span></span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">La Carte</a></li>
                     <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
                     <li class="nav-item"><a class="nav-link nav-cta" href="#" onclick="openOrderPopup(); return false;"><i class="fas fa-phone"></i> Commander</a></li>
                 </ul>
@@ -135,100 +883,249 @@
         </div>
     </nav>
 
+    <!-- Hero -->
     <section class="hero-contact">
-        <div><h1>CONTACTEZ-<span>NOUS</span></h1></div>
-    </section>
-
-    <section class="review-widget">
-        <div class="review-card">
-            <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            <h3>Donnez votre avis sur Nour Pizza !</h3>
-            <p>Votre avis est précieux. Cliquez ci-dessous pour nous noter sur Google.</p>
-            <a href="https://www.google.com/search?sa=X&sca_esv=4c9b8c3012ee021f&rlz=1C1VDKB_frFR1071FR1071&biw=1920&bih=927&sxsrf=AE3TifM7ukdY0QQGLT6YOiyVPeifF2ijJA:1766802065164&q=avis%20sur%20pizzeria%20nour&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxK2NDCxNDQzMjM1MzE1NTE0MLcw3sDI-IpRLLEss1ihuLRIoSCzqiq1KDNRIS-_tGgRKw4JAF2weAJMAAAA&rldimm=9049162656455410783&tbm=lcl&hl=fr-FR&ved=0CA8Q5foLahcKEwio2qDM2tyRAxUAAAAAHQAAAAAQBQ#lkt=LocalPoiReviews&arid=Ci9DQUlRQUNvZENodHljRjlvT2taS1YwWk9ZM1pMV25ZMlJ6TnBja1l6VVhkTlFrRRAB" target="_blank" class="review-btn"><i class="fab fa-google"></i> Laisser un avis</a>
+        <div class="hero-contact-content">
+            <span class="eyebrow">Restiamo in contatto &nbsp;·&nbsp; Ouvert 7J/7</span>
+            <h1>
+                Contactez-nous
+                <span class="accent">À votre écoute</span>
+            </h1>
         </div>
     </section>
 
+    <!-- Review Widget -->
+    <section class="review-section">
+        <div class="review-card">
+            <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <h3>Donnez votre avis</h3>
+            <p>Votre retour est précieux et nous aide à vous régaler davantage. Laissez-nous une note sur Google en quelques secondes.</p>
+            <a href="https://share.google/ncpvXfuoEzj5MiRgc" target="_blank" rel="noopener" class="review-btn">
+                <i class="fab fa-google"></i>
+                <span>Laisser un avis</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section class="contact-section">
         <div class="contact-grid">
             <div class="contact-info">
-                <h2>Contactez-Nous</h2>
-                <p>Vous souhaitez en savoir plus sur <strong>Nour Pizza</strong> ? Utilisez notre formulaire de contact pour poser vos questions ou obtenir plus d'informations. Notre équipe est à votre écoute et prête à vous accueillir pour une expérience gourmande inoubliable !</p>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=61572301360316" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="tel:0465853879"><i class="fas fa-phone"></i></a>
+                <span class="eyebrow">Scrivici — Écrivez-nous</span>
+                <h3>Nous sommes à votre <em>écoute</em></h3>
+                <p>Une question sur notre carte <strong>100 % halal</strong> ? Une commande à passer ? Un événement à organiser ? Notre équipe vous répond avec plaisir, par téléphone, par email ou via le formulaire ci-contre.</p>
+
+                <div class="contact-details">
+                    <a href="tel:0768887173" class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-detail-text">
+                            <span class="contact-detail-label">Téléphone</span>
+                            <span class="contact-detail-value">07 68 88 71 73</span>
+                        </div>
+                    </a>
+                    <a href="mailto:contact@artefood.fr" class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-detail-text">
+                            <span class="contact-detail-label">Email</span>
+                            <span class="contact-detail-value">contact@artefood.fr</span>
+                        </div>
+                    </a>
+                    <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12c9c18877d47e09:0x1a63eb7e3cb96f67" target="_blank" rel="noopener" class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-detail-text">
+                            <span class="contact-detail-label">Adresse</span>
+                            <span class="contact-detail-value">2 Rue Sainte-Victoire, 13006 Marseille</span>
+                        </div>
+                    </a>
                 </div>
-                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/logo_NourPizza.png" alt="Nour Pizza Logo" class="contact-logo">
+
+                <div class="social-icons">
+                    <a href="#" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://share.google/ncpvXfuoEzj5MiRgc" target="_blank" rel="noopener" title="Avis Google"><i class="fab fa-google"></i></a>
+                </div>
             </div>
+
             <div class="contact-form-container">
+                <h4>ÉCRIVEZ-NOUS</h4>
+                <p class="form-subtitle">Mandaci un messaggio</p>
                 <form id="contactForm">
-                    <div class="form-group"><label>Nom</label><input type="text" name="name" id="formName" class="form-control" placeholder="Votre nom"></div>
-                    <div class="form-group"><label>E-Mail<span>*</span></label><input type="email" name="email" id="formEmail" class="form-control" placeholder="votre@email.com" required></div>
-                    <div class="form-group"><label>Message<span>*</span></label><textarea name="message" id="formMessage" class="form-control" placeholder="Votre message..." required></textarea></div>
-                    <p class="form-note">* Indique les champs obligatoires</p>
-                    <button type="submit" class="btn-submit">Envoyer</button>
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" name="name" id="formName" class="form-control" placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label>E-Mail <span>*</span></label>
+                        <input type="email" name="email" id="formEmail" class="form-control" placeholder="votre@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message <span>*</span></label>
+                        <textarea name="message" id="formMessage" class="form-control" placeholder="Votre message…" required></textarea>
+                    </div>
+                    <p class="form-note">* Champs obligatoires</p>
+                    <button type="submit" class="btn-submit">Envoyer le message</button>
                 </form>
             </div>
         </div>
     </section>
 
+    <!-- Order Options -->
     <section class="order-section">
-        <div class="section-title"><span class="overline">Commander</span><h2>Passez votre <span>Commande</span></h2></div>
+        <div class="section-title-block">
+            <span class="eyebrow">Come ordinare</span>
+            <h2>Passez votre <em>commande</em></h2>
+            <div class="ornament">
+                <span class="ornament-line"></span>
+                <i class="ornament-icon fas fa-utensils"></i>
+                <span class="ornament-line"></span>
+            </div>
+        </div>
         <div class="order-grid">
-            <div class="order-card phone">
+            <div class="order-card phone-card">
                 <div class="order-card-icon"><i class="fas fa-phone-alt"></i></div>
-                <h3>Par Téléphone</h3>
-                <p><span class="highlight">Économisez les frais de livraison</span> en commandant directement par téléphone !</p>
-                <a href="tel:0465853879" class="order-btn phone-btn"><i class="fas fa-phone"></i> 04 65 85 38 79</a>
+                <h4>Par Téléphone</h4>
+                <p><span class="highlight">Livraison gratuite dès 20 €</span> en commandant par téléphone, ou retrait sur place sans attendre.</p>
+                <a href="tel:0768887173" class="order-btn phone-btn">
+                    <i class="fas fa-phone"></i> 07 68 88 71 73
+                </a>
             </div>
-            <div class="order-card uber">
+            <div class="order-card">
                 <div class="order-card-icon"><i class="fab fa-uber"></i></div>
-                <h3>Sur Uber Eats</h3>
-                <p>Commandez en ligne pour une expérience gourmande à domicile.</p>
-                <a href="https://www.ubereats.com/fr/store/nour-pizza/j3hNkSFXXT6mCtg6EybBdg?diningMode=DELIVERY" target="_blank" class="order-btn uber-btn"><i class="fas fa-motorcycle"></i> Je commande</a>
+                <h4>Sur Uber Eats</h4>
+                <p>Commandez en ligne pour une expérience gourmande livrée directement à domicile.</p>
+                <a href="#" target="_blank" rel="noopener" class="order-btn uber-btn">
+                    <i class="fas fa-motorcycle"></i> Je commande
+                </a>
             </div>
         </div>
     </section>
 
+    <!-- Hours -->
     <section class="hours-section">
-        <div class="hours-content">
-            <h2>🕐 HEURES D'OUVERTURE</h2>
+        <div class="hours-wrapper">
+            <div class="section-title-block">
+                <span class="eyebrow">Orari di apertura</span>
+                <h2>Heures <em>d'ouverture</em></h2>
+                <div class="ornament">
+                    <span class="ornament-line"></span>
+                    <i class="ornament-icon fas fa-clock"></i>
+                    <span class="ornament-line"></span>
+                </div>
+            </div>
             <div class="hours-grid">
-                <div class="hours-item"><span class="day">Lundi</span><span>11:00 – 14:00</span></div>
-                <div class="hours-item"><span class="day">Mardi</span><span>11:00 – 14:00 | 18:00 – 22:00</span></div>
-                <div class="hours-item"><span class="day">Mercredi</span><span>11:00 – 14:00 | 18:00 – 22:00</span></div>
-                <div class="hours-item"><span class="day">Jeudi</span><span>11:00 – 14:00 | 18:00 – 22:00</span></div>
-                <div class="hours-item"><span class="day">Vendredi</span><span>11:00 – 13:00 | 18:00 – 22:00</span></div>
-                <div class="hours-item"><span class="day">Samedi</span><span>18:00 – 22:00</span></div>
-                <div class="hours-item"><span class="day">Dimanche</span><span>18:00 – 22:00</span></div>
+                <div class="hours-item"><span class="day">Lundi</span><span class="time">11h — 00h</span></div>
+                <div class="hours-item"><span class="day">Mardi</span><span class="time">11h — 00h</span></div>
+                <div class="hours-item"><span class="day">Mercredi</span><span class="time">11h — 00h</span></div>
+                <div class="hours-item"><span class="day">Jeudi</span><span class="time">11h — 00h</span></div>
+                <div class="hours-item"><span class="day">Vendredi</span><span class="time">14h — 00h</span></div>
+                <div class="hours-item"><span class="day">Samedi</span><span class="time">11h — 00h</span></div>
+                <div class="hours-item"><span class="day">Dimanche</span><span class="time">12h — 00h</span></div>
             </div>
         </div>
     </section>
 
+    <!-- Map -->
     <section class="map-section">
-        <div class="section-title"><span class="overline">Notre Adresse</span><h2>Où nous <span>trouver</span></h2></div>
-        <div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2904.8!2d5.4318817!3d43.2825454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9bf7b4f47c5cd%3A0x9e8f2d8f9c9c9c9c!2s104%20Boulevard%20de%20Saint-Loup%2C%2013010%20Marseille!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen loading="lazy"></iframe></div>
+        <div class="section-title-block">
+            <span class="eyebrow">Dove trovarci</span>
+            <h2>Où nous <em>trouver</em></h2>
+            <div class="ornament">
+                <span class="ornament-line"></span>
+                <i class="ornament-icon fas fa-map-marker-alt"></i>
+                <span class="ornament-line"></span>
+            </div>
+        </div>
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps?q=2+Rue+Sainte-Victoire,+13006+Marseille&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Pizza Snack Nour - 2 Rue Sainte-Victoire, 13006 Marseille"></iframe>
+        </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/nourpizza/media/logo_NourPizza.png" alt="Nour Pizza">
-        <p>©2024 Nour Pizza - Tous droits réservés | Créé par <a href="https://artefood.fr">Artefood.fr</a></p>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="brand">PIZZA SNACK NOUR</div>
+                <div class="tagline">L'art du snack à Marseille</div>
+                <p>Burgers généreux, pizzas artisanales, tacos, paninis et bowls — préparés avec passion au cœur du 6e arrondissement.</p>
+                <div class="footer-social">
+                    <a href="#" target="_blank" title="Facebook" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" title="Instagram" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://share.google/ncpvXfuoEzj5MiRgc" target="_blank" title="Avis Google" rel="noopener"><i class="fab fa-google"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="menu.html">La Carte</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Commander</h4>
+                <ul>
+                    <li><a href="tel:0768887173"><i class="fas fa-phone"></i>07 68 88 71 73</a></li>
+                    <li><a href="#" target="_blank" rel="noopener"><i class="fab fa-uber"></i>Uber Eats</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12c9c18877d47e09:0x1a63eb7e3cb96f67" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt"></i>2 Rue Sainte-Victoire, 13006</a></li>
+                    <li><a href="tel:0768887173"><i class="fas fa-phone"></i>07 68 88 71 73</a></li>
+                    <li><a href="mailto:contact@artefood.fr"><i class="fas fa-envelope"></i>contact@artefood.fr</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©2026 Pizza Snack Nour — Tous droits réservés &nbsp;·&nbsp; Créé par <a href="https://artefood.fr">Artefood.fr</a></p>
+        </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function openOrderPopup() { document.getElementById('orderPopup').classList.add('show'); document.body.style.overflow = 'hidden'; }
-        function closeOrderPopup() { document.getElementById('orderPopup').classList.remove('show'); document.body.style.overflow = ''; }
-        document.getElementById('orderPopup').addEventListener('click', function(e) { if (e.target === this) closeOrderPopup(); });
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeOrderPopup(); });
+        // Navbar scroll
+        const nav = document.getElementById('navbar');
+        if (nav) {
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 80);
+            });
+        }
+        // Order Popup
+        function openOrderPopup() {
+            document.getElementById('orderPopup').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrderPopup() {
+            document.getElementById('orderPopup').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('orderPopup').addEventListener('click', function(e) {
+            if (e.target === this) closeOrderPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeOrderPopup();
+        });
+
+        // Contact form -> mailto
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('formName').value || 'Non renseigné';
             const email = document.getElementById('formEmail').value;
             const message = document.getElementById('formMessage').value;
-            const subject = encodeURIComponent('Nouveau message depuis le site Nour Pizza');
+            const subject = encodeURIComponent('Nouveau message depuis le site Pizza Snack Nour');
             const body = encodeURIComponent('Nom: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
-            window.location.href = 'mailto:nour-pizza@artefood.fr?subject=' + subject + '&body=' + body;
-            alert('Votre client mail va s\'ouvrir. Si ce n\'est pas le cas, envoyez directement votre message à nour-pizza@artefood.fr');
+            window.location.href = 'mailto:contact@artefood.fr?subject=' + subject + '&body=' + body;
+            alert("Votre client mail va s'ouvrir. Si ce n'est pas le cas, écrivez-nous directement à contact@artefood.fr.");
             this.reset();
         });
     </script>
