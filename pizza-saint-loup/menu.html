@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B55JL79EQ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B55JL79EQ6');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Saint Loup - Notre Carte</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --italia-green: #008C45;
+            --italia-green-dark: #006633;
+            --italia-red: #CD212A;
+            --italia-red-dark: #a5181f;
+            --cream: #f7f1e3;
+            --cream-light: #fdfaf1;
+            --parchment: #f0e6d2;
+            --wood-dark: #3a2416;
+            --wood-mid: #5e3a1f;
+            --wood-light: #8b5a2b;
+            --ink: #2a1810;
+            --gold: #b8860b;
+            --gold-light: #d4a645;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            overflow-x: hidden;
+            /* Subtle parchment texture */
+            background-image:
+                radial-gradient(ellipse at top left, rgba(184,134,11,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(0,140,69,0.03) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 0 0.1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ====== NAVBAR ====== */
+        .navbar {
+            background: rgba(42, 24, 16, 0.97);
+            padding: 14px 0;
+            position: fixed; top: 0; width: 100%; z-index: 9999;
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, var(--italia-green) 0%, var(--italia-green) 33%, #fff 33%, #fff 66%, var(--italia-red) 66%, var(--italia-red) 100%) 1;
+        }
+        .navbar-brand {
+            font-family: 'Italiana', serif !important;
+            font-size: 2rem !important;
+            color: var(--cream) !important;
+            letter-spacing: 3px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .navbar-brand::before { content: "🍕"; font-size: 1.4rem; }
+        .navbar-nav .nav-link {
+            color: var(--cream) !important;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 10px 16px !important;
+            letter-spacing: 2px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active { color: var(--gold-light) !important; }
+        .navbar-nav .nav-link.active::after {
+            content: "";
+            position: absolute;
+            width: 60%; height: 2px;
+            background: var(--gold-light);
+            bottom: 4px; left: 20%;
+        }
+        .nav-cta {
+            background: var(--italia-red);
+            padding: 10px 24px !important;
+            border-radius: 2px;
+            margin-left: 12px;
+            color: white !important;
+            border: 1px solid var(--italia-red-dark);
+            transition: all 0.3s;
+        }
+        .nav-cta:hover {
+            background: var(--italia-red-dark);
+            color: white !important;
+            transform: translateY(-1px);
+        }
+
+        /* ====== ORDER POPUP ====== */
+        .order-popup-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(42,24,16,0.85);
+            backdrop-filter: blur(10px);
+            z-index: 100002;
+            display: none;
+            align-items: center; justify-content: center;
+        }
+        .order-popup-overlay.show { display: flex; }
+        .order-popup {
+            background: var(--cream-light);
+            border-radius: 4px;
+            padding: 45px 40px;
+            max-width: 420px; width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            animation: popupIn 0.4s cubic-bezier(.2,.9,.3,1.2);
+            border-top: 4px solid var(--italia-green);
+            border-bottom: 4px solid var(--italia-red);
+        }
+        @keyframes popupIn { from{opacity:0;transform:scale(.85)} to{opacity:1;transform:scale(1)} }
+        .order-popup-close {
+            position: absolute; top: 12px; right: 18px;
+            background: none; border: none;
+            color: var(--wood-mid);
+            font-size: 1.6rem; cursor: pointer;
+        }
+        .order-popup h3 {
+            font-family: 'Italiana', serif;
+            font-size: 2.2rem;
+            color: var(--italia-red);
+            margin-bottom: 8px;
+            letter-spacing: 3px;
+        }
+        .order-popup p { color: var(--wood-mid); margin-bottom: 28px; font-style: italic; }
+        .order-popup-buttons { display: flex; flex-direction: column; gap: 14px; }
+        .order-popup-btn {
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px; padding: 16px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        .order-popup-btn.phone {
+            background: var(--italia-green);
+            color: white;
+            border: 1px solid var(--italia-green-dark);
+        }
+        .order-popup-btn.phone:hover {
+            background: var(--italia-green-dark);
+            transform: translateY(-2px);
+            color: white;
+        }
+        .order-popup-btn.uber {
+            background: white;
+            color: #06C167;
+            border: 2px solid #06C167;
+        }
+        .order-popup-btn.uber:hover {
+            background: #06C167;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ====== HERO ====== */
+        .hero-menu {
+            min-height: 90vh;
+            padding: 140px 5% 60px;
+            position: relative;
+            display: flex; align-items: center;
+            overflow: hidden;
+            background:
+                linear-gradient(180deg, rgba(42,24,16,0.88) 0%, rgba(42,24,16,0.7) 60%, rgba(247,241,227,1) 100%),
+                url('https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza_cuisson_2.jpg') center/cover fixed;
+        }
+        .hero-menu::before {
+            /* Italian flag stripe at top */
+            content: "";
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 6px;
+            background: linear-gradient(90deg,
+                var(--italia-green) 0%, var(--italia-green) 33.33%,
+                #fff 33.33%, #fff 66.66%,
+                var(--italia-red) 66.66%, var(--italia-red) 100%);
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 0;
+        }
+        .hero-ornament {
+            display: inline-flex;
+            align-items: center;
+            gap: 18px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: var(--gold-light);
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+        .hero-ornament::before,
+        .hero-ornament::after {
+            content: "";
+            display: block;
+            width: 50px; height: 1px;
+            background: var(--gold-light);
+        }
+        .hero-title {
+            font-family: 'Italiana', serif;
+            font-size: clamp(3.5rem, 10vw, 7.5rem);
+            color: var(--cream-light);
+            line-height: 0.95;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .hero-title .accent {
+            display: block;
+            color: var(--italia-red);
+            font-size: 0.7em;
+            letter-spacing: 8px;
+        }
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+            color: rgba(247,241,227,0.85);
+            max-width: 680px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            color: var(--cream);
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .hero-meta-item i { color: var(--italia-red); }
+
+        /* ====== FILTER TABS ====== */
+        .filter-section {
+            background: var(--wood-dark);
+            padding: 0;
+            position: sticky;
+            top: 75px;
+            z-index: 500;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            border-top: 2px solid var(--italia-green);
+            border-bottom: 2px solid var(--italia-red);
+        }
+        .filter-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) transparent;
+        }
+        .filter-container::-webkit-scrollbar { height: 4px; }
+        .filter-container::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+        .filter-btn {
+            flex-shrink: 0;
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid rgba(247,241,227,0.25);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .filter-btn:hover {
+            background: rgba(247,241,227,0.08);
+            border-color: var(--gold-light);
+            color: var(--gold-light);
+        }
+        .filter-btn.active {
+            background: var(--italia-red);
+            color: white;
+            border-color: var(--italia-red);
+            box-shadow: 0 4px 15px rgba(205,33,42,0.4);
+        }
+        .filter-btn .count {
+            background: rgba(0,0,0,0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .filter-btn.active .count {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* ====== MENU SECTIONS ====== */
+        .menu-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 5%;
+        }
+        .menu-category {
+            margin-bottom: 60px;
+            animation: fadeInUp 0.6s ease both;
+        }
+        .menu-category.hidden { display: none; }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 45px;
+            position: relative;
+        }
+        .category-header .eyebrow {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: var(--italia-green);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .category-header h2 {
+            font-family: 'Italiana', serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            color: var(--wood-dark);
+            letter-spacing: 5px;
+            margin-bottom: 12px;
+        }
+        .category-header .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            color: var(--italia-red);
+        }
+        .category-header .ornament-line {
+            width: 80px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--wood-mid), transparent);
+        }
+        .category-header .ornament-icon {
+            font-size: 1rem;
+            color: var(--italia-green);
+        }
+
+        /* ====== MENU CARDS ====== */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+        .menu-card {
+            background: var(--cream-light);
+            border-radius: 2px;
+            padding: 24px 26px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(.2,.9,.3,1);
+            border-left: 3px solid var(--italia-green);
+            border-right: 3px solid var(--italia-red);
+            box-shadow:
+                0 2px 8px rgba(58,36,22,0.08),
+                inset 0 0 0 1px rgba(184,134,11,0.1);
+            overflow: hidden;
+        }
+        .menu-card::before {
+            /* Corner decoration */
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 0;
+            border-style: solid;
+            border-width: 14px 14px 0 0;
+            border-color: var(--gold-light) transparent transparent transparent;
+            opacity: 0.35;
+            transition: opacity 0.3s;
+        }
+        .menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 12px 28px rgba(58,36,22,0.15),
+                inset 0 0 0 1px rgba(184,134,11,0.2);
+        }
+        .menu-card:hover::before { opacity: 0.8; }
+
+        .menu-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed rgba(94,58,31,0.2);
+            padding-bottom: 8px;
+        }
+        .menu-card-title {
+            font-family: 'Italiana', serif;
+            font-size: 1.35rem;
+            color: var(--wood-dark);
+            letter-spacing: 2px;
+            flex: 1;
+            line-height: 1.2;
+        }
+        .menu-card-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--italia-red);
+            white-space: nowrap;
+        }
+        .menu-card-price::before {
+            content: "";
+            display: inline-block;
+            width: 8px; height: 8px;
+            background: var(--italia-green);
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+            transform: translateY(-2px);
+        }
+        .menu-card-description {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--wood-mid);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Special badge for Nouveautés */
+        .menu-card.new {
+            border-left: 3px solid var(--italia-red);
+            border-right: 3px solid var(--italia-green);
+            background: linear-gradient(135deg, var(--cream-light) 0%, #fff7e6 100%);
+        }
+        .menu-card.new .menu-card-title::after {
+            content: "NOUVEAU";
+            display: inline-block;
+            background: var(--italia-red);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 3px 8px;
+            border-radius: 2px;
+            margin-left: 8px;
+            vertical-align: middle;
+            transform: translateY(-2px);
+        }
+
+        /* Premium card for Truffade/Burrata */
+        .menu-card.premium {
+            background: linear-gradient(135deg, #fdfaf1 0%, #f5ebd4 100%);
+            border-left: 3px solid var(--gold);
+            border-right: 3px solid var(--gold);
+        }
+        .menu-card.premium .menu-card-title { color: var(--gold); }
+        .menu-card.premium .menu-card-price { color: var(--gold); }
+        .menu-card.premium .menu-card-price::before { background: var(--gold); }
+
+        /* ====== SECTION HERO IMAGE (menu bannière) ====== */
+        .section-hero-image {
+            margin: 40px auto 0;
+            max-width: 1400px;
+            height: 400px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(58,36,22,0.25);
+            border: 4px solid transparent;
+            background:
+                linear-gradient(var(--cream-light), var(--cream-light)) padding-box,
+                linear-gradient(90deg, var(--italia-green) 0%, var(--italia-green) 33%, #fff 33%, #fff 66%, var(--italia-red) 66%, var(--italia-red) 100%) border-box;
+        }
+        .section-hero-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .section-image-band {
+            margin: 0 auto 40px;
+            max-width: 1200px;
+            height: 280px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(58,36,22,0.2);
+            border-left: 4px solid var(--italia-green);
+            border-right: 4px solid var(--italia-red);
+        }
+        .section-image-band img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ====== DECORATIVE DIVIDER ====== */
+        .divider-ornate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 50px auto;
+            max-width: 600px;
+        }
+        .divider-ornate .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--wood-mid), transparent);
+        }
+        .divider-ornate .symbol {
+            font-family: 'Italiana', serif;
+            color: var(--italia-red);
+            font-size: 1.5rem;
+        }
+
+        /* ====== NOTE SECTION ====== */
+        .menu-note {
+            text-align: center;
+            padding: 40px 20px;
+            margin: 40px auto 0;
+            max-width: 800px;
+            background: var(--parchment);
+            border-radius: 4px;
+            border-top: 3px solid var(--italia-green);
+            border-bottom: 3px solid var(--italia-red);
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .menu-note h3 {
+            font-family: 'Italiana', serif;
+            color: var(--wood-dark);
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            font-size: 1.5rem;
+        }
+        .menu-note p {
+            color: var(--wood-mid);
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* ====== FOOTER ====== */
+        footer {
+            background: var(--wood-dark);
+            color: var(--cream);
+            text-align: center;
+            padding: 50px 30px 30px;
+            position: relative;
+            margin-top: 60px;
+        }
+        footer::before {
+            content: "";
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg,
+                var(--italia-green) 0%, var(--italia-green) 33.33%,
+                #fff 33.33%, #fff 66.66%,
+                var(--italia-red) 66.66%, var(--italia-red) 100%);
+        }
+        footer .brand {
+            font-family: 'Italiana', serif;
+            font-size: 2rem;
+            letter-spacing: 6px;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+        footer .tagline {
+            font-family: 'Dancing Script', cursive;
+            color: var(--cream);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        footer p { margin: 0; color: rgba(247,241,227,0.6); font-size: 0.85rem; }
+        footer a { color: var(--gold-light); text-decoration: none; }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .menu-grid { grid-template-columns: 1fr; }
+            .hero-meta { gap: 20px; }
+            .hero-meta-item { font-size: 0.85rem; }
+            .filter-section { top: 70px; }
+            .filter-btn { padding: 8px 16px; font-size: 0.75rem; }
+            .menu-card-header { flex-direction: row; }
+        }
+        @media (max-width: 480px) {
+            .menu-card-title { font-size: 1.2rem; }
+            .menu-card-price { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Order Popup -->
+    <div class="order-popup-overlay" id="orderPopup">
+        <div class="order-popup">
+            <button class="order-popup-close" onclick="closeOrderPopup()">&times;</button>
+            <h3>COMMANDER</h3>
+            <p>Scegli come ordinare — Choisissez votre mode</p>
+            <div class="order-popup-buttons">
+                <a href="tel:0000000000" class="order-popup-btn phone">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Par téléphone</span>
+                </a>
+                <a href="#" target="_blank" class="order-popup-btn uber">
+                    <i class="fab fa-uber"></i>
+                    <span>Uber Eats</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pizza Saint Loup</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="menu.html">La Carte</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link nav-cta" href="#" onclick="openOrderPopup(); return false;"><i class="fas fa-phone"></i> Commander</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-menu">
+        <div class="hero-content">
+            <div class="hero-ornament">Benvenuti — Bienvenue</div>
+            <h1 class="hero-title">
+                LA CARTA
+                <span class="accent">DELLA CASA</span>
+            </h1>
+            <p class="hero-subtitle">
+                La véritable Italie à la table. Nos pizzas sont façonnées à la main, cuites avec soin, et garnies de produits soigneusement sélectionnés pour une expérience authentique.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item"><i class="fas fa-leaf"></i> Produits Frais</div>
+                <div class="hero-meta-item"><i class="fas fa-fire"></i> Pâte Artisanale</div>
+                <div class="hero-meta-item"><i class="fas fa-heart"></i> Fait Maison</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="filter-section">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">Tout voir <span class="count">85</span></button>
+            <button class="filter-btn" data-filter="nouveautes">⭐ Nouveautés <span class="count">24</span></button>
+            <button class="filter-btn" data-filter="specialites">Spécialités <span class="count">12</span></button>
+            <button class="filter-btn" data-filter="roquette">À la Roquette <span class="count">9</span></button>
+            <button class="filter-btn" data-filter="traditionnelles">Traditionnelles <span class="count">14</span></button>
+            <button class="filter-btn" data-filter="cremes">Crèmes <span class="count">16</span></button>
+            <button class="filter-btn" data-filter="etudiant">Formule Étudiant <span class="count">6</span></button>
+            <button class="filter-btn" data-filter="boissons">Boissons <span class="count">4</span></button>
+        </div>
+    </section>
+
+    <!-- Hero Image -->
+    <div class="menu-wrapper" style="padding-top: 40px; padding-bottom: 0;">
+        <div class="section-hero-image">
+            <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza_presentation_1.jpg" alt="Pizza Saint Loup">
+        </div>
+    </div>
+
+    <!-- Menu Content -->
+    <div class="menu-wrapper">
+
+        <!-- ========== NOUVEAUTÉS ========== -->
+        <div class="menu-category" data-category="nouveautes">
+            <div class="category-header">
+                <span class="eyebrow">Le novità della casa</span>
+                <h2>NOUVEAUTÉS</h2>
+                <div class="ornament">
+                    <span class="ornament-line"></span>
+                    <i class="ornament-icon fas fa-star"></i>
+                    <span class="ornament-line"></span>
+                </div>
+            </div>
+
+            <div class="section-image-band">
+                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza_presentation_2.jpg" alt="Nos nouveautés">
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card new premium">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Truffade Pommes de Terre</div>
+                        <div class="menu-card-price">15,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème de truffe, champignons, pommes de terre, mozza, parmesan.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Boursin</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, poulet, boursin, champignons.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Asco</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, figatelli, pommes de terre, oignon.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Figari</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, figatelli, chèvre, huile d'olive.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Calvi</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Sauce, figatelli, chorizo, grana padano.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Spécial Raclette</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, pommes de terre, jambon, bacon, raclette, oignon.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Poulet Basilic</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, poulet, basilic, grana padano, tomates cerises.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Porto</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Mozza, tomates cerises, grana padano, oignon rouge, brousse, huile d'olive, roquette.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Délice</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, lardons, bacon, œuf.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Pepper</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, viande hachée, oignon rouge, reblochon, poivron, sauce Biggy.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">La Spicy</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Sauce, merguez, poulet, oignon rouge, sauce algérienne.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Andalouse</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Chorizo, poivron, oignon, emmental.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Chicken Burger</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, poulet, oignon, tomate, salade, cheddar, sauce burger.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Sicilienne</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Sauce tomate, thon, câpres, oignon rouge, tomates cerises, poivron, mozzarella.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Parmesane</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Sauce tomate, mozzarella, aubergine, jambon, œuf, grana padano.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Curry</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème curry, poulet, pommes de terre, oignon, emmental.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Chicken Bacon</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, poulet, oignon, bacon, sauce barbecue, emmental.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Lady</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, lardons, mozza, chèvre, tomates cerises, emmental.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Kebab</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Kebab, crème, salade, tomate, oignon, sauce blanche.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Pizza Burger</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Viande hachée, tomate, cheddar, oignon, sauce burger.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Cannibale</div>
+                        <div class="menu-card-price">14,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Viande hachée, poulet, merguez, oignon, emmental, sauce barbecue.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Raclette</div>
+                        <div class="menu-card-price">14,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème fraîche, pommes de terre, jambon, fromage raclette, emmental, jambon cru.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">La César</div>
+                        <div class="menu-card-price">14,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, poulet, salade iceberg, copeaux de grana padano, sauce césar.</p>
+                </div>
+                <div class="menu-card new">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Reblochonne</div>
+                        <div class="menu-card-price">14,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, pommes de terre, viande hachée, emmental, reblochon.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider-ornate">
+            <span class="line"></span>
+            <span class="symbol">✦</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ========== SPÉCIALITÉS À LA ROQUETTE ========== -->
+        <div class="menu-category" data-category="roquette">
+            <div class="category-header">
+                <span class="eyebrow">Freschezza & rucola</span>
+                <h2>À LA ROQUETTE</h2>
+                <div class="ornament">
+                    <span class="ornament-line"></span>
+                    <i class="ornament-icon fas fa-seedling"></i>
+                    <span class="ornament-line"></span>
+                </div>
+            </div>
+
+            <div class="section-image-band">
+                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza_presentation_3.jpg" alt="Pizzas à la roquette">
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card premium">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Tartufira</div>
+                        <div class="menu-card-price">17,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème de truffe, champignons, mozzarella, roquette, tomates cerises, grana padano, viande de grison.</p>
+                </div>
+                <div class="menu-card premium">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Tartuffo Champignons</div>
+                        <div class="menu-card-price">17,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème de truffe, champignons, roquette, copeaux de grana padano, burrata.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Romantica</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Tomate fraîche, mozzarella, roquette, chèvre, jambon cru, pesto.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Chiffonnade</div>
+                        <div class="menu-card-price">14,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Roquette, jambon cru, grana padano.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">La Roquette</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Sauce mozzarella, roquette, tomates cerises, copeaux de grana padano.</p>
+                </div>
+                <div class="menu-card premium">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Burrata</div>
+                        <div class="menu-card-price">17,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Sauce mozzarella, roquette, tomates cerises, huile d'olive, burrata, balsamique.</p>
+                </div>
+                <div class="menu-card premium">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Rosa Verde</div>
+                        <div class="menu-card-price">17,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Pesto, tomates cerises, burrata, pignons, parmesan, roquette.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">L'Alsacienne</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Champignons, roquefort, roquette, noix, mozzarella.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Norvéginne</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, saumon, mozzarella, roquette, huile d'olive, balsamique, copeaux de grana padano.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider-ornate">
+            <span class="line"></span>
+            <span class="symbol">✦</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ========== SPÉCIALITÉS ========== -->
+        <div class="menu-category" data-category="specialites">
+            <div class="category-header">
+                <span class="eyebrow">Le specialità</span>
+                <h2>NOS SPÉCIALITÉS</h2>
+                <div class="ornament">
+                    <span class="ornament-line"></span>
+                    <i class="ornament-icon fas fa-crown"></i>
+                    <span class="ornament-line"></span>
+                </div>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Royale</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Jambon, champignons, mozzarella, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Napolitaine</div>
+                        <div class="menu-card-price">11,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Anchois, câpres, mozzarella.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Margherita</div>
+                        <div class="menu-card-price">11,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Tomates cerises, mozzarella, basilic.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Marseillaise</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Tomates fraîches, mozzarella, oignon rouge, pesto.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Moussaka</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Viande hachée, aubergine, mozzarella, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Végétarienne</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Champignons, oignon, aubergine, tomates cerises, mozzarella, emmental, artichaut, courgette.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">4 Fromages</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Chèvre, mozzarella, brousse, roquefort, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Arménienne</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Viande hachée, oignon, poivron.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Corsica</div>
+                        <div class="menu-card-price">11,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Figatelli, brousse, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Provençale</div>
+                        <div class="menu-card-price">11,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Champignons, oignon, poivron, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Orientale</div>
+                        <div class="menu-card-price">11,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Merguez, oignon, poivron, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Tex Mex</div>
+                        <div class="menu-card-price">11,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Poulet.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider-ornate">
+            <span class="line"></span>
+            <span class="symbol">✦</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ========== CRÈMES ========== -->
+        <div class="menu-category" data-category="cremes">
+            <div class="category-header">
+                <span class="eyebrow">Base panna — Base crème</span>
+                <h2>NOS CRÈMES</h2>
+                <div class="ornament">
+                    <span class="ornament-line"></span>
+                    <i class="ornament-icon fas fa-cheese"></i>
+                    <span class="ornament-line"></span>
+                </div>
+            </div>
+
+            <div class="section-image-band">
+                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza_cuisson_1.jpg" alt="Pizzas base crème">
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Chèvre Miel</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Emmental, chèvre, roquette, noix, miel.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Lardon</div>
+                        <div class="menu-card-price">11,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Emmental, lardons.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Blanche</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Jambon, champignons, mozzarella, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Savoyarde</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Lardons, reblochon, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Saumon</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Saumon, mozzarella, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Catalane</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Thon, œuf, mozzarella, emmental.</p>
+                </div>
+                <div class="menu-card premium">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">La Mortadella</div>
+                        <div class="menu-card-price">12,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Crème, mortadelle, burrata, tomates cerises, crème balsamique, parmesan.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Carbonara</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Lardons, champignons, oignon, œuf, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Tartiflette</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Pommes de terre, jambon, oignon, reblochon, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Fermière</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Lardons, chèvre, brousse, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Atlantique</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Saumon, mozzarella, tomates cerises.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Paysanne</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Lardons, champignons, chèvre, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Campagnarde</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Poulet, champignons, oignon, mozzarella, emmental.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Montagnarde</div>
+                        <div class="menu-card-price">14,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Pommes de terre, reblochon, brousse, emmental, jambon.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Bergère</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Lardons, chèvre, miel, tomates cerises, emmental, thym.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Spécial Camembert</div>
+                        <div class="menu-card-price">13,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Pommes de terre, champignons, camembert, emmental.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider-ornate">
+            <span class="line"></span>
+            <span class="symbol">✦</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ========== TRADITIONNELLES ========== -->
+        <div class="menu-category" data-category="traditionnelles">
+            <div class="category-header">
+                <span class="eyebrow">Le classiche</span>
+                <h2>NOS TRADITIONNELLES</h2>
+                <div class="ornament">
+                    <span class="ornament-line"></span>
+                    <i class="ornament-icon fas fa-pizza-slice"></i>
+                    <span class="ornament-line"></span>
+                </div>
+            </div>
+
+            <p style="text-align:center; font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--wood-mid); margin-bottom:30px; font-size:1.1rem;">Base sauce tomate, cuites au four</p>
+
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Emmental</div>
+                        <div class="menu-card-price">8,00 €</div>
+                    </div>
+                    <p class="menu-card-description">La simplicité authentique.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Anchois</div>
+                        <div class="menu-card-price">8,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Anchois savoureux sur base tomate.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Champignons</div>
+                        <div class="menu-card-price">9,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Champignons frais, sauce tomate.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Thon</div>
+                        <div class="menu-card-price">9,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Thon de qualité, base tomate.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Merguez</div>
+                        <div class="menu-card-price">9,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Merguez épicée sur sauce tomate.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Chorizo</div>
+                        <div class="menu-card-price">9,50 €</div>
+                    </div>
+                    <p class="menu-card-description">Chorizo légèrement relevé.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Camembert</div>
+                        <div class="menu-card-price">9,50 €</div>
+                    </div>
+                    <p class="menu-card-description">Camembert fondant et généreux.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Roquefort</div>
+                        <div class="menu-card-price">9,50 €</div>
+                    </div>
+                    <p class="menu-card-description">Le caractère du roquefort.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Brousse</div>
+                        <div class="menu-card-price">9,50 €</div>
+                    </div>
+                    <p class="menu-card-description">Douceur de la brousse provençale.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Figatelli</div>
+                        <div class="menu-card-price">9,50 €</div>
+                    </div>
+                    <p class="menu-card-description">Saucisse corse traditionnelle.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Mozzarella</div>
+                        <div class="menu-card-price">9,50 €</div>
+                    </div>
+                    <p class="menu-card-description">Mozzarella fondante, tomate, basilic.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Jambon</div>
+                        <div class="menu-card-price">10,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Jambon tendre sur base tomate et fromage.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Chèvre</div>
+                        <div class="menu-card-price">10,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Chèvre fondant, base tomate.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">3 Fromages</div>
+                        <div class="menu-card-price">10,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Trio de fromages sélectionnés.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider-ornate">
+            <span class="line"></span>
+            <span class="symbol">✦</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ========== FORMULE ÉTUDIANT ========== -->
+        <div class="menu-category" data-category="etudiant">
+            <div class="category-header">
+                <span class="eyebrow">La formula del giorno</span>
+                <h2>FORMULE ÉTUDIANT</h2>
+                <div class="ornament">
+                    <span class="ornament-line"></span>
+                    <i class="ornament-icon fas fa-sun"></i>
+                    <span class="ornament-line"></span>
+                </div>
+            </div>
+
+            <p style="text-align:center; font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--wood-mid); margin-bottom:30px; font-size:1.1rem;">Formule midi à prix doux — Servi uniquement le midi</p>
+
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Corner Viande Hachée</div>
+                        <div class="menu-card-price">6,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Notre corner garni à la viande hachée.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Corner Poulet</div>
+                        <div class="menu-card-price">6,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Corner généreux au poulet.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Corner Royale</div>
+                        <div class="menu-card-price">6,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Jambon, champignon, fromage.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Baguette Farcie Viande Hachée</div>
+                        <div class="menu-card-price">7,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Baguette gourmande à la viande hachée.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Baguette Farcie Poulet</div>
+                        <div class="menu-card-price">7,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Baguette farcie au poulet tendre.</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Baguette Farcie Royale</div>
+                        <div class="menu-card-price">7,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Baguette farcie façon royale.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider-ornate">
+            <span class="line"></span>
+            <span class="symbol">✦</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ========== BOISSONS ========== -->
+        <div class="menu-category" data-category="boissons">
+            <div class="category-header">
+                <span class="eyebrow">Le bevande</span>
+                <h2>NOS BOISSONS</h2>
+                <div class="ornament">
+                    <span class="ornament-line"></span>
+                    <i class="ornament-icon fas fa-wine-glass-alt"></i>
+                    <span class="ornament-line"></span>
+                </div>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Canette</div>
+                        <div class="menu-card-price">1,50 €</div>
+                    </div>
+                    <p class="menu-card-description">Soda en canette (33cl).</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Soda 1,5L</div>
+                        <div class="menu-card-price">3,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Format familial (1,5L).</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Heineken</div>
+                        <div class="menu-card-price">2,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Bière blonde (25cl).</p>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <div class="menu-card-title">Vin</div>
+                        <div class="menu-card-price">8,00 €</div>
+                    </div>
+                    <p class="menu-card-description">Bouteille (75cl).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Note finale -->
+        <div class="menu-note">
+            <h3>✦ Buon Appetito ! ✦</h3>
+            <p>Toutes nos pizzas sont préparées à la commande avec des ingrédients frais. N'hésitez pas à demander des suppléments ou à nous faire part de vos allergies. Prix nets, service compris.</p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="brand">PIZZA SAINT LOUP</div>
+        <div class="tagline">La véritable pizza italienne, avec amore</div>
+        <p>©2026 Pizza Saint Loup — Tous droits réservés | Créé par <a href="https://artefood.fr">Artefood.fr</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Filter system
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const categories = document.querySelectorAll('.menu-category');
+        const dividers = document.querySelectorAll('.divider-ornate');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                // Show/hide categories
+                categories.forEach(cat => {
+                    if (filter === 'all' || cat.dataset.category === filter) {
+                        cat.classList.remove('hidden');
+                    } else {
+                        cat.classList.add('hidden');
+                    }
+                });
+
+                // Hide dividers when filtering to single category
+                dividers.forEach(d => {
+                    d.style.display = (filter === 'all') ? 'flex' : 'none';
+                });
+
+                // Smooth scroll to filter section top
+                document.querySelector('.filter-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Order Popup
+        function openOrderPopup() {
+            document.getElementById('orderPopup').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrderPopup() {
+            document.getElementById('orderPopup').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('orderPopup').addEventListener('click', function(e) {
+            if (e.target === this) closeOrderPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeOrderPopup();
+        });
+    </script>
+</body>
+</html>

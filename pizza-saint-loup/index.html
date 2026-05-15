@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B55JL79EQ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B55JL79EQ6');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Saint Loup - Pizzeria Artisanale Italienne à Marseille</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --italia-green: #008C45;
+            --italia-green-dark: #006633;
+            --italia-red: #CD212A;
+            --italia-red-dark: #a5181f;
+            --cream: #f7f1e3;
+            --cream-light: #fdfaf1;
+            --parchment: #f0e6d2;
+            --wood-dark: #3a2416;
+            --wood-mid: #5e3a1f;
+            --wood-light: #8b5a2b;
+            --ink: #2a1810;
+            --gold: #b8860b;
+            --gold-light: #d4a645;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(ellipse at top left, rgba(184,134,11,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(0,140,69,0.03) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 0 0.1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ====== NAVBAR ====== */
+        .navbar {
+            background: rgba(42, 24, 16, 0.5);
+            padding: 14px 0;
+            position: fixed; top: 0; width: 100%; z-index: 9999;
+            backdrop-filter: blur(10px);
+            transition: background 0.4s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(42, 24, 16, 0.97);
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, var(--italia-green) 0%, var(--italia-green) 33%, #fff 33%, #fff 66%, var(--italia-red) 66%, var(--italia-red) 100%) 1;
+        }
+        .navbar-brand {
+            font-family: 'Italiana', serif !important;
+            font-size: 2rem !important;
+            color: var(--cream) !important;
+            letter-spacing: 3px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .navbar-brand::before { content: "🍕"; font-size: 1.4rem; }
+        .navbar-nav .nav-link {
+            color: var(--cream) !important;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 10px 16px !important;
+            letter-spacing: 2px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active { color: var(--gold-light) !important; }
+        .navbar-nav .nav-link.active::after {
+            content: "";
+            position: absolute;
+            width: 60%; height: 2px;
+            background: var(--gold-light);
+            bottom: 4px; left: 20%;
+        }
+        .nav-cta {
+            background: var(--italia-red);
+            padding: 10px 24px !important;
+            border-radius: 2px;
+            margin-left: 12px;
+            color: white !important;
+            border: 1px solid var(--italia-red-dark);
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { background: var(--italia-red-dark); transform: translateY(-1px); color: white !important; }
+
+        /* ====== ORDER POPUP ====== */
+        .order-popup-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(42,24,16,0.85); backdrop-filter: blur(10px);
+            z-index: 100002; display: none;
+            align-items: center; justify-content: center;
+        }
+        .order-popup-overlay.show { display: flex; }
+        .order-popup {
+            background: var(--cream-light); border-radius: 4px;
+            padding: 45px 40px; max-width: 420px; width: 90%;
+            text-align: center; position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            animation: popupIn 0.4s cubic-bezier(.2,.9,.3,1.2);
+            border-top: 4px solid var(--italia-green);
+            border-bottom: 4px solid var(--italia-red);
+        }
+        @keyframes popupIn { from{opacity:0;transform:scale(.85)} to{opacity:1;transform:scale(1)} }
+        .order-popup-close {
+            position: absolute; top: 12px; right: 18px;
+            background: none; border: none; color: var(--wood-mid);
+            font-size: 1.6rem; cursor: pointer;
+        }
+        .order-popup h3 {
+            font-family: 'Italiana', serif; font-size: 2.2rem;
+            color: var(--italia-red); margin-bottom: 8px; letter-spacing: 3px;
+        }
+        .order-popup p { color: var(--wood-mid); margin-bottom: 28px; font-style: italic; }
+        .order-popup-buttons { display: flex; flex-direction: column; gap: 14px; }
+        .order-popup-btn {
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px; padding: 16px 28px; border-radius: 2px;
+            text-decoration: none; font-weight: 600; font-size: 0.95rem;
+            letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s;
+        }
+        .order-popup-btn.phone { background: var(--italia-green); color: white; border: 1px solid var(--italia-green-dark); }
+        .order-popup-btn.phone:hover { background: var(--italia-green-dark); transform: translateY(-2px); color: white; }
+        .order-popup-btn.uber { background: white; color: #06C167; border: 2px solid #06C167; }
+        .order-popup-btn.uber:hover { background: #06C167; color: white; transform: translateY(-2px); }
+
+        /* ====== HERO ====== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: 0;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(42,24,16,0.7) 0%, rgba(42,24,16,0.5) 50%, rgba(205,33,42,0.3) 100%);
+            z-index: 1;
+        }
+        .hero::before {
+            content: "";
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 6px;
+            background: linear-gradient(90deg,
+                var(--italia-green) 0%, var(--italia-green) 33.33%,
+                #fff 33.33%, #fff 66.66%,
+                var(--italia-red) 66.66%, var(--italia-red) 100%);
+            z-index: 20;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 120px 20px 60px;
+            max-width: 1000px;
+        }
+        .hero-ornament {
+            display: inline-flex; align-items: center; gap: 18px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem; color: var(--gold-light);
+            margin-bottom: 18px; letter-spacing: 1px;
+            animation: fadeInDown 1s ease 0.2s both;
+        }
+        .hero-ornament::before,
+        .hero-ornament::after {
+            content: ""; display: block; width: 50px; height: 1px; background: var(--gold-light);
+        }
+        .hero-title {
+            font-family: 'Italiana', serif;
+            font-size: clamp(4rem, 13vw, 9rem);
+            color: var(--cream-light);
+            line-height: 0.9;
+            letter-spacing: 6px;
+            margin-bottom: 12px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        .hero-title .accent {
+            display: block;
+            color: var(--italia-red);
+            font-size: 0.6em;
+            letter-spacing: 12px;
+            margin-top: 5px;
+        }
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+            color: rgba(247,241,227,0.9);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        .hero-buttons {
+            display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+        .btn-hero {
+            padding: 16px 38px; font-size: 0.85rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 3px;
+            border-radius: 2px; text-decoration: none;
+            transition: all 0.4s; display: inline-flex; align-items: center; gap: 10px;
+        }
+        .btn-hero-primary {
+            background: var(--italia-red); color: white;
+            border: 1px solid var(--italia-red-dark);
+        }
+        .btn-hero-primary:hover {
+            background: var(--italia-red-dark); transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(205,33,42,0.4); color: white;
+        }
+        .btn-hero-outline {
+            background: transparent; color: var(--cream);
+            border: 1px solid var(--cream);
+        }
+        .btn-hero-outline:hover { background: var(--cream); color: var(--wood-dark); }
+
+        .scroll-indicator {
+            position: absolute; bottom: 40px; left: 50%;
+            transform: translateX(-50%); z-index: 10;
+            color: var(--cream); text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic; font-size: 0.95rem;
+            letter-spacing: 3px; text-transform: uppercase;
+            animation: fadeInUp 1s ease 1.2s both, bounce 2s ease-in-out 2s infinite;
+            opacity: 0.8;
+        }
+        @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-10px)} }
+        .scroll-indicator i { display: block; margin-top: 8px; font-size: 1.2rem; color: var(--gold-light); }
+
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeInDown { from{opacity:0;transform:translateY(-40px)} to{opacity:1;transform:translateY(0)} }
+
+        /* ====== SECTION TITLES ====== */
+        .section-title-block { text-align: center; margin-bottom: 50px; }
+        .section-title-block .eyebrow {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem; color: var(--italia-green);
+            display: block; margin-bottom: 6px;
+        }
+        .section-title-block h2 {
+            font-family: 'Italiana', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--wood-dark); letter-spacing: 5px;
+            margin-bottom: 12px;
+        }
+        .section-title-block .ornament {
+            display: flex; align-items: center; justify-content: center;
+            gap: 18px;
+        }
+        .section-title-block .ornament-line {
+            width: 80px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--wood-mid), transparent);
+        }
+        .section-title-block .ornament-icon { color: var(--italia-red); font-size: 1.1rem; }
+
+        /* ====== ABOUT SECTION ====== */
+        .about-section { padding: 100px 5%; position: relative; }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            max-width: 1300px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .about-image-area {
+            position: relative;
+            height: 550px;
+        }
+        .image-placeholder {
+            /* No longer used — kept empty for compatibility */
+        }
+        .about-img-main {
+            position: absolute;
+            width: 70%; height: 420px;
+            top: 0; left: 0;
+            box-shadow: 0 25px 50px rgba(58,36,22,0.25);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 4px solid var(--cream-light);
+        }
+        .about-img-main img,
+        .about-img-secondary img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .about-img-secondary {
+            position: absolute;
+            width: 55%; height: 300px;
+            bottom: 0; right: 0;
+            box-shadow: 0 25px 50px rgba(58,36,22,0.25);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 4px solid var(--italia-green);
+        }
+        .about-content h3 {
+            font-family: 'Italiana', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--wood-dark);
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .about-content h3 em {
+            color: var(--italia-red);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .about-content p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--wood-mid);
+            margin-bottom: 18px;
+        }
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 35px;
+        }
+        .about-feature {
+            display: flex; align-items: center; gap: 14px;
+            padding: 14px;
+            background: var(--cream-light);
+            border-left: 3px solid var(--italia-green);
+            border-right: 3px solid var(--italia-red);
+            border-radius: 2px;
+        }
+        .about-feature i {
+            color: var(--italia-red);
+            font-size: 1.3rem;
+            width: 35px;
+            text-align: center;
+        }
+        .about-feature span {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: var(--wood-dark);
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        /* ====== SPECIALTIES SECTION ====== */
+        .specialties-section {
+            padding: 100px 5%;
+            background: var(--parchment);
+            position: relative;
+        }
+        .specialties-section::before,
+        .specialties-section::after {
+            content: "";
+            position: absolute; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg,
+                var(--italia-green) 0%, var(--italia-green) 33.33%,
+                #fff 33.33%, #fff 66.66%,
+                var(--italia-red) 66.66%, var(--italia-red) 100%);
+        }
+        .specialties-section::before { top: 0; }
+        .specialties-section::after { bottom: 0; }
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .specialty-card {
+            background: var(--cream-light);
+            border-radius: 2px;
+            overflow: hidden;
+            border-left: 3px solid var(--italia-green);
+            border-right: 3px solid var(--italia-red);
+            box-shadow: 0 4px 15px rgba(58,36,22,0.1);
+            transition: all 0.4s cubic-bezier(.2,.9,.3,1);
+            position: relative;
+        }
+        .specialty-card::before {
+            content: "";
+            position: absolute; top: 0; left: 0;
+            width: 0; height: 0;
+            border-style: solid;
+            border-width: 16px 16px 0 0;
+            border-color: var(--gold-light) transparent transparent transparent;
+            opacity: 0.4;
+            z-index: 2;
+        }
+        .specialty-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(58,36,22,0.18); }
+
+        .specialty-image {
+            height: 250px;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(184,134,11,0.2);
+            position: relative;
+        }
+        .specialty-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+            display: block;
+        }
+        .specialty-card:hover .specialty-image img {
+            transform: scale(1.08);
+        }
+        .specialty-body { padding: 25px; text-align: center; }
+        .specialty-body h4 {
+            font-family: 'Italiana', serif;
+            font-size: 1.5rem;
+            color: var(--wood-dark);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+        .specialty-body p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--wood-mid);
+            margin-bottom: 18px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .specialty-body .link {
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            color: var(--italia-red);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid var(--italia-red);
+            padding-bottom: 2px;
+        }
+        .specialty-body .link:hover { color: var(--italia-red-dark); }
+
+        /* ====== PROMO BANNER ====== */
+        .promo-banner {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, var(--italia-red) 0%, var(--italia-red-dark) 100%);
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+        .promo-banner::before,
+        .promo-banner::after {
+            content: "✦";
+            position: absolute;
+            color: rgba(255,255,255,0.1);
+            font-size: 10rem;
+            font-family: 'Italiana', serif;
+        }
+        .promo-banner::before { top: -30px; left: 30px; }
+        .promo-banner::after { bottom: -30px; right: 30px; }
+        .promo-content { position: relative; z-index: 5; max-width: 800px; margin: 0 auto; }
+        .promo-content .italian-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+        .promo-content h2 {
+            font-family: 'Italiana', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: white;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+        .promo-content p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 35px;
+        }
+        .promo-phone {
+            display: inline-flex; align-items: center; gap: 15px;
+            background: white; color: var(--italia-red);
+            padding: 18px 40px;
+            font-family: 'Italiana', serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .promo-phone:hover { transform: scale(1.05); color: var(--italia-red-dark); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+
+        /* ====== HOURS ====== */
+        .hours-section { padding: 100px 5%; background: var(--cream); }
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 70px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .hours-image-area {
+            height: 450px;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(58,36,22,0.25);
+            border: 4px solid var(--italia-green);
+        }
+        .hours-image-area img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .hours-content h3 {
+            font-family: 'Italiana', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--wood-dark);
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+        }
+        .hours-content h3 em {
+            color: var(--italia-red);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .hours-list { display: flex; flex-direction: column; gap: 12px; }
+        .hours-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 22px;
+            background: var(--cream-light);
+            border-left: 3px solid var(--italia-green);
+            border-right: 3px solid var(--italia-red);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .hours-item:hover { transform: translateX(6px); box-shadow: 0 8px 20px rgba(58,36,22,0.1); }
+        .hours-item .day {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--wood-dark);
+            letter-spacing: 1px;
+        }
+        .hours-item .time {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--italia-red);
+            font-size: 1rem;
+        }
+
+        /* ====== FOOTER ====== */
+        footer {
+            background: var(--wood-dark);
+            color: var(--cream);
+            padding: 60px 5% 30px;
+            position: relative;
+        }
+        footer::before {
+            content: ""; position: absolute; top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg,
+                var(--italia-green) 0%, var(--italia-green) 33.33%,
+                #fff 33.33%, #fff 66.66%,
+                var(--italia-red) 66.66%, var(--italia-red) 100%);
+        }
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(247,241,227,0.1);
+        }
+        .footer-brand .brand {
+            font-family: 'Italiana', serif;
+            font-size: 2rem;
+            letter-spacing: 5px;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+        .footer-brand .tagline {
+            font-family: 'Dancing Script', cursive;
+            color: var(--cream);
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        .footer-brand p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: rgba(247,241,227,0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .footer-social { display: flex; gap: 12px; }
+        .footer-social a {
+            width: 42px; height: 42px;
+            background: rgba(247,241,227,0.1);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--cream); text-decoration: none;
+            transition: all 0.3s;
+        }
+        .footer-social a:hover { background: var(--italia-red); transform: translateY(-3px); }
+        .footer-col h4 {
+            font-family: 'Italiana', serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            letter-spacing: 3px;
+            margin-bottom: 22px;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a {
+            font-family: 'Cormorant Garamond', serif;
+            color: rgba(247,241,227,0.75);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        .footer-col ul li a:hover { color: var(--gold-light); padding-left: 6px; }
+        .footer-col ul li a i {
+            color: var(--italia-red);
+            margin-right: 8px;
+            width: 16px;
+        }
+        .footer-bottom {
+            max-width: 1300px; margin: 20px auto 0;
+            text-align: center;
+            color: rgba(247,241,227,0.5);
+            font-size: 0.85rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .footer-bottom a { color: var(--gold-light); text-decoration: none; }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 992px) {
+            .about-grid, .hours-grid { grid-template-columns: 1fr; gap: 50px; }
+            .about-image-area, .hours-image-area { height: 400px; }
+            .specialties-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .specialties-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .about-features { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn-hero { width: 80%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Order Popup -->
+    <div class="order-popup-overlay" id="orderPopup">
+        <div class="order-popup">
+            <button class="order-popup-close" onclick="closeOrderPopup()">&times;</button>
+            <h3>COMMANDER</h3>
+            <p>Scegli come ordinare — Choisissez votre mode</p>
+            <div class="order-popup-buttons">
+                <a href="tel:+33985047112" class="order-popup-btn phone">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Fixe : 09 85 04 71 12</span>
+                </a>
+                <a href="tel:+33621105692" class="order-popup-btn phone">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile : 06 21 10 56 92</span>
+                </a>
+                <a href="#" target="_blank" class="order-popup-btn uber">
+                    <i class="fab fa-uber"></i>
+                    <span>Uber Eats</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pizza Saint Loup</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">La Carte</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link nav-cta" href="#" onclick="openOrderPopup(); return false;"><i class="fas fa-phone"></i> Commander</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+        <video class="hero-video" id="heroVideo" autoplay loop muted playsinline>
+            <source src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza-intro.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-ornament">Benvenuti — Bienvenue</div>
+            <h1 class="hero-title">
+                PIZZA
+                <span class="accent">SAINT LOUP</span>
+            </h1>
+            <p class="hero-subtitle">
+                La véritable pizza italienne, artisanale et généreuse. Façonnée à la main avec passion, cuite avec soin, et garnie de produits soigneusement sélectionnés.
+            </p>
+            <div class="hero-buttons">
+                <a href="menu.html" class="btn-hero btn-hero-primary">
+                    <i class="fas fa-pizza-slice"></i> Découvrir la Carte
+                </a>
+                <a href="#" onclick="openOrderPopup(); return false;" class="btn-hero btn-hero-outline">
+                    <i class="fas fa-phone"></i> Commander
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scopri — Découvrir</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ====== ABOUT ====== -->
+    <section class="about-section">
+        <div class="about-grid">
+            <div class="about-image-area">
+                <div class="about-img-main">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza-preparation-sauce-tomate.jpg" alt="Préparation d'une pizza">
+                </div>
+                <div class="about-img-secondary">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza-sauce-blanche.jpg" alt="Pizza sauce blanche">
+                </div>
+            </div>
+            <div class="about-content">
+                <span style="font-family:'Dancing Script',cursive; font-size:1.4rem; color:var(--italia-green); display:block; margin-bottom:8px;">La nostra storia</span>
+                <h3>Une passion italienne, <em>au cœur de Marseille</em></h3>
+                <p>Bienvenue chez <strong>Pizza Saint Loup</strong>, votre pizzeria artisanale où la tradition italienne se marie à la générosité marseillaise. Chaque pizza est une création soignée, pensée pour vous offrir une expérience gourmande authentique.</p>
+                <p>Nous travaillons exclusivement avec des ingrédients frais et de qualité — mozzarella fondante, légumes de saison, viandes sélectionnées — pour garantir à chaque bouchée le goût véritable de l'Italie.</p>
+                <div class="about-features">
+                    <div class="about-feature"><i class="fas fa-leaf"></i><span>Produits Frais</span></div>
+                    <div class="about-feature"><i class="fas fa-fire"></i><span>Cuisson Parfaite</span></div>
+                    <div class="about-feature"><i class="fas fa-hand-holding-heart"></i><span>Fait Maison</span></div>
+                    <div class="about-feature"><i class="fas fa-award"></i><span>Qualité Premium</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SPECIALTIES ====== -->
+    <section class="specialties-section">
+        <div class="section-title-block">
+            <span class="eyebrow">Le nostre specialità</span>
+            <h2>NOS SPÉCIALITÉS</h2>
+            <div class="ornament">
+                <span class="ornament-line"></span>
+                <i class="ornament-icon fas fa-star"></i>
+                <span class="ornament-line"></span>
+            </div>
+        </div>
+
+        <div class="specialties-grid">
+            <div class="specialty-card">
+                <div class="specialty-image">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza_presentation_ingredients.jpg" alt="Pizza Truffade">
+                </div>
+                <div class="specialty-body">
+                    <h4>Truffade</h4>
+                    <p>Crème de truffe, champignons, pommes de terre, mozzarella, parmesan.</p>
+                    <a href="menu.html#nouveautes" class="link">Voir la carte →</a>
+                </div>
+            </div>
+
+            <div class="specialty-card">
+                <div class="specialty-image">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza-gourmande.jpg" alt="Pizza Burrata">
+                </div>
+                <div class="specialty-body">
+                    <h4>Burrata</h4>
+                    <p>Mozzarella, roquette, tomates cerises, burrata, balsamique.</p>
+                    <a href="menu.html#roquette" class="link">Voir la carte →</a>
+                </div>
+            </div>
+
+            <div class="specialty-card">
+                <div class="specialty-image">
+                    <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/creme-fraiche.jpg" alt="Pizza Carbonara">
+                </div>
+                <div class="specialty-body">
+                    <h4>Carbonara</h4>
+                    <p>Lardons, champignons, oignons, œuf, emmental sur base crème.</p>
+                    <a href="menu.html#cremes" class="link">Voir la carte →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PROMO ====== -->
+    <section class="promo-banner">
+        <div class="promo-content">
+            <p class="italian-text">Chiama subito !</p>
+            <h2>ÉCONOMISEZ LES FRAIS DE LIVRAISON</h2>
+            <p>Commandez directement par téléphone et venez récupérer votre pizza</p>
+            <a href="tel:+33985047112" class="promo-phone">
+                <i class="fas fa-phone-alt"></i>
+                <span>09 85 04 71 12</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ====== HOURS ====== -->
+    <section class="hours-section">
+        <div class="hours-grid">
+            <div class="hours-image-area">
+                <img src="https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza_cuisson_2.jpg" alt="Four à pizza">
+            </div>
+            <div class="hours-content">
+                <span style="font-family:'Dancing Script',cursive; font-size:1.4rem; color:var(--italia-green); display:block; margin-bottom:8px;">Orari di apertura</span>
+                <h3>Heures <em>d'ouverture</em></h3>
+                <div class="hours-list">
+                    <div class="hours-item">
+                        <span class="day">Lundi</span>
+                        <span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="day">Mardi</span>
+                        <span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="day">Mercredi</span>
+                        <span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="day">Jeudi</span>
+                        <span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="day">Vendredi</span>
+                        <span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="day">Samedi</span>
+                        <span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="day">Dimanche</span>
+                        <span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span>
+                    </div>
+                </div>
+                <p style="margin-top:18px; font-family:'Dancing Script',cursive; font-size:1.5rem; color:var(--italia-red); text-align:center;">Ouvert 7j/7</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="brand">PIZZA SAINT LOUP</div>
+                <div class="tagline">La vera pizza italiana</div>
+                <p>Votre pizzeria artisanale italienne à Marseille. Pizzas authentiques préparées avec passion et des ingrédients frais de qualité.</p>
+                <div class="footer-social">
+                    <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>NAVIGATION</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="menu.html">Notre Carte</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>COMMANDER</h4>
+                <ul>
+                    <li><a href="tel:+33985047112"><i class="fas fa-phone"></i>09 85 04 71 12</a></li>
+                    <li><a href="tel:+33621105692"><i class="fas fa-mobile-alt"></i>06 21 10 56 92</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-uber"></i>Uber Eats</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>CONTACT</h4>
+                <ul>
+                    <li><a href="https://www.google.com/maps/search/?api=1&query=104+bd+de+Saint+Loup+13010+Marseille" target="_blank"><i class="fas fa-map-marker-alt"></i>104 bd de Saint Loup, 13010 Marseille</a></li>
+                    <li><a href="tel:+33985047112"><i class="fas fa-phone"></i>09 85 04 71 12</a></li>
+                    <li><a href="tel:+33621105692"><i class="fas fa-mobile-alt"></i>06 21 10 56 92</a></li>
+                    <li><a href="mailto:pizza-saint-loup@artefood.fr"><i class="fas fa-envelope"></i>pizza-saint-loup@artefood.fr</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©2026 Pizza Saint Loup — Tous droits réservés | Créé par <a href="https://artefood.fr">Artefood.fr</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Video autoplay (force play for mobile browsers)
+        const heroVideo = document.getElementById('heroVideo');
+        if (heroVideo) {
+            heroVideo.play().catch(e => { /* autoplay blocked, ignore */ });
+        }
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        // Order Popup
+        function openOrderPopup() {
+            document.getElementById('orderPopup').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrderPopup() {
+            document.getElementById('orderPopup').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('orderPopup').addEventListener('click', function(e) {
+            if (e.target === this) closeOrderPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeOrderPopup();
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

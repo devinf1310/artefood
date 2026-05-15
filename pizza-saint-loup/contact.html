@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B55JL79EQ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B55JL79EQ6');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Saint Loup - Contact</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --italia-green: #008C45;
+            --italia-green-dark: #006633;
+            --italia-red: #CD212A;
+            --italia-red-dark: #a5181f;
+            --cream: #f7f1e3;
+            --cream-light: #fdfaf1;
+            --parchment: #f0e6d2;
+            --wood-dark: #3a2416;
+            --wood-mid: #5e3a1f;
+            --wood-light: #8b5a2b;
+            --ink: #2a1810;
+            --gold: #b8860b;
+            --gold-light: #d4a645;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(ellipse at top left, rgba(184,134,11,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(0,140,69,0.03) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 0 0.1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ====== NAVBAR ====== */
+        .navbar {
+            background: rgba(42, 24, 16, 0.97);
+            padding: 14px 0;
+            position: fixed; top: 0; width: 100%; z-index: 9999;
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, var(--italia-green) 0%, var(--italia-green) 33%, #fff 33%, #fff 66%, var(--italia-red) 66%, var(--italia-red) 100%) 1;
+        }
+        .navbar-brand {
+            font-family: 'Italiana', serif !important;
+            font-size: 2rem !important;
+            color: var(--cream) !important;
+            letter-spacing: 3px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .navbar-brand::before { content: "🍕"; font-size: 1.4rem; }
+        .navbar-nav .nav-link {
+            color: var(--cream) !important;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 10px 16px !important;
+            letter-spacing: 2px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active { color: var(--gold-light) !important; }
+        .navbar-nav .nav-link.active::after {
+            content: "";
+            position: absolute;
+            width: 60%; height: 2px;
+            background: var(--gold-light);
+            bottom: 4px; left: 20%;
+        }
+        .nav-cta {
+            background: var(--italia-red);
+            padding: 10px 24px !important;
+            border-radius: 2px;
+            margin-left: 12px;
+            color: white !important;
+            border: 1px solid var(--italia-red-dark);
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { background: var(--italia-red-dark); transform: translateY(-1px); color: white !important; }
+
+        /* ====== ORDER POPUP ====== */
+        .order-popup-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(42,24,16,0.85); backdrop-filter: blur(10px);
+            z-index: 100002; display: none;
+            align-items: center; justify-content: center;
+        }
+        .order-popup-overlay.show { display: flex; }
+        .order-popup {
+            background: var(--cream-light); border-radius: 4px;
+            padding: 45px 40px; max-width: 420px; width: 90%;
+            text-align: center; position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            animation: popupIn 0.4s cubic-bezier(.2,.9,.3,1.2);
+            border-top: 4px solid var(--italia-green);
+            border-bottom: 4px solid var(--italia-red);
+        }
+        @keyframes popupIn { from{opacity:0;transform:scale(.85)} to{opacity:1;transform:scale(1)} }
+        .order-popup-close {
+            position: absolute; top: 12px; right: 18px;
+            background: none; border: none; color: var(--wood-mid);
+            font-size: 1.6rem; cursor: pointer;
+        }
+        .order-popup h3 {
+            font-family: 'Italiana', serif; font-size: 2.2rem;
+            color: var(--italia-red); margin-bottom: 8px; letter-spacing: 3px;
+        }
+        .order-popup p { color: var(--wood-mid); margin-bottom: 28px; font-style: italic; }
+        .order-popup-buttons { display: flex; flex-direction: column; gap: 14px; }
+        .order-popup-btn {
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px; padding: 16px 28px; border-radius: 2px;
+            text-decoration: none; font-weight: 600; font-size: 0.95rem;
+            letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s;
+        }
+        .order-popup-btn.phone { background: var(--italia-green); color: white; border: 1px solid var(--italia-green-dark); }
+        .order-popup-btn.phone:hover { background: var(--italia-green-dark); transform: translateY(-2px); color: white; }
+        .order-popup-btn.uber { background: white; color: #06C167; border: 2px solid #06C167; }
+        .order-popup-btn.uber:hover { background: #06C167; color: white; transform: translateY(-2px); }
+
+        /* ====== HERO CONTACT ====== */
+        .hero-contact {
+            min-height: 55vh;
+            padding: 140px 5% 60px;
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            background:
+                linear-gradient(180deg, rgba(42,24,16,0.85) 0%, rgba(42,24,16,0.65) 50%, rgba(247,241,227,1) 100%),
+                url('https://raw.githubusercontent.com/devinf1310/artefood/main/pizza-saint-loup/media/pizza_cuisson_1.jpg') center/cover fixed;
+        }
+        .hero-contact::before {
+            content: "";
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 6px;
+            background: linear-gradient(90deg,
+                var(--italia-green) 0%, var(--italia-green) 33.33%,
+                #fff 33.33%, #fff 66.66%,
+                var(--italia-red) 66.66%, var(--italia-red) 100%);
+            z-index: 2;
+        }
+        .hero-contact-content { position: relative; z-index: 5; text-align: center; max-width: 900px; }
+        .hero-contact .eyebrow {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: var(--gold-light);
+            display: block; margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .hero-contact h1 {
+            font-family: 'Italiana', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            color: var(--cream-light);
+            letter-spacing: 6px;
+            line-height: 1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .hero-contact h1 .accent {
+            display: block;
+            color: var(--italia-red);
+            font-size: 0.65em;
+            letter-spacing: 10px;
+            margin-top: 8px;
+        }
+
+        /* ====== REVIEW WIDGET ====== */
+        .review-section { padding: 70px 5%; background: var(--cream); }
+        .review-card {
+            max-width: 580px; margin: 0 auto;
+            text-align: center;
+            padding: 45px 40px;
+            background: var(--cream-light);
+            border-top: 3px solid var(--italia-green);
+            border-bottom: 3px solid var(--italia-red);
+            border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(58,36,22,0.1);
+            position: relative;
+        }
+        .review-card::before,
+        .review-card::after {
+            content: "";
+            position: absolute;
+            width: 0; height: 0;
+            border-style: solid;
+        }
+        .review-card::before {
+            top: 0; left: 0;
+            border-width: 16px 16px 0 0;
+            border-color: var(--gold-light) transparent transparent transparent;
+        }
+        .review-card::after {
+            bottom: 0; right: 0;
+            border-width: 0 0 16px 16px;
+            border-color: transparent transparent var(--gold-light) transparent;
+        }
+        .review-stars {
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+            letter-spacing: 4px;
+        }
+        .review-card h3 {
+            font-family: 'Italiana', serif;
+            font-size: 1.7rem;
+            color: var(--wood-dark);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .review-card p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--wood-mid);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+        .review-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 32px;
+            background: var(--italia-green);
+            color: white;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            border-radius: 2px;
+            border: 1px solid var(--italia-green-dark);
+            transition: all 0.3s;
+        }
+        .review-btn:hover { background: var(--italia-green-dark); transform: translateY(-2px); color: white; }
+
+        /* ====== SECTION TITLE BLOCK ====== */
+        .section-title-block { text-align: center; margin-bottom: 50px; }
+        .section-title-block .eyebrow {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem; color: var(--italia-green);
+            display: block; margin-bottom: 6px;
+        }
+        .section-title-block h2 {
+            font-family: 'Italiana', serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            color: var(--wood-dark); letter-spacing: 4px;
+            margin-bottom: 12px;
+        }
+        .section-title-block h2 em {
+            color: var(--italia-red);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .section-title-block .ornament {
+            display: flex; align-items: center; justify-content: center; gap: 18px;
+        }
+        .section-title-block .ornament-line {
+            width: 80px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--wood-mid), transparent);
+        }
+        .section-title-block .ornament-icon { color: var(--italia-red); font-size: 1rem; }
+
+        /* ====== CONTACT SECTION ====== */
+        .contact-section { padding: 90px 5%; background: var(--parchment); position: relative; }
+        .contact-section::before,
+        .contact-section::after {
+            content: "";
+            position: absolute; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg,
+                var(--italia-green) 0%, var(--italia-green) 33.33%,
+                #fff 33.33%, #fff 66.66%,
+                var(--italia-red) 66.66%, var(--italia-red) 100%);
+        }
+        .contact-section::before { top: 0; }
+        .contact-section::after { bottom: 0; }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 60px;
+            max-width: 1300px;
+            margin: 0 auto;
+            align-items: start;
+        }
+        .contact-info h3 {
+            font-family: 'Italiana', serif;
+            font-size: 2rem;
+            color: var(--wood-dark);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+        .contact-info h3 em {
+            color: var(--italia-red);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .contact-info > p {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--wood-mid);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .contact-details { display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
+        .contact-detail {
+            display: flex; align-items: center; gap: 16px;
+            padding: 16px 20px;
+            background: var(--cream-light);
+            border-left: 3px solid var(--italia-green);
+            border-right: 3px solid var(--italia-red);
+            border-radius: 2px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .contact-detail:hover { transform: translateX(6px); box-shadow: 0 8px 20px rgba(58,36,22,0.1); }
+        .contact-detail i {
+            width: 42px; height: 42px;
+            background: var(--italia-red);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .contact-detail-text { display: flex; flex-direction: column; }
+        .contact-detail-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--wood-mid);
+            margin-bottom: 2px;
+        }
+        .contact-detail-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            color: var(--wood-dark);
+            font-weight: 600;
+        }
+        .social-icons { display: flex; gap: 12px; }
+        .social-icons a {
+            width: 46px; height: 46px;
+            background: var(--cream-light);
+            border: 1px solid rgba(94,58,31,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--wood-dark);
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .social-icons a:hover { background: var(--italia-red); color: white; border-color: var(--italia-red); transform: translateY(-4px); }
+
+        /* ====== CONTACT FORM ====== */
+        .contact-form-container {
+            background: var(--cream-light);
+            border-top: 3px solid var(--italia-green);
+            border-bottom: 3px solid var(--italia-red);
+            border-radius: 2px;
+            padding: 40px 35px;
+            box-shadow: 0 10px 30px rgba(58,36,22,0.1);
+            position: relative;
+        }
+        .contact-form-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 0;
+            border-style: solid;
+            border-width: 16px 16px 0 0;
+            border-color: var(--gold-light) transparent transparent transparent;
+            opacity: 0.5;
+        }
+        .contact-form-container h4 {
+            font-family: 'Italiana', serif;
+            font-size: 1.6rem;
+            color: var(--wood-dark);
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+        .contact-form-container .form-subtitle {
+            font-family: 'Dancing Script', cursive;
+            color: var(--italia-green);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--wood-mid);
+        }
+        .form-group label span { color: var(--italia-red); }
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            background: white;
+            border: 1px solid rgba(94,58,31,0.2);
+            border-radius: 2px;
+            color: var(--ink);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--italia-red);
+            box-shadow: 0 0 0 3px rgba(205,33,42,0.1);
+        }
+        .form-control::placeholder { color: rgba(94,58,31,0.4); font-style: italic; }
+        textarea.form-control { min-height: 140px; resize: vertical; }
+        .form-note {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--wood-mid);
+            margin-bottom: 20px;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--italia-red);
+            border: 1px solid var(--italia-red-dark);
+            border-radius: 2px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-submit:hover { background: var(--italia-red-dark); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(205,33,42,0.3); }
+
+        /* ====== ORDER OPTIONS SECTION ====== */
+        .order-section { padding: 90px 5%; background: var(--cream); }
+        .order-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .order-card {
+            background: var(--cream-light);
+            border-top: 3px solid var(--italia-green);
+            border-bottom: 3px solid var(--italia-red);
+            border-radius: 2px;
+            padding: 45px 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(.2,.9,.3,1);
+            box-shadow: 0 4px 15px rgba(58,36,22,0.08);
+            position: relative;
+        }
+        .order-card::before,
+        .order-card::after {
+            content: "";
+            position: absolute;
+            width: 0; height: 0;
+            border-style: solid;
+        }
+        .order-card::before {
+            top: 0; left: 0;
+            border-width: 14px 14px 0 0;
+            border-color: var(--gold-light) transparent transparent transparent;
+            opacity: 0.4;
+        }
+        .order-card::after {
+            bottom: 0; right: 0;
+            border-width: 0 0 14px 14px;
+            border-color: transparent transparent var(--gold-light) transparent;
+            opacity: 0.4;
+        }
+        .order-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(58,36,22,0.15); }
+        .order-card-icon {
+            width: 80px; height: 80px;
+            background: var(--italia-red);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 22px;
+        }
+        .order-card.phone-card .order-card-icon { background: var(--italia-green); }
+        .order-card h4 {
+            font-family: 'Italiana', serif;
+            font-size: 1.5rem;
+            color: var(--wood-dark);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+        .order-card p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--wood-mid);
+            margin-bottom: 22px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .order-card p .highlight {
+            color: var(--italia-green);
+            font-weight: 600;
+            font-style: normal;
+        }
+        .order-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 13px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        .order-btn.phone-btn {
+            background: var(--italia-green);
+            color: white;
+            border: 1px solid var(--italia-green-dark);
+        }
+        .order-btn.phone-btn:hover { background: var(--italia-green-dark); transform: translateY(-2px); color: white; }
+        .order-btn.uber-btn {
+            background: white;
+            color: #06C167;
+            border: 2px solid #06C167;
+        }
+        .order-btn.uber-btn:hover { background: #06C167; color: white; transform: translateY(-2px); }
+
+        /* ====== HOURS ====== */
+        .hours-section { padding: 90px 5%; background: var(--parchment); position: relative; }
+        .hours-section::before,
+        .hours-section::after {
+            content: "";
+            position: absolute; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg,
+                var(--italia-green) 0%, var(--italia-green) 33.33%,
+                #fff 33.33%, #fff 66.66%,
+                var(--italia-red) 66.66%, var(--italia-red) 100%);
+        }
+        .hours-section::before { top: 0; }
+        .hours-section::after { bottom: 0; }
+        .hours-wrapper { max-width: 900px; margin: 0 auto; }
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .hours-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 22px;
+            background: var(--cream-light);
+            border-left: 3px solid var(--italia-green);
+            border-right: 3px solid var(--italia-red);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .hours-item:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(58,36,22,0.1); }
+        .hours-item .day {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--wood-dark);
+            letter-spacing: 1px;
+        }
+        .hours-item .time {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--italia-red);
+            font-size: 0.95rem;
+        }
+
+        /* ====== MAP ====== */
+        .map-section { padding: 90px 5%; background: var(--cream); }
+        .map-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(58,36,22,0.2);
+            border: 3px solid transparent;
+            background:
+                linear-gradient(var(--cream-light), var(--cream-light)) padding-box,
+                linear-gradient(90deg, var(--italia-green) 0%, var(--italia-green) 33%, #fff 33%, #fff 66%, var(--italia-red) 66%, var(--italia-red) 100%) border-box;
+            padding: 10px;
+        }
+        .map-placeholder {
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(184,134,11,0.08),
+                rgba(184,134,11,0.08) 10px,
+                rgba(184,134,11,0.14) 10px,
+                rgba(184,134,11,0.14) 20px
+            );
+            border: 2px dashed var(--gold);
+            border-radius: 2px;
+            width: 100%;
+            height: 420px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 30px;
+            text-align: center;
+        }
+        .map-placeholder strong {
+            font-family: 'Italiana', serif;
+            font-size: 1.4rem;
+            color: var(--italia-red);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+        .map-placeholder p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--wood-mid);
+            max-width: 500px;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        .map-placeholder .note {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--wood-dark);
+            background: rgba(255,255,255,0.7);
+            padding: 6px 14px;
+            border-radius: 2px;
+            letter-spacing: 1px;
+            font-style: normal;
+        }
+
+        /* ====== FOOTER ====== */
+        footer {
+            background: var(--wood-dark);
+            color: var(--cream);
+            text-align: center;
+            padding: 50px 30px 30px;
+            position: relative;
+        }
+        footer::before {
+            content: ""; position: absolute; top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg,
+                var(--italia-green) 0%, var(--italia-green) 33.33%,
+                #fff 33.33%, #fff 66.66%,
+                var(--italia-red) 66.66%, var(--italia-red) 100%);
+        }
+        footer .brand {
+            font-family: 'Italiana', serif;
+            font-size: 2rem;
+            letter-spacing: 6px;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+        footer .tagline {
+            font-family: 'Dancing Script', cursive;
+            color: var(--cream);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        footer p { margin: 0; color: rgba(247,241,227,0.6); font-size: 0.85rem; font-family: 'Cormorant Garamond', serif; }
+        footer a { color: var(--gold-light); text-decoration: none; }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 992px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 45px; }
+        }
+        @media (max-width: 768px) {
+            .order-grid { grid-template-columns: 1fr; }
+            .hours-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Order Popup -->
+    <div class="order-popup-overlay" id="orderPopup">
+        <div class="order-popup">
+            <button class="order-popup-close" onclick="closeOrderPopup()">&times;</button>
+            <h3>COMMANDER</h3>
+            <p>Scegli come ordinare — Choisissez votre mode</p>
+            <div class="order-popup-buttons">
+                <a href="tel:+33985047112" class="order-popup-btn phone">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Fixe : 09 85 04 71 12</span>
+                </a>
+                <a href="tel:+33621105692" class="order-popup-btn phone">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile : 06 21 10 56 92</span>
+                </a>
+                <a href="#" target="_blank" class="order-popup-btn uber">
+                    <i class="fab fa-uber"></i>
+                    <span>Uber Eats</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pizza Saint Loup</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">La Carte</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link nav-cta" href="#" onclick="openOrderPopup(); return false;"><i class="fas fa-phone"></i> Commander</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-contact">
+        <div class="hero-contact-content">
+            <span class="eyebrow">Restiamo in contatto — Restons en contact</span>
+            <h1>
+                CONTACTEZ-
+                <span class="accent">NOUS</span>
+            </h1>
+        </div>
+    </section>
+
+    <!-- Review Widget -->
+    <section class="review-section">
+        <div class="review-card">
+            <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <h3>Donnez votre avis sur Pizza Saint Loup</h3>
+            <p>Votre retour est précieux — il nous aide à vous régaler davantage. Laissez-nous une note sur Google.</p>
+            <a href="#" target="_blank" class="review-btn">
+                <i class="fab fa-google"></i>
+                <span>Laisser un avis</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <span style="font-family:'Dancing Script',cursive; font-size:1.3rem; color:var(--italia-green); display:block; margin-bottom:8px;">Scrivici — Écrivez-nous</span>
+                <h3>Nous sommes à votre <em>écoute</em></h3>
+                <p>Une question sur notre carte ? Un événement particulier à organiser ? Notre équipe vous répond avec plaisir. N'hésitez pas à nous contacter, par téléphone, par email ou via le formulaire ci-contre.</p>
+
+                <div class="contact-details">
+                    <a href="tel:+33985047112" class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-detail-text">
+                            <span class="contact-detail-label">Téléphone fixe</span>
+                            <span class="contact-detail-value">09 85 04 71 12</span>
+                        </div>
+                    </a>
+                    <a href="tel:+33621105692" class="contact-detail">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div class="contact-detail-text">
+                            <span class="contact-detail-label">Mobile</span>
+                            <span class="contact-detail-value">06 21 10 56 92</span>
+                        </div>
+                    </a>
+                    <a href="mailto:pizza-saint-loup@artefood.fr" class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-detail-text">
+                            <span class="contact-detail-label">Email</span>
+                            <span class="contact-detail-value">pizza-saint-loup@artefood.fr</span>
+                        </div>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=104+bd+de+Saint+Loup+13010+Marseille" target="_blank" class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-detail-text">
+                            <span class="contact-detail-label">Adresse</span>
+                            <span class="contact-detail-value">104 bd de Saint Loup, 13010 Marseille</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="social-icons">
+                    <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <h4>ÉCRIVEZ-NOUS</h4>
+                <p class="form-subtitle">Mandaci un messaggio</p>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" name="name" id="formName" class="form-control" placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label>E-Mail <span>*</span></label>
+                        <input type="email" name="email" id="formEmail" class="form-control" placeholder="votre@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message <span>*</span></label>
+                        <textarea name="message" id="formMessage" class="form-control" placeholder="Votre message..." required></textarea>
+                    </div>
+                    <p class="form-note">* Champs obligatoires</p>
+                    <button type="submit" class="btn-submit">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Options -->
+    <section class="order-section">
+        <div class="section-title-block">
+            <span class="eyebrow">Come ordinare</span>
+            <h2>PASSEZ VOTRE <em>COMMANDE</em></h2>
+            <div class="ornament">
+                <span class="ornament-line"></span>
+                <i class="ornament-icon fas fa-pizza-slice"></i>
+                <span class="ornament-line"></span>
+            </div>
+        </div>
+
+        <div class="order-grid">
+            <div class="order-card phone-card">
+                <div class="order-card-icon"><i class="fas fa-phone-alt"></i></div>
+                <h4>Par Téléphone</h4>
+                <p><span class="highlight">Économisez les frais de livraison</span> en commandant directement par téléphone !</p>
+                <a href="tel:+33985047112" class="order-btn phone-btn">
+                    <i class="fas fa-phone"></i> 09 85 04 71 12
+                </a>
+            </div>
+            <div class="order-card">
+                <div class="order-card-icon"><i class="fab fa-uber"></i></div>
+                <h4>Sur Uber Eats</h4>
+                <p>Commandez en ligne pour une expérience gourmande livrée à domicile.</p>
+                <a href="#" target="_blank" class="order-btn uber-btn">
+                    <i class="fas fa-motorcycle"></i> Je commande
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours -->
+    <section class="hours-section">
+        <div class="hours-wrapper">
+            <div class="section-title-block">
+                <span class="eyebrow">Orari di apertura</span>
+                <h2>HEURES <em>D'OUVERTURE</em></h2>
+                <div class="ornament">
+                    <span class="ornament-line"></span>
+                    <i class="ornament-icon fas fa-clock"></i>
+                    <span class="ornament-line"></span>
+                </div>
+            </div>
+            <div class="hours-grid">
+                <div class="hours-item"><span class="day">Lundi</span><span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span></div>
+                <div class="hours-item"><span class="day">Mardi</span><span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span></div>
+                <div class="hours-item"><span class="day">Mercredi</span><span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span></div>
+                <div class="hours-item"><span class="day">Jeudi</span><span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span></div>
+                <div class="hours-item"><span class="day">Vendredi</span><span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span></div>
+                <div class="hours-item"><span class="day">Samedi</span><span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span></div>
+                <div class="hours-item"><span class="day">Dimanche</span><span class="time">11h – 15h&nbsp;·&nbsp;17h – 00h</span></div>
+            </div>
+            <p style="margin-top:24px; font-family:'Dancing Script',cursive; font-size:1.6rem; color:var(--italia-red); text-align:center;">Ouvert 7j/7</p>
+        </div>
+    </section>
+
+    <!-- Map -->
+    <section class="map-section">
+        <div class="section-title-block">
+            <span class="eyebrow">Dove trovarci</span>
+            <h2>OÙ NOUS <em>TROUVER</em></h2>
+            <div class="ornament">
+                <span class="ornament-line"></span>
+                <i class="ornament-icon fas fa-map-marker-alt"></i>
+                <span class="ornament-line"></span>
+            </div>
+        </div>
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps?q=104+bd+de+Saint+Loup+13010+Marseille&output=embed"
+                width="100%"
+                height="400"
+                style="border:0; display:block;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Pizza Saint Loup — 104 bd de Saint Loup, 13010 Marseille">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="brand">PIZZA SAINT LOUP</div>
+        <div class="tagline">La vera pizza italiana, con amore</div>
+        <p>©2026 Pizza Saint Loup — Tous droits réservés | Créé par <a href="https://artefood.fr">Artefood.fr</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Order Popup
+        function openOrderPopup() {
+            document.getElementById('orderPopup').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrderPopup() {
+            document.getElementById('orderPopup').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('orderPopup').addEventListener('click', function(e) {
+            if (e.target === this) closeOrderPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeOrderPopup();
+        });
+
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('formName').value || 'Non renseigné';
+            const email = document.getElementById('formEmail').value;
+            const message = document.getElementById('formMessage').value;
+            const subject = encodeURIComponent('Nouveau message depuis le site Pizza Saint Loup');
+            const body = encodeURIComponent('Nom: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+            window.location.href = 'mailto:pizza-saint-loup@artefood.fr?subject=' + subject + '&body=' + body;
+            alert('Votre client mail va s\'ouvrir. Si ce n\'est pas le cas, envoyez votre message directement par email.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
