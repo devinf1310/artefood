@@ -103,6 +103,19 @@
             transform: translateY(-1px);
         }
 
+        /* ====== MENU HAMBURGER MOBILE ====== */
+        .navbar-toggler {
+            border: 1px solid var(--gold-light);
+            padding: 6px 10px;
+            border-radius: 3px;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .navbar-toggler:focus { box-shadow: 0 0 0 2px rgba(212,166,69,0.4); outline: none; }
+        .navbar-toggler:hover { background: rgba(212,166,69,0.12); }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f7f1e3' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
         /* ====== ORDER POPUP ====== */
         .order-popup-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -604,6 +617,16 @@
         footer a { color: var(--gold-light); text-decoration: none; }
 
         /* ====== RESPONSIVE ====== */
+        @media (max-width: 992px) {
+            .navbar-collapse {
+                background: rgba(42, 24, 16, 0.97);
+                margin-top: 12px;
+                padding: 12px 16px;
+                border-radius: 4px;
+                border: 1px solid rgba(212,166,69,0.3);
+            }
+            .nav-cta { display: inline-block; margin-left: 0; margin-top: 8px; }
+        }
         @media (max-width: 768px) {
             .menu-grid { grid-template-columns: 1fr; }
             .hero-meta { gap: 20px; }
@@ -1524,5 +1547,165 @@
             if (e.key === 'Escape') closeOrderPopup();
         });
     </script>
+    <!-- ====== LECTEUR MUSICAL AMBIANCE (Style 1 — dépliable, reprise inter-pages) ====== -->
+    <div id="psl-music">
+        <audio id="psl-audio" loop preload="auto">
+            <source src="media/pizza-saint-loup.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Pastille fermée -->
+        <button id="psl-pill" type="button" aria-label="Écouter l'ambiance musicale du restaurant" title="Notre ambiance musicale">
+            <i class="fas fa-music"></i>
+        </button>
+
+        <!-- Mini-lecteur déplié -->
+        <div id="psl-panel" role="region" aria-label="Lecteur musical">
+            <button id="psl-toggle" type="button" aria-label="Lecture / Pause">
+                <i class="fas fa-play"></i>
+            </button>
+            <div class="psl-meta">
+                <span class="psl-title">Pizza Saint Loup</span>
+                <span class="psl-sub">Notre ambiance</span>
+            </div>
+            <input id="psl-vol" type="range" min="0" max="100" value="65" aria-label="Volume">
+            <button id="psl-close" type="button" aria-label="Réduire le lecteur">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <style>
+        #psl-music { position: fixed; right: 22px; bottom: 22px; z-index: 10000; font-family: 'Inter', sans-serif; }
+        #psl-pill {
+            width: 54px; height: 54px; border-radius: 50%;
+            background: var(--italia-red); color: #fff;
+            border: 2px solid var(--gold-light);
+            font-size: 20px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+            transition: transform 0.25s ease, background 0.3s ease;
+        }
+        #psl-pill:hover { background: var(--italia-red-dark); transform: scale(1.06); }
+        #psl-pill.psl-hint { animation: pslPulse 1.6s ease-in-out 3; }
+        @keyframes pslPulse {
+            0%, 100% { box-shadow: 0 6px 20px rgba(0,0,0,0.35), 0 0 0 0 rgba(212,166,69,0.55); }
+            50% { box-shadow: 0 6px 20px rgba(0,0,0,0.35), 0 0 0 12px rgba(212,166,69,0); }
+        }
+        #psl-panel {
+            display: none;
+            background: rgba(42, 24, 16, 0.97);
+            border: 1px solid rgba(212,166,69,0.45);
+            border-radius: 30px;
+            padding: 9px 14px;
+            align-items: center; gap: 13px;
+            box-shadow: 0 8px 26px rgba(0,0,0,0.4);
+        }
+        #psl-music.psl-open #psl-pill { display: none; }
+        #psl-music.psl-open #psl-panel { display: flex; }
+        #psl-toggle {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: var(--italia-green); color: #fff;
+            border: none; font-size: 15px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: background 0.3s ease;
+        }
+        #psl-toggle:hover { background: var(--italia-green-dark); }
+        .psl-meta { display: flex; flex-direction: column; gap: 2px; min-width: 92px; }
+        .psl-title { color: var(--cream); font-size: 12px; font-weight: 600; line-height: 1.2; }
+        .psl-sub { color: rgba(247,241,227,0.5); font-size: 10px; font-style: italic; }
+        #psl-vol { width: 66px; accent-color: var(--gold-light); cursor: pointer; }
+        #psl-close { background: none; border: none; color: rgba(247,241,227,0.6); font-size: 15px; cursor: pointer; padding: 4px; }
+        #psl-close:hover { color: var(--cream); }
+        @media (max-width: 480px) {
+            #psl-music { right: 14px; bottom: 14px; }
+            .psl-meta { min-width: 70px; }
+            #psl-vol { width: 52px; }
+        }
+    </style>
+
+    <script>
+    (function () {
+        var KEY_TIME = 'pslMusicTime';
+        var KEY_PLAY = 'pslMusicPlaying';
+        var KEY_VOL  = 'pslMusicVol';
+        var KEY_OPEN = 'pslMusicOpen';
+
+        var wrap   = document.getElementById('psl-music');
+        var audio  = document.getElementById('psl-audio');
+        var pill   = document.getElementById('psl-pill');
+        var panel  = document.getElementById('psl-panel');
+        var toggle = document.getElementById('psl-toggle');
+        var closeB = document.getElementById('psl-close');
+        var vol    = document.getElementById('psl-vol');
+
+        function ss(k){ try { return sessionStorage.getItem(k); } catch(e){ return null; } }
+        function ssSet(k,v){ try { sessionStorage.setItem(k,v); } catch(e){} }
+
+        var savedVol  = ss(KEY_VOL);
+        audio.volume  = savedVol !== null ? parseFloat(savedVol) : 0.65;
+        vol.value     = Math.round(audio.volume * 100);
+
+        var savedTime = parseFloat(ss(KEY_TIME) || '0');
+        var wasPlaying = ss(KEY_PLAY) === '1';
+        var wasOpen    = ss(KEY_OPEN) === '1';
+
+        if (savedTime > 0) {
+            audio.addEventListener('loadedmetadata', function () {
+                try { if (savedTime < audio.duration) audio.currentTime = savedTime; } catch(e){}
+            });
+        }
+
+        function setIcon(playing) {
+            toggle.innerHTML = playing
+                ? '<i class="fas fa-pause"></i>'
+                : '<i class="fas fa-play"></i>';
+        }
+        function openPanel(){ wrap.classList.add('psl-open'); ssSet(KEY_OPEN,'1'); }
+        function closePanel(){ wrap.classList.remove('psl-open'); ssSet(KEY_OPEN,'0'); }
+
+        function play() {
+            audio.play().then(function () {
+                ssSet(KEY_PLAY, '1'); setIcon(true);
+            }).catch(function () { setIcon(false); });
+        }
+        function pause() {
+            audio.pause(); ssSet(KEY_PLAY, '0'); setIcon(false);
+        }
+
+        pill.addEventListener('click', function () {
+            openPanel();
+            play();
+        });
+        toggle.addEventListener('click', function () {
+            if (audio.paused) play(); else pause();
+        });
+        closeB.addEventListener('click', closePanel);
+        vol.addEventListener('input', function () {
+            audio.volume = vol.value / 100;
+            ssSet(KEY_VOL, audio.volume);
+        });
+
+        setInterval(function () {
+            if (!audio.paused) ssSet(KEY_TIME, audio.currentTime);
+        }, 1000);
+        window.addEventListener('beforeunload', function () {
+            if (!audio.paused) ssSet(KEY_TIME, audio.currentTime);
+        });
+
+        if (wasOpen) wrap.classList.add('psl-open');
+        setIcon(false);
+
+        if (wasPlaying) {
+            if (!wasOpen) openPanel();
+            play();
+        } else {
+            pill.classList.add('psl-hint');
+            pill.addEventListener('animationend', function () {
+                pill.classList.remove('psl-hint');
+            });
+        }
+    })();
+    </script>
+
 </body>
 </html>
