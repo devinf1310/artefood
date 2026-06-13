@@ -50,6 +50,16 @@
         .order-popup-btn.uber { background: linear-gradient(135deg, #000, #333); color: #06C167; border: 2px solid #06C167; }
         .order-popup-btn.uber:hover { background: #06C167; color: white; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(6,193,103,0.4); }
 
+        /* Owner Change Popup (bloquant) */
+        .owner-change-overlay { position: fixed; inset: 0; z-index: 100010; display: flex; align-items: center; justify-content: center; background: rgba(10,10,10,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 20px; }
+        .owner-change-box { background: linear-gradient(145deg,#1a1a1a,#0d0d0d); border: 2px solid rgba(230,126,34,0.4); border-radius: 25px; padding: 45px 35px; max-width: 480px; width: 100%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.6); animation: popupIn 0.4s ease; }
+        .owner-change-box .owner-icon { font-size: 3rem; margin-bottom: 15px; }
+        .owner-change-box h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: #e67e22; margin-bottom: 20px; }
+        .owner-change-box p { color: #ddd; font-size: 1.05rem; line-height: 1.7; margin-bottom: 12px; }
+        .owner-change-box p.secondary { color: #bbb; font-size: 1rem; margin-bottom: 30px; }
+        .owner-change-box .owner-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 45px; border-radius: 50px; background: linear-gradient(135deg,#e67e22,#c0392b); color: #fff; text-decoration: none; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
+        .owner-change-box .owner-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(230,126,34,0.4); color: #fff; }
+
         /* Hero Section */
         .hero-menu { min-height: 100vh; padding-top: 80px; position: relative; display: flex; align-items: center; overflow: hidden; }
         .slideshow-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
@@ -142,10 +152,30 @@
             .hero-title h1 { font-size: 4rem; }
             .menu-cards-grid { grid-template-columns: 1fr; }
             .menu-card-header { flex-direction: column; gap: 15px; }
+            .owner-change-box { padding: 35px 25px; }
+            .owner-change-box h2 { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
+
+    <!-- ===== Popup changement de propriétaire (bloquant) ===== -->
+    <div class="owner-change-overlay" id="ownerChangePopup">
+        <div class="owner-change-box">
+            <div class="owner-icon">🍕</div>
+            <h2>Changement de propriétaire</h2>
+            <p><strong style="color:#fff;">Nour Pizza</strong> n'existe plus.</p>
+            <p class="secondary">
+                La pizzeria s'appelle désormais <strong style="color:#e67e22;">Pizza Saint-Loup</strong>.
+                Retrouvez tout notre menu et nos nouveautés sur notre nouveau site.
+            </p>
+            <a href="https://www.artefood.fr/pizza-saint-loup/" class="owner-btn">
+                OK, j'y vais <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+    <script>document.body.style.overflow = 'hidden';</script>
+    <!-- ===== Fin popup ===== -->
 
     <!-- Order Popup -->
     <div class="order-popup-overlay" id="orderPopup">
