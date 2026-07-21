@@ -33,7 +33,7 @@
     {key:'accueil',     label:'Accueil',       href:'index.html',       side:'left'},
     {key:'boulangerie', label:'Boulangerie',   href:'boulangerie.html', side:'left'},
     {key:'patisserie',  label:'Pâtisserie',    href:'patisserie.html',  side:'left'},
-    {key:'creations',   label:'Nos créations', href:'creations.html',   side:'right'},
+    {key:'sales',       label:'Nos salés',     href:'nos-sales.html',   side:'right'},
     {key:'maison',      label:'La maison',     href:'la-maison.html',   side:'right'},
     {key:'contact',     label:'Contact',       href:'contact.html',     side:'right'},
   ];
@@ -246,6 +246,7 @@
     $$('[data-info-link="email"]').forEach(a=>{a.href='mailto:'+S.email;a.textContent=S.email;});
     $$('[data-social="facebook"]').forEach(a=>a.href=S.facebook||'#');
     $$('[data-social="instagram"]').forEach(a=>a.href=S.instagram||'#');
+    $$('[data-avis]').forEach(a=>{if(S.avis){a.href=S.avis;a.target='_blank';a.rel='noopener';}});
   }
 
   /* ---------- FORMULAIRE CONTACT ---------- */

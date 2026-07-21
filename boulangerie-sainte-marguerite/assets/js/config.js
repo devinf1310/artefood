@@ -2,9 +2,8 @@
    CONFIG — BOULANGERIE SAINTE-MARGUERITE
    ------------------------------------------------------------
    👉 SEUL FICHIER À ÉDITER POUR LES MÉDIAS.
-   Les fonctions img()/vid() encodent automatiquement les noms
-   de fichiers (espaces, accents, &) : tu écris le nom réel du
-   fichier tel qu'il est sur GitHub, sans t'occuper de l'URL.
+   img()/vid() encodent seuls les espaces, accents, « & », « + » :
+   tu écris le nom EXACT du fichier tel qu'il est sur GitHub.
    ============================================================ */
 
 const MEDIA = "https://raw.githubusercontent.com/devinf1310/artefood/main/boulangerie-sainte-marguerite/media/images/";
@@ -13,12 +12,8 @@ const img = f => MEDIA + encodeURIComponent(f);
 const vid = f => VIDEO + encodeURIComponent(f);
 
 /* ------------------------------------------------------------
-   CATALOGUE PÂTISSERIE — photo + vidéo par produit.
+   CATALOGUE PÂTISSERIE (page Pâtisserie) — photo + vidéo/produit.
    src = photo (poster) · video = clip lancé au clic.
-   Modifie titre / desc / cat librement. Pour ajouter un produit,
-   copie une ligne ; pour le retirer, supprime la ligne.
-   ⚠️ Les noms dans img()/vid() doivent rester EXACTEMENT ceux
-      des fichiers sur GitHub (y compris "céfé", "&", etc.).
    ------------------------------------------------------------ */
 const PATISSERIE = [
   /* ---- Entremets ---- */
@@ -31,6 +26,7 @@ const PATISSERIE = [
   { src:img("Délice Caramel & Poire.png"),                                                    titre:"Délice caramel & poire", desc:"Caramel onctueux et poire fondante.",                 cat:"Entremets" },
   { src:img("ETVIT.png"),                       video:vid("ETVIT 1.mp4"),                     titre:"Etvit",                  desc:"Notre entremets signature.",                          cat:"Entremets" },
   { src:img("Gateau coeur.png"),                                                              titre:"Gâteau cœur",            desc:"Pour vos plus belles occasions.",                     cat:"Entremets" },
+  {                                             video:vid("Coeur framboise.mp4"),             titre:"Cœur framboise",         desc:"Cœur framboise, mousse légère.",                      cat:"Entremets" },
 
   /* ---- Tartes ---- */
   { src:img("Tarte au citron.png"),  video:vid("Tarte au citron.mp4"),     titre:"Tarte au citron",   desc:"Crème citron acidulée, meringue légère.", cat:"Tartes" },
@@ -60,56 +56,52 @@ const ACCUEIL = [
 
 window.SITE = {
 
-  /* ---- Coordonnées (à compléter) ---- */
-  tel:        "04 __ __ __ __",              // TODO
-  telHref:    "+3340000000",                 // TODO (format international, sans espaces)
-  email:      "contact@artefood.fr",         // TODO
+  /* ---- Coordonnées ---- */
+  tel:        "04 42 71 74 06",
+  telHref:    "+33442717406",
+  email:      "contact@artefood.fr",         // TODO : e-mail réel de la boulangerie
   adresse:    "998 avenue Émile Ripert, 13600 La Ciotat",
-  horaires:   "Du mardi au dimanche — 6h30 à 19h30. Fermé le lundi.", // TODO
+  horaires:   "Du mardi au dimanche, 6h00 à 20h00. Fermé le lundi.",
   facebook:   "#",                           // TODO
   instagram:  "#",                           // TODO
+  avis:       "https://www.google.com/search?sca_esv=118f5480411566d2&q=Boulangerie+sainte+marguerite+Avis&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDS3MDY0MAVSpuam5oaWpsYWGxgZXzEqOeWX5iTmpacWZaYqFCdm5pWkKuQmFqWXAgWATMeyzOJFrEQoAgDUJdzKZQAAAA&rldimm=11783105178575719538&tbm=lcl#lkt=LocalPoiReviews",
   formAction: "",                            // TODO Formspree/Brevo (vide = ouvre le client mail)
 
   /* ---- Bannières de page (image de fond) ---- */
   hero: {
-    accueil:      { img: img("Charlotte aux fruits rouges.png"), imgMobile: img("Verrine Trois Chocolats.png") },
+    accueil:      { img: img("boulangerie sainte marguerite +Mouettes 2.jpg"), imgMobile: img("boulangerie sainte marguerite +Mouettes 2.jpg") },
     boulangerie:  { img: "" },   // en attente d'une photo de pains/viennoiseries
     patisserie:   { img: img("Verrine Trois Chocolats.png") },
-    creations:    { img: img("Mille feuilles.png") },
-    maison:       { img: img("Bavarois passion.png") },
-    contact:      { img: img("Tarte aux fraise.png") },
+    sales:        { img: "" },   // en attente de tes visuels salés
+    maison:       { img: img("boulangerie sainte marguerite +Mouettes 2.jpg") },
+    contact:      { img: img("boulangerie sainte marguerite +Mouettes 2.jpg") },
   },
 
   /* ---- Diaporama accueil ---- */
   accueilCreations: ACCUEIL,
 
-  /* ---- Boulangerie : une seule viennoiserie pour l'instant ---- */
+  /* ---- Boulangerie : viennoiserie + emplacements à venir ---- */
   boulangerie: [
     { video:vid("Pain_au_chocolat.mp4"), titre:"Pain au chocolat", desc:"Feuilletage pur beurre, deux barres de chocolat.", cat:"Viennoiseries" },
   ],
-  boulangeriePlaceholders: 5,   // en attendant tes photos de pains
+  boulangeriePlaceholders: 5,
 
-  /* ---- Pâtisserie ---- */
+  /* ---- Pâtisserie : tout le catalogue sucré ---- */
   patisserie: PATISSERIE,
   patisseriePlaceholders: 0,
 
-  /* ---- Nos créations : tout le catalogue ---- */
-  creations: PATISSERIE,
-  creationsPlaceholders: 0,
+  /* ---- Nos salés : sandwichs, pizzas plateau, fricassés… (à alimenter) ----
+     Exemple :
+     { src:img("Sandwich poulet.jpg"), video:vid("Pizza plateau.mp4"),
+       titre:"Sandwich poulet crudités", desc:"...", cat:"Sandwichs" }
+  */
+  sales: [],
+  salesPlaceholders: 6,
 
-  /* ---- Vidéo à la une (page Créations) ---- */
-  /* Provisoire : un clip produit. Remplace par ton film de marque quand tu veux. */
-  creationsVideo: {
-    src:    vid("Verrine Trois Chocolats.mp4"),
-    poster: img("Verrine Trois Chocolats.png"),
-    titre:  "Nos créations en mouvement",
-    desc:   "Un aperçu du savoir-faire de la maison.",
-  },
-
-  /* ---- La Maison : images des rangées éditoriales (dans l'ordre) ---- */
+  /* ---- La Maison : images des rangées éditoriales (fournil, savoir-faire, boutique) ---- */
   maison: [
     { src: img("Foret noire.png") },
     { src: img("Rocher praliné.png") },
-    { src: img("Tarte aux pommes.png") },
+    { src: img("boulangerie sainte marguerite +Mouettes 2.jpg") },
   ],
 };
