@@ -69,7 +69,8 @@ window.SITE = {
 
   /* ---- Bannières de page (image de fond) ---- */
   hero: {
-    accueil:      { img: img("boulangerie sainte marguerite +Mouettes 2.jpg"), imgMobile: img("boulangerie sainte marguerite +Mouettes 2.jpg") },
+    accueil:      { video: vid("video couverture.mp4"), img: img("cover-poster.jpg") },  // vidéo de fond + poster d'attente
+    accueilStory: { img: img("boulangerie sainte marguerite +Mouettes 2.jpg") },  // teaser "La Maison" en bas d'accueil
     boulangerie:  { img: "" },   // en attente d'une photo de pains/viennoiseries
     patisserie:   { img: img("Verrine Trois Chocolats.png") },
     sales:        { img: "" },   // en attente de tes visuels salés
