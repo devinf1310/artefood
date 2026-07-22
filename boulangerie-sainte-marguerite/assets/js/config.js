@@ -24,7 +24,6 @@ const PATISSERIE = [
   { src:img("Royal.png"),                       video:vid("Royal chocolat 1.mp4"),            titre:"Royal chocolat",         desc:"Croustillant praliné et mousse au chocolat.",         cat:"Entremets" },
   { src:img("Délice Caramel & Poire.png"),                                                    titre:"Délice caramel & poire", desc:"Caramel onctueux et poire fondante.",                 cat:"Entremets" },
   { src:img("ETVIT.png"),                       video:vid("ETVIT 1.mp4"),                     titre:"Etvit",                  desc:"Notre entremets signature.",                          cat:"Entremets" },
-  { src:img("Gateau coeur.png"),                                                              titre:"Gâteau cœur",            desc:"Pour vos plus belles occasions.",                     cat:"Entremets" },
   { src:img("coeur framboise.png"), video:vid("Coeur framboise.mp4"), titre:"Cœur framboise", desc:"Cœur framboise, mousse légère.", cat:"Entremets" },
 
   /* ---- Tartes ---- */
