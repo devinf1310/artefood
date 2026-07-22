@@ -64,7 +64,7 @@ window.SITE = {
   horaires:   "Du mardi au dimanche, 6h00 à 20h00. Fermé le lundi.",
   facebook:   "#",                           // TODO
   instagram:  "#",                           // TODO
-  avis:       "https://www.google.com/search?sca_esv=118f5480411566d2&q=Boulangerie+sainte+marguerite+Avis&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDS3MDY0MAVSpuam5oaWpsYWGxgZXzEqOeWX5iTmpacWZaYqFCdm5pWkKuQmFqWXAgWATMeyzOJFrEQoAgDUJdzKZQAAAA&rldimm=11783105178575719538&tbm=lcl#lkt=LocalPoiReviews",
+  avis:       "https://search.google.com/local/writereview?placeid=ChIJn8ZFbmKvyRIRckwS-Lr_haM",
   formAction: "",                            // TODO Formspree/Brevo (vide = ouvre le client mail)
 
   /* ---- Bannières de page (image de fond) ---- */
