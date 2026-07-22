@@ -20,13 +20,12 @@ const PATISSERIE = [
   { src:img("Bavarois passion.png"),            video:vid("Bavarois passion.mp4"),            titre:"Bavarois passion",       desc:"Mousse passion, insert fruité sur biscuit moelleux.", cat:"Entremets" },
   { src:img("Charlotte aux fruits rouges.png"), video:vid("Charlotte aux fruits rouges.mp4"), titre:"Charlotte fruits rouges", desc:"Biscuit cuillère, bavaroise et fruits rouges.",      cat:"Entremets" },
   { src:img("Castel.png"),                      video:vid("Castel.mp4"),                      titre:"Castel",                 desc:"Chocolat et croustillant praliné.",                   cat:"Entremets" },
-  { src:img("Castel 2.png"),                                                                  titre:"Castel (variation)",     desc:"Notre variation autour du Castel.",                   cat:"Entremets" },
   { src:img("Foret noire.png"),                 video:vid("Foret noire 1.mp4"),               titre:"Forêt noire",            desc:"Génoise cacao, chantilly et cerises.",                cat:"Entremets" },
   { src:img("Royal.png"),                       video:vid("Royal chocolat 1.mp4"),            titre:"Royal chocolat",         desc:"Croustillant praliné et mousse au chocolat.",         cat:"Entremets" },
   { src:img("Délice Caramel & Poire.png"),                                                    titre:"Délice caramel & poire", desc:"Caramel onctueux et poire fondante.",                 cat:"Entremets" },
   { src:img("ETVIT.png"),                       video:vid("ETVIT 1.mp4"),                     titre:"Etvit",                  desc:"Notre entremets signature.",                          cat:"Entremets" },
   { src:img("Gateau coeur.png"),                                                              titre:"Gâteau cœur",            desc:"Pour vos plus belles occasions.",                     cat:"Entremets" },
-  {                                             video:vid("Coeur framboise.mp4"),             titre:"Cœur framboise",         desc:"Cœur framboise, mousse légère.",                      cat:"Entremets" },
+  { src:img("coeur framboise.png"), video:vid("Coeur framboise.mp4"), titre:"Cœur framboise", desc:"Cœur framboise, mousse légère.", cat:"Entremets" },
 
   /* ---- Tartes ---- */
   { src:img("Tarte au citron.png"),  video:vid("Tarte au citron.mp4"),     titre:"Tarte au citron",   desc:"Crème citron acidulée, meringue légère.", cat:"Tartes" },
@@ -45,7 +44,7 @@ const PATISSERIE = [
   { src:img("Eclair OK.png"),                                                       titre:"Éclair",             desc:"Pâte à choux, crème onctueuse.",         cat:"Individuels" },
   { src:img("Rocher praliné.png"),         video:vid("Rocher praliné.mp4"),         titre:"Rocher praliné",     desc:"Cœur praliné, enrobage croustillant.",   cat:"Individuels" },
   { src:img("Verrine Trois Chocolats.png"),video:vid("Verrine Trois Chocolats.mp4"),titre:"Verrine 3 chocolats",desc:"Noir, lait, blanc — en couches gourmandes.",cat:"Individuels" },
-  {                                        video:vid("Saint honoré 1.mp4"),         titre:"Saint-honoré",       desc:"Choux caramélisés et crème chiboust.",   cat:"Individuels" },
+  { src:img("Saint honoré 1.png"), video:vid("Saint honoré 1.mp4"), titre:"Saint-honoré", desc:"Choux caramélisés et crème chiboust.", cat:"Individuels" },
 ];
 
 /* Sélection mise en avant sur la page d'accueil */
