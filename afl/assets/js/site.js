@@ -155,7 +155,7 @@
       el.appendChild(v); v.play().catch(() => {});
     } else {
       const probe = new Image();
-      probe.onload = () => { el.style.setProperty("--cover", `url("${src}")`); el.classList.add("has-cover"); };
+      probe.onload = () => { el.style.setProperty("--cover", `url("${new URL(src, location.href).href}")`); el.classList.add("has-cover"); };
       probe.src = src;
     }
   }
@@ -183,7 +183,7 @@
   function renderTiles(){
     const mount = $("[data-tiles]"); if(!mount) return;
     mount.innerHTML = CARTE.map((c, i) => `
-      <a href="menu.html#${c.id}" class="tile reveal-up ${c.img ? "has-img" : ""}" style="--d:${i * 60}ms${c.img ? `;--img:url('${media(c.img)}')` : ""}">
+      <a href="menu.html#${c.id}" class="tile reveal-up ${c.img ? "has-img" : ""}" style="--d:${i * 60}ms${c.img ? `;--img:url('${new URL(media(c.img), location.href).href}')` : ""}">
         <span class="t-num">${String(i + 1).padStart(2, "0")}</span>
         <span class="t-ico">${IC[c.icone] || IC.burger}</span>
         <span class="t-name">${c.titre}</span>
