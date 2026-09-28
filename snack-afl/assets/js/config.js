@@ -22,7 +22,7 @@ const SITE = {
   tel:        "07 43 74 52 59",
   adresse:    "26 rue Condorcet",
   ville:      "13016 Marseille",
-  email:      "snack-afl@artefood.fr",
+  email:      "contact@artefood.fr",
 
   /* Photo (.jpg/.png/.webp) OU vidéo (.mp4) de couverture de l'accueil.
      Tant que le fichier n'est pas déposé, un fond de secours s'affiche. */
