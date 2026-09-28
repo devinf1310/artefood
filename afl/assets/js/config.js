@@ -5,7 +5,7 @@
    Les pages (accueil, carte, contact) se remplissent toutes seules
    à partir de ce fichier.
 
-   Médias : déposer les fichiers dans snack-afl/media/ et écrire
+   Médias : déposer les fichiers dans afl/media/ et écrire
    ici le nom EXACT du fichier (espaces et accents acceptés).
    ============================================================ */
 
