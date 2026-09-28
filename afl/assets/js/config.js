@@ -26,7 +26,7 @@ const SITE = {
 
   /* Photo (.jpg/.png/.webp) OU vidéo (.mp4) de couverture de l'accueil.
      Tant que le fichier n'est pas déposé, un fond de secours s'affiche. */
-  couverture: media("couverture.jpg"),
+  couverture: media("AFL-intro-burger.mp4"),
   /* Logo affiché dans l'en-tête et le pied de page (facultatif). */
   logo:       media("logo.png"),
 
