@@ -28,7 +28,7 @@ const SITE = {
      Tant que le fichier n'est pas déposé, un fond de secours s'affiche. */
   couverture: media("AFL-intro-burger.mp4"),
   /* Logo affiché dans l'en-tête et le pied de page (facultatif). */
-  logo:       media("logo.png"),
+  logo:       media("logo.webp"),
 
   ouverture:  "7j/7 · 11h – 23h",
   horaires: [
@@ -70,7 +70,7 @@ const SUPPLEMENTS = [
 
 const CARTE = [
   {
-    id: "burgers", titre: "Nos Burgers", icone: "burger", img: "",
+    id: "burgers", titre: "Nos Burgers", icone: "burger", img: "double-cheese-burger.webp",
     accroche: "Classiques, signatures et gourmands",
     note: "Menu = Burger + Frites + Boisson 33cl",
     groupes: [
@@ -96,7 +96,7 @@ const CARTE = [
     supplements: SUPPLEMENTS,
   },
   {
-    id: "duos", titre: "Nos Duos", icone: "duo", img: "",
+    id: "duos", titre: "Nos Duos", icone: "duo", img: "menu-classic.webp",
     accroche: "Deux burgers, un seul menu",
     note: "Cheese + Burger au choix + Frites + Boisson 33cl",
     groupes: [
@@ -114,7 +114,7 @@ const CARTE = [
     ],
   },
   {
-    id: "sandwichs", titre: "Nos Sandwichs", icone: "sandwich", img: "",
+    id: "sandwichs", titre: "Nos Sandwichs", icone: "sandwich", img: "menu-sandwich-kebab.webp",
     accroche: "Spéciaux, maxi et simples",
     note: "Menu = Sandwich + Frites + Boisson 33cl",
     groupes: [
@@ -150,7 +150,7 @@ const CARTE = [
     supplements: SUPPLEMENTS,
   },
   {
-    id: "tacos", titre: "Tacos & Bowl", icone: "tacos", img: "",
+    id: "tacos", titre: "Tacos & Bowl", icone: "tacos", img: "menu-tacos-1-viande.webp",
     accroche: "1, 2 ou 3 viandes au choix",
     note: "Menu = Plat + Frites + Boisson 33cl",
     viandes: VIANDES,
@@ -173,7 +173,7 @@ const CARTE = [
     ],
   },
   {
-    id: "crousty", titre: "AFL Crousty", icone: "fire", img: "",
+    id: "crousty", titre: "AFL Crousty", icone: "fire", img: "afl-crousty.webp",
     accroche: "Le nouveau best-seller",
     note: "Menu = Crousty + Boisson 33cl",
     groupes: [
@@ -183,7 +183,7 @@ const CARTE = [
     ],
   },
   {
-    id: "paninis", titre: "Nos Paninis", icone: "panini", img: "",
+    id: "paninis", titre: "Nos Paninis", icone: "panini", img: "menu-panini-3-fromages.webp",
     accroche: "3 Fromages, Steak ou Poulet",
     note: "Menu = Panini + Frites + Boisson 33cl",
     groupes: [
@@ -195,7 +195,7 @@ const CARTE = [
     ],
   },
   {
-    id: "texmex", titre: "Tex Mex & Frites", icone: "texmex", img: "",
+    id: "texmex", titre: "Tex Mex & Frites", icone: "texmex", img: "tenders.webp",
     accroche: "À grignoter ou à partager",
     groupes: [
       { titre: "", style: "list", items: [
@@ -210,7 +210,7 @@ const CARTE = [
     ],
   },
   {
-    id: "enfant", titre: "Menu Enfant", icone: "enfant", img: "",
+    id: "enfant", titre: "Menu Enfant", icone: "enfant", img: "menu-enfant.webp",
     accroche: "Pour les petits gourmands",
     groupes: [
       { titre: "", style: "cards", items: [
