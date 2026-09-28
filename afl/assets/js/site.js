@@ -58,11 +58,10 @@
     host.innerHTML = `
       <header class="header ${page === "accueil" ? "" : "solid"}" id="header">
         <div class="wrap nav">
-          <nav class="nav-list"><li>${a("index.html","Accueil","accueil")}</li><li>${a("menu.html","La Carte","carte")}</li></nav>
-          ${brand()}
-          <nav class="nav-list right"><li>${a("contact.html","Contact","contact")}</li>
-            <li><button class="btn-order" data-order>${IC.phone}<span>Commander</span></button></li></nav>
           <button class="icon-btn burger" aria-label="Ouvrir le menu" data-open-menu>${IC.menu}</button>
+          <nav class="nav-list"><li>${a("index.html","Accueil","accueil")}</li><li>${a("menu.html","La Carte","carte")}</li><li>${a("contact.html","Contact","contact")}</li></nav>
+          <button class="btn-order" data-order>${IC.phone}<span>Commander</span></button>
+          ${brand()}
         </div>
       </header>
       <div class="overlay" id="overlay" aria-hidden="true">
