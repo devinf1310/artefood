@@ -155,7 +155,7 @@
       el.appendChild(v); v.play().catch(() => {});
     } else {
       const probe = new Image();
-      probe.onload = () => { el.style.setProperty("--cover", `url("${src}")`); el.classList.add("has-cover"); };
+      probe.onload = () => { el.style.setProperty("--cover", `url("${new URL(src, location.href).href}")`); el.classList.add("has-cover"); };
       probe.src = src;
     }
   }
@@ -183,7 +183,7 @@
   function renderTiles(){
     const mount = $("[data-tiles]"); if(!mount) return;
     mount.innerHTML = CARTE.map((c, i) => `
-      <a href="menu.html#${c.id}" class="tile reveal-up ${c.img ? "has-img" : ""}" style="--d:${i * 60}ms${c.img ? `;--img:url('${media(c.img)}')` : ""}">
+      <a href="menu.html#${c.id}" class="tile reveal-up ${c.img ? "has-img" : ""}" style="--d:${i * 60}ms${c.img ? `;--img:url('${new URL(media(c.img), location.href).href}')` : ""}">
         <span class="t-num">${String(i + 1).padStart(2, "0")}</span>
         <span class="t-ico">${IC[c.icone] || IC.burger}</span>
         <span class="t-name">${c.titre}</span>
@@ -206,13 +206,15 @@
     if(g.style === "list"){
       const twoCols = g.items.some(it => it.menu);
       const cols = twoCols ? `<li class="row row-head"><span></span><span class="r-prices"><em>Seul</em><em>Menu</em></span></li>` : "";
-      return `${head}<ul class="price-list reveal-up ${twoCols ? "" : "single-price"}">${cols}${g.items.map(it => `
+      const list = `<ul class="price-list reveal-up ${twoCols ? "" : "single-price"}">${cols}${g.items.map(it => `
         <li class="row"><span class="r-name">${it.nom}${newTag(it)}${it.desc ? `<em>${it.desc}</em>` : ""}</span><i class="dots"></i>
           <span class="r-prices">${twoCols ? `<b>${it.seul ? euro(it.seul) : "—"}</b><b class="hot">${it.menu ? euro(it.menu) : "—"}</b>` : `<b class="hot">${euro(it.prix)}</b>`}</span></li>`).join("")}
       </ul>`;
+      return g.photo ? `${head}<div class="list-with-photo"><figure class="g-photo reveal-up"><img loading="lazy" src="${media(g.photo)}" alt="${g.titre}"></figure>${list}</div>` : head + list;
     }
     return `${head}<div class="dish-grid ${g.items.length === 1 ? "solo" : ""}">${g.items.map((it, i) => `
-      <article class="dish reveal-up" style="--d:${(i % 3) * 70}ms">${newTag(it)}
+      <article class="dish reveal-up ${it.photo ? "has-photo" : ""}" style="--d:${(i % 3) * 70}ms">${newTag(it)}
+        ${it.photo ? `<div class="d-photo"><img loading="lazy" src="${media(it.photo)}" alt="${it.nom}"></div>` : ""}
         <h5>${it.nom}</h5>${it.desc ? `<p>${it.desc}</p>` : ""}
         <div class="prices">${pills(it)}</div>
       </article>`).join("")}</div>`;

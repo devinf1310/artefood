@@ -26,9 +26,9 @@ const SITE = {
 
   /* Photo (.jpg/.png/.webp) OU vidéo (.mp4) de couverture de l'accueil.
      Tant que le fichier n'est pas déposé, un fond de secours s'affiche. */
-  couverture: media("couverture.jpg"),
+  couverture: media("AFL-intro-burger.mp4"),
   /* Logo affiché dans l'en-tête et le pied de page (facultatif). */
-  logo:       media("logo.png"),
+  logo:       media("logo.webp"),
 
   ouverture:  "7j/7 · 11h – 23h",
   horaires: [
@@ -59,6 +59,7 @@ const SITE = {
      style "list"  → liste de prix compacte
    Prix : "seul" et/ou "menu" (ou "prix" pour un prix unique).
    nouveau:true → pastille « Nouveau ».
+   photo (facultatif) : photo du produit (fiche) ou du groupe (liste).
    img (facultatif) : photo de la rubrique sur l'accueil.
    ------------------------------------------------------------ */
 const VIANDES = ["Kebab", "Escalope", "Tenders", "Merguez", "Viande hachée", "Cordon bleu", "Nuggets", "Poulet mariné"];
@@ -70,72 +71,72 @@ const SUPPLEMENTS = [
 
 const CARTE = [
   {
-    id: "burgers", titre: "Nos Burgers", icone: "burger", img: "",
+    id: "burgers", titre: "Nos Burgers", icone: "burger", img: "double-cheese-burger.webp",
     accroche: "Classiques, signatures et gourmands",
     note: "Menu = Burger + Frites + Boisson 33cl",
     groupes: [
       { titre: "Signatures", style: "cards", items: [
-        { nom: "Géant Double Cheese", desc: "Double steak, Cheddar",            seul: "6,50", menu: "8,00" },
-        { nom: "Royal",               desc: "Steak, Bacon, Cheddar",            seul: "5,50", menu: "7,50" },
-        { nom: "La Croustille",       desc: "Cheese + Géant",                   seul: "6,50", menu: "8,00" },
-        { nom: "Crispy",              desc: "Tenders, Cheddar",                 seul: "7,00", menu: "8,50" },
-        { nom: "French",              desc: "Steak, Cheddar, Bacon, Boursin",   seul: "6,50", menu: "8,00" },
-        { nom: "Gold",                desc: "Steak, Œuf, Bacon, Cheddar",       seul: "6,50", menu: "8,50" },
-        { nom: "Chèvre Miel",         desc: "Steak, Chèvre, Miel",              seul: "7,00", menu: "8,50" },
-        { nom: "Géant Cheese",        desc: "Steak, Cheddar",                   seul: "5,00", menu: "6,50" },
-        { nom: "Country",             desc: "Steak, Galette PDT, Œuf, Cheddar", seul: "7,00", menu: "8,50" },
+        { nom: "Géant Double Cheese", photo: "menu-geant-burger-double-cheese.webp", desc: "Double steak, Cheddar",            seul: "6,50", menu: "8,00" },
+        { nom: "Royal", photo: "menu-burger-royal.webp",               desc: "Steak, Bacon, Cheddar",            seul: "5,50", menu: "7,50" },
+        { nom: "La Croustille", photo: "la-croustille.webp",       desc: "Cheese + Géant",                   seul: "6,50", menu: "8,00" },
+        { nom: "Crispy", photo: "crispy.webp",              desc: "Tenders, Cheddar",                 seul: "7,00", menu: "8,50" },
+        { nom: "French", photo: "french.webp",              desc: "Steak, Cheddar, Bacon, Boursin",   seul: "6,50", menu: "8,00" },
+        { nom: "Gold", photo: "menu-gold-burger.webp",                desc: "Steak, Œuf, Bacon, Cheddar",       seul: "6,50", menu: "8,50" },
+        { nom: "Chèvre Miel", photo: "chevre-miel.webp",         desc: "Steak, Chèvre, Miel",              seul: "7,00", menu: "8,50" },
+        { nom: "Géant Cheese", photo: "menu-geant-cheeseburger.webp",        desc: "Steak, Cheddar",                   seul: "5,00", menu: "6,50" },
+        { nom: "Country", photo: "country.webp",             desc: "Steak, Galette PDT, Œuf, Cheddar", seul: "7,00", menu: "8,50" },
       ]},
-      { titre: "Classiques", style: "list", items: [
-        { nom: "Classic Cheese", seul: "4,00", menu: "6,00" },
-        { nom: "Double Cheese",  seul: "6,00", menu: "7,50" },
-        { nom: "Triple Cheese",  seul: "7,00", menu: "8,50" },
+      { titre: "Classiques", style: "cards", items: [
+        { nom: "Classic Cheese", photo: "menu-classic.webp", seul: "4,00", menu: "6,00" },
+        { nom: "Double Cheese", photo: "double-cheese-burger.webp",  seul: "6,00", menu: "7,50" },
+        { nom: "Triple Cheese", photo: "menu-burger-triple-cheese.webp",  seul: "7,00", menu: "8,50" },
         { nom: "Fish",           seul: "5,50", menu: "7,00" },
-        { nom: "Chicken",        seul: "5,50", menu: "7,00" },
+        { nom: "Chicken", photo: "menu-chicken-burger.webp",        seul: "5,50", menu: "7,00" },
       ]},
     ],
     supplements: SUPPLEMENTS,
   },
   {
-    id: "duos", titre: "Nos Duos", icone: "duo", img: "",
+    id: "duos", titre: "Nos Duos", icone: "duo", img: "menu-classic.webp",
     accroche: "Deux burgers, un seul menu",
     note: "Cheese + Burger au choix + Frites + Boisson 33cl",
     groupes: [
       { titre: "", style: "cards", items: [
-        { nom: "Duo 1", desc: "Cheese + Big Mac",        menu: "9,00"  },
-        { nom: "Duo 2", desc: "Cheese + Chicken",        menu: "9,00"  },
-        { nom: "Duo 3", desc: "Cheese + Gold",           menu: "10,50" },
-        { nom: "Duo 4", desc: "Cheese + Géant",          menu: "9,00"  },
-        { nom: "Duo 5", desc: "Cheese + Triple Cheese",  menu: "10,50" },
-        { nom: "Duo 6", desc: "Cheese + Royal",          menu: "10,50" },
-        { nom: "Duo 7", desc: "Cheese + Double Géant",   menu: "10,00" },
-        { nom: "Duo 8", desc: "Cheese + Crousty",        menu: "10,50" },
-        { nom: "Duo 9", desc: "Cheese + Cheese",         menu: "8,00"  },
+        { nom: "Duo 1", photo: "double-cheese-burger.webp", desc: "Cheese + Big Mac",        menu: "9,00"  },
+        { nom: "Duo 2", photo: "menu-chicken-burger.webp", desc: "Cheese + Chicken",        menu: "9,00"  },
+        { nom: "Duo 3", photo: "menu-burger-gold.webp", desc: "Cheese + Gold",           menu: "10,50" },
+        { nom: "Duo 4", photo: "menu-burger-geant-cheese.webp", desc: "Cheese + Géant",          menu: "9,00"  },
+        { nom: "Duo 5", photo: "menu-burger-triple-cheese.webp", desc: "Cheese + Triple Cheese",  menu: "10,50" },
+        { nom: "Duo 6", photo: "menu-burger-royal.webp", desc: "Cheese + Royal",          menu: "10,50" },
+        { nom: "Duo 7", photo: "menu-geant-burger-double-cheese.webp", desc: "Cheese + Double Géant",   menu: "10,00" },
+        { nom: "Duo 8", photo: "menu-crousty-burger.webp", desc: "Cheese + Crousty",        menu: "10,50" },
+        { nom: "Duo 9", photo: "menu-classic.webp", desc: "Cheese + Cheese",         menu: "8,00"  },
       ]},
     ],
   },
   {
-    id: "sandwichs", titre: "Nos Sandwichs", icone: "sandwich", img: "",
+    id: "sandwichs", titre: "Nos Sandwichs", icone: "sandwich", img: "menu-sandwich-kebab.webp",
     accroche: "Spéciaux, maxi et simples",
     note: "Menu = Sandwich + Frites + Boisson 33cl",
     groupes: [
       { titre: "Spéciaux", style: "cards", items: [
         { nom: "Suprême",    desc: "Steak, Boursin, Œuf, Cheddar",           seul: "7,00", menu: "8,00" },
-        { nom: "Curry",      desc: "Poulet curry, Fromage",                  seul: "7,00", menu: "8,00" },
+        { nom: "Curry", photo: "menu-sandwich-curry-maxi.webp",      desc: "Poulet curry, Fromage",                  seul: "7,00", menu: "8,00" },
         { nom: "Paprika",    desc: "Poulet paprika, Fromage",                seul: "7,00", menu: "8,00" },
         { nom: "Kefta",      desc: "Viande hachée assaisonnée, Fromage",     seul: "7,00", menu: "8,00", nouveau: true },
         { nom: "Spicy",      desc: "Poulet épicé, Olives, Fromage",          seul: "7,00", menu: "8,00", nouveau: true },
         { nom: "Mix",        desc: "½ Curry, ½ Paprika, Fromage",            seul: "7,00", menu: "8,00", nouveau: true },
-        { nom: "Boursin",    desc: "Viande au choix",                        seul: "8,50", menu: "9,50" },
-        { nom: "3 Fromages", desc: "Viande au choix",                        seul: "7,50", menu: "9,00" },
-        { nom: "Délice",     desc: "Escalope, Crème champignon, Cheddar",    seul: "7,00", menu: "8,00" },
+        { nom: "Boursin", photo: "menu-sandwich-boursin.webp",    desc: "Viande au choix",                        seul: "8,50", menu: "9,50" },
+        { nom: "3 Fromages", photo: "menu-sandwich-poulet-cheddar.webp", desc: "Viande au choix",                        seul: "7,50", menu: "9,00" },
+        { nom: "Délice", photo: "menu-sandwich-poulet-fromage.webp",     desc: "Escalope, Crème champignon, Cheddar",    seul: "7,00", menu: "8,00" },
       ]},
       { titre: "Maxi", style: "cards", items: [
         { nom: "Extrême",       desc: "Steak, Escalope, Bacon, Boursin",   seul: "9,00", menu: "10,50" },
-        { nom: "Maxi C. Bleu",  desc: "Steak, Cordon bleu, Fromage",       seul: "7,50", menu: "9,00"  },
+        { nom: "Maxi C. Bleu", photo: "menu-sandwich-escalope-pane.webp",  desc: "Steak, Cordon bleu, Fromage",       seul: "7,50", menu: "9,00"  },
         { nom: "Maxi Paprika",  desc: "Steak, Poulet paprika, Cheddar",    seul: "7,50", menu: "9,00"  },
-        { nom: "Maxi Kebab",    desc: "Steak, Kebab, Fromage",             seul: "7,50", menu: "9,00"  },
+        { nom: "Maxi Kebab", photo: "menu-sandwich-kebab.webp",    desc: "Steak, Kebab, Fromage",             seul: "7,50", menu: "9,00"  },
         { nom: "Maxi Tenders",  desc: "Kebab, Tenders, Fromage",           seul: "7,50", menu: "9,00"  },
-        { nom: "Maxi Curry",    desc: "Steak, Poulet curry, Fromage",      seul: "7,50", menu: "9,00"  },
+        { nom: "Maxi Curry", photo: "menu-sandwich-curry-maxi.webp",    desc: "Steak, Poulet curry, Fromage",      seul: "7,50", menu: "9,00"  },
       ]},
       { titre: "Simples", style: "list", items: [
         { nom: "Kebab",            seul: "6,00", menu: "7,50" },
@@ -150,17 +151,17 @@ const CARTE = [
     supplements: SUPPLEMENTS,
   },
   {
-    id: "tacos", titre: "Tacos & Bowl", icone: "tacos", img: "",
+    id: "tacos", titre: "Tacos & Bowl", icone: "tacos", img: "menu-tacos-1-viande.webp",
     accroche: "1, 2 ou 3 viandes au choix",
     note: "Menu = Plat + Frites + Boisson 33cl",
     viandes: VIANDES,
     groupes: [
-      { titre: "Tacos", style: "list", items: [
+      { titre: "Tacos", style: "list", photo: "menu-tacos-1-viande.webp", items: [
         { nom: "Tacos 1 viande",  seul: "7,00",  menu: "8,50"  },
         { nom: "Tacos 2 viandes", seul: "9,00",  menu: "10,50" },
         { nom: "Tacos 3 viandes", seul: "10,00", menu: "11,50" },
       ]},
-      { titre: "Bowl", style: "list", items: [
+      { titre: "Bowl", style: "list", photo: "afl-bowl.webp", items: [
         { nom: "Bowl 1 viande",  seul: "7,00",  menu: "8,50"  },
         { nom: "Bowl 2 viandes", seul: "9,00",  menu: "10,50" },
         { nom: "Bowl 3 viandes", seul: "10,00", menu: "11,50" },
@@ -173,32 +174,32 @@ const CARTE = [
     ],
   },
   {
-    id: "crousty", titre: "AFL Crousty", icone: "fire", img: "",
+    id: "crousty", titre: "AFL Crousty", icone: "fire", img: "afl-crousty.webp",
     accroche: "Le nouveau best-seller",
     note: "Menu = Crousty + Boisson 33cl",
     groupes: [
       { titre: "", style: "cards", items: [
-        { nom: "AFL Crousty", desc: "Tenders croustillants, riz et sauce au choix", seul: "7,00", menu: "8,50", nouveau: true },
+        { nom: "AFL Crousty", photo: "afl-crousty.webp", desc: "Tenders croustillants, riz et sauce au choix", seul: "7,00", menu: "8,50", nouveau: true },
       ]},
     ],
   },
   {
-    id: "paninis", titre: "Nos Paninis", icone: "panini", img: "",
+    id: "paninis", titre: "Nos Paninis", icone: "panini", img: "menu-panini-3-fromages.webp",
     accroche: "3 Fromages, Steak ou Poulet",
     note: "Menu = Panini + Frites + Boisson 33cl",
     groupes: [
-      { titre: "", style: "list", items: [
-        { nom: "Panini 3 Fromages", seul: "6,00", menu: "7,50" },
-        { nom: "Panini Steak",      seul: "6,00", menu: "7,50" },
+      { titre: "", style: "cards", items: [
+        { nom: "Panini 3 Fromages", photo: "menu-panini-3-fromages.webp", seul: "6,00", menu: "7,50" },
+        { nom: "Panini Steak", photo: "menu-panini-steak.webp",      seul: "6,00", menu: "7,50" },
         { nom: "Panini Poulet",     seul: "6,00", menu: "7,50" },
       ]},
     ],
   },
   {
-    id: "texmex", titre: "Tex Mex & Frites", icone: "texmex", img: "",
+    id: "texmex", titre: "Tex Mex & Frites", icone: "texmex", img: "tenders.webp",
     accroche: "À grignoter ou à partager",
     groupes: [
-      { titre: "", style: "list", items: [
+      { titre: "", style: "list", photo: "nuggets.webp", items: [
         { nom: "Tenders x3 + sauce",                prix: "4,50" },
         { nom: "Barquette de frites — Petite",      prix: "1,50" },
         { nom: "Barquette de frites — Grande",      prix: "2,50" },
@@ -210,11 +211,11 @@ const CARTE = [
     ],
   },
   {
-    id: "enfant", titre: "Menu Enfant", icone: "enfant", img: "",
+    id: "enfant", titre: "Menu Enfant", icone: "enfant", img: "menu-enfant.webp",
     accroche: "Pour les petits gourmands",
     groupes: [
       { titre: "", style: "cards", items: [
-        { nom: "Menu Enfant", desc: "Cheese Burger, 5 Nuggets ou Mini Tacos au choix + Frites + Compote + Caprisun", prix: "5,50" },
+        { nom: "Menu Enfant", photo: "menu-enfant.webp", desc: "Cheese Burger, 5 Nuggets ou Mini Tacos au choix + Frites + Compote + Caprisun", prix: "5,50" },
       ]},
     ],
   },
