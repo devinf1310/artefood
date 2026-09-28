@@ -206,13 +206,15 @@
     if(g.style === "list"){
       const twoCols = g.items.some(it => it.menu);
       const cols = twoCols ? `<li class="row row-head"><span></span><span class="r-prices"><em>Seul</em><em>Menu</em></span></li>` : "";
-      return `${head}<ul class="price-list reveal-up ${twoCols ? "" : "single-price"}">${cols}${g.items.map(it => `
+      const list = `<ul class="price-list reveal-up ${twoCols ? "" : "single-price"}">${cols}${g.items.map(it => `
         <li class="row"><span class="r-name">${it.nom}${newTag(it)}${it.desc ? `<em>${it.desc}</em>` : ""}</span><i class="dots"></i>
           <span class="r-prices">${twoCols ? `<b>${it.seul ? euro(it.seul) : "—"}</b><b class="hot">${it.menu ? euro(it.menu) : "—"}</b>` : `<b class="hot">${euro(it.prix)}</b>`}</span></li>`).join("")}
       </ul>`;
+      return g.photo ? `${head}<div class="list-with-photo"><figure class="g-photo reveal-up"><img loading="lazy" src="${media(g.photo)}" alt="${g.titre}"></figure>${list}</div>` : head + list;
     }
     return `${head}<div class="dish-grid ${g.items.length === 1 ? "solo" : ""}">${g.items.map((it, i) => `
-      <article class="dish reveal-up" style="--d:${(i % 3) * 70}ms">${newTag(it)}
+      <article class="dish reveal-up ${it.photo ? "has-photo" : ""}" style="--d:${(i % 3) * 70}ms">${newTag(it)}
+        ${it.photo ? `<div class="d-photo"><img loading="lazy" src="${media(it.photo)}" alt="${it.nom}"></div>` : ""}
         <h5>${it.nom}</h5>${it.desc ? `<p>${it.desc}</p>` : ""}
         <div class="prices">${pills(it)}</div>
       </article>`).join("")}</div>`;
