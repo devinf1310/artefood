@@ -185,13 +185,17 @@ const CARTE = [
   },
   {
     id: "paninis", titre: "Nos Paninis", icone: "panini", img: "menu-panini-3-fromages.webp",
-    accroche: "3 Fromages, Steak ou Poulet",
+    accroche: "7 recettes au choix",
     note: "Menu = Panini + Frites + Boisson 33cl",
     groupes: [
-      { titre: "", style: "cards", items: [
+      { titre: "", style: "list", photo: "menu-panini-3-fromages.webp", items: [
         { nom: "Panini 3 Fromages", photo: "menu-panini-3-fromages.webp", seul: "6,00", menu: "7,50" },
-        { nom: "Panini Steak", photo: "menu-panini-steak.webp",      seul: "6,00", menu: "7,50" },
+        { nom: "Panini Steak",      photo: "menu-panini-steak.webp",      seul: "6,00", menu: "7,50" },
+        { nom: "Panini Mozza",      seul: "6,00", menu: "7,50" },
+        { nom: "Panini Provençale", seul: "6,00", menu: "7,50" },
+        { nom: "Panini Thon",       seul: "6,00", menu: "7,50" },
         { nom: "Panini Poulet",     seul: "6,00", menu: "7,50" },
+        { nom: "Panini Lardo",      seul: "6,00", menu: "7,50" },
       ]},
     ],
   },
